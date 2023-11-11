@@ -1,0 +1,40 @@
+.ps-inner-item {
+  padding: 5px 35px 5px 20px !important;
+}
+.menu-item {
+  margin: 10px 0 20px 0;
+}
+.typography-item {
+  margin: 15px 0 5px 20px !important;
+}
+.typography-header-collapse {
+  margin: 10px 0 0 0;
+}
+.ps-menu-button:hover {
+  background-color: #c2c2c2 !important;
+  color: #535ac8 !important;
+}
+.ps-menu-button:hover::before {
+  content: "";
+  background-color: #535ac8 !important;
+  transform-origin: 0 100%;
+  animation: selectItemAnim 0.5s;
+  height: 100%;
+  left: 0;
+  width: 3px;
+  position: absolute;
+}
+
+@keyframes selectItemAnim {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.sidebar {
+  border: 0px !important;
+  height: 100vh !important;
+}

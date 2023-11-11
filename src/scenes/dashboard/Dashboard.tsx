@@ -1,4 +1,4 @@
-import { useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 
@@ -7,9 +7,12 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <div>
-      <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
-    </div>
+    <Box m="20px">
+      {/* HEADER */}
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+      </Box>
+    </Box>
   );
 };
 
