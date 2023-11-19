@@ -36,8 +36,6 @@ abstract class Redis : DefaultTask() {
 		}
 	}
 }
-
-// Create a task using the task type
 tasks.register<Redis>("redis")
 
 dependencyManagement {

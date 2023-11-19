@@ -4,7 +4,7 @@ import { ColorModeContext } from "../../theme";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 
-const TopBar = () => {
+export const TopBar = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
@@ -24,5 +24,3 @@ const TopBar = () => {
     </Box>
   );
 };
-
-export default TopBar;

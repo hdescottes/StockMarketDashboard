@@ -15,7 +15,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { tokens } from "../../theme";
-import "./SideBar.scss";
+import "./side-bar.scss";
 
 const Item = ({
   title,
@@ -45,7 +45,7 @@ const Item = ({
   );
 };
 
-const SideBar = () => {
+export const SideBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -210,5 +210,3 @@ const SideBar = () => {
     </Box>
   );
 };
-
-export default SideBar;
