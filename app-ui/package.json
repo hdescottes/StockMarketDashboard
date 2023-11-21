@@ -2,6 +2,7 @@
   "name": "react-dashboard",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
@@ -14,6 +15,7 @@
     "@types/node": "^16.18.61",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "axios": "^1.6.2",
     "cypress": "^13.5.0",
     "esbuild": "^0.19.5",
     "react": "^18.2.0",
