@@ -1,4 +1,4 @@
-import ModelTest from "../components/model-test";
+import { ModelTest } from "../components/model-test";
 import { useDashboard } from "./use-dashboard.hook";
 import { newModel } from "../../../model/model";
 

@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { newModel } from "../../../model/model";
-import ModelTest from "./model-test";
+import { ModelTest } from "./model-test";
 import { render, screen } from "@testing-library/react";
 
 describe("ModelTest component", () => {
@@ -17,7 +17,7 @@ describe("ModelTest component", () => {
     const create = jest.fn();
     render(<ModelTest {...props} create={create} />);
 
-    await userEvent.click(screen.getByLabelText("create"));
+    userEvent.click(screen.getByLabelText("create"));
     expect(create).toHaveBeenCalled();
   });
 });
