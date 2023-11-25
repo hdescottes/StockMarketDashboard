@@ -1,11 +1,11 @@
 import userEvent from "@testing-library/user-event";
 import { newModel } from "../../../model/model";
-import { ModelTest } from "./model-test";
+import { DashboardSearch } from "./dashboard-search";
 import { render, screen } from "@testing-library/react";
 
-describe("ModelTest component", () => {
+describe("DashboardSearch component", () => {
   it("should render all fields", () => {
-    const dom = render(<ModelTest {...props} />);
+    const dom = render(<DashboardSearch {...props} />);
 
     expect(dom).toBeTruthy();
     expect(screen.getByLabelText("id")).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe("ModelTest component", () => {
 
   it("should call onChange when input are triggered", async () => {
     const create = jest.fn();
-    render(<ModelTest {...props} create={create} />);
+    render(<DashboardSearch {...props} create={create} />);
 
     userEvent.click(screen.getByLabelText("create"));
     expect(create).toHaveBeenCalled();
