@@ -1,7 +1,8 @@
-import { Box, Typography, useTheme } from "@mui/material";
-import { tokens } from "../../../theme";
+import { Box } from "@mui/material";
 import { Model } from "../../../model/model";
 import { Header } from "../../../components/header";
+import { ButtonCustom } from "../../../components/button";
+import { DragNDropList } from "../../../components/drag-n-drop-list";
 
 interface ModelProps {
   model: Model;
@@ -11,9 +12,6 @@ interface ModelProps {
 }
 
 export function ModelTest({ model, onChange, create, models }: ModelProps) {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -35,33 +33,21 @@ export function ModelTest({ model, onChange, create, models }: ModelProps) {
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
       </Box>
-      <Box>
+      <Box display="flex" justifyContent="flex" height="30px">
         <input aria-label="id" name="id" onChange={handleChange} />
         <input aria-label="value" name="value" onChange={handleChange} />
-        <button aria-label="create" onClick={create} />
+        <ButtonCustom title="create" onClick={create} />
       </Box>
       <Box
-        display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="140px"
-        gap="20px"
+        paddingTop="50px"
+        sx={{
+          ".MuiBox-root": {
+            borderRadius: "8px",
+          },
+        }}
       >
-        {models.map((model) => (
-          <Box
-            gridColumn="span 3"
-            bgcolor={colors.primary[400]}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>
-              {model.value}
-            </Typography>
-          </Box>
-        ))}
+        <DragNDropList list={models} />
       </Box>
     </Box>
   );
 }
-
-export default ModelTest;
