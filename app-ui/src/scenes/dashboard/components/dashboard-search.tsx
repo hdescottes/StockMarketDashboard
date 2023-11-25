@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { Model } from "../../../model/model";
 import { ButtonCustom } from "../../../components/button";
+import { Section } from "../../../components/section";
 
 interface DashboardSearchProps {
   model: Model;
@@ -29,10 +30,12 @@ export function DashboardSearch({
   };
 
   return (
-    <Box display="flex" justifyContent="flex" height="30px">
-      <input aria-label="id" name="id" onChange={handleChange} />
-      <input aria-label="value" name="value" onChange={handleChange} />
-      <ButtonCustom title="create" onClick={create} />
-    </Box>
+    <Section>
+      <Box display="flex" justifyContent="flex" height="30px">
+        <input aria-label="id" name="id" onChange={handleChange} />
+        <input aria-label="value" name="value" onChange={handleChange} />
+        <ButtonCustom title="create" onClick={create} />
+      </Box>
+    </Section>
   );
 }

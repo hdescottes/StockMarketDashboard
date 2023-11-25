@@ -9,7 +9,7 @@ export const StockResume = (props: { model: Model }) => {
   return (
     <Box
       gridColumn="span 3"
-      bgcolor={colors.primary[400]}
+      bgcolor={colors.primary[900]}
       display="flex"
       alignItems="center"
       justifyContent="center"
