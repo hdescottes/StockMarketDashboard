@@ -5,7 +5,7 @@ export const ButtonCustom = (props: { title: string; onClick: () => void }) => {
   return (
     <Button
       size="medium"
-      aria-label="create"
+      aria-label={props.title}
       className="button"
       type="submit"
       onClick={props.onClick}

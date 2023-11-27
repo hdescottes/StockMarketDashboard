@@ -1,20 +1,46 @@
-import { Model } from "../model/model";
+import { Stock, newStock } from "../model/stock";
+import { StockResponse } from "../model/stockResponse";
 import { HttpService } from "./http.service";
+import token from "../token.json";
 
 export class DashboardService {
   httpService: HttpService = new HttpService();
+  tokenValue: string = token.TOKEN;
 
-  search(): Promise<Model[]> {
-    return this.httpService.get<Model[]>("/api/stock-market").then(
-      (response: Model[]) => response,
+  fetch(symbol: string): Promise<Stock> {
+    /*const today = new Date();
+    const to =
+      today.getFullYear() + "-" + today.getMonth() + "-" + today.getDay();
+    const from =
+      today.getFullYear() + "-" + (today.getMonth() - 4) + "-" + today.getDay();*/
+    return this.httpService
+      .get<StockResponse>(
+        `/v1/eod?access_key=${this.tokenValue}&symbols=${symbol}`
+      )
+      .then(
+        (response: StockResponse) => response.data[0],
+        (_error) => newStock
+      );
+  }
+
+  getById(id: string): Promise<Stock> {
+    return this.httpService.get<Stock>(`/api/stock/${id}`).then(
+      (response: Stock) => response,
+      (_error) => newStock
+    );
+  }
+
+  search(): Promise<Stock[]> {
+    return this.httpService.get<Stock[]>("/api/stock").then(
+      (response: Stock[]) => response,
       (_error) => []
     );
   }
 
-  create(model: Model): Promise<number | null> {
+  create(stock: Stock): Promise<number | null> {
     return this.httpService
-      .post<number>("/api/stock-market", {
-        ...model,
+      .post<number>("/api/stock", {
+        ...stock,
       })
       .then(
         (response: number) => response,

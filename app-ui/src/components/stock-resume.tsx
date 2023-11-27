@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../theme";
-import { Model } from "../model/model";
+import { Stock } from "../model/stock";
 
-export const StockResume = (props: { model: Model }) => {
+export const StockResume = (props: { stock: Stock }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -15,7 +15,7 @@ export const StockResume = (props: { model: Model }) => {
       justifyContent="center"
     >
       <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>
-        {props.model.value}
+        {props.stock.symbol}
       </Typography>
     </Box>
   );

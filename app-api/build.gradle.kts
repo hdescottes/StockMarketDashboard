@@ -28,15 +28,16 @@ tasks.named<Test>("test") {
 	useJUnitPlatform()
 }
 
-abstract class Redis : DefaultTask() {
-	@TaskAction
-	fun greet() {
-		project.exec {
-			commandLine("redis-server.exe")
-		}
+tasks.register("launchRedis") {
+	doLast {
+		val redisExePath = "./redis-server.exe"
+		Runtime.getRuntime().exec(redisExePath)
 	}
 }
-tasks.register<Redis>("redis")
+
+tasks.named("bootRun") {
+	dependsOn("launchRedis")
+}
 
 dependencyManagement {
 	imports {

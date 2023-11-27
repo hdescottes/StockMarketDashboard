@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
 import { DragNDropList } from "../../../components/drag-n-drop-list";
-import { Model } from "../../../model/model";
 import { Section } from "../../../components/section";
+import { Stock } from "../../../model/stock";
 
-export const DashboardDetails = (props: { models: Model[] }) => {
+export const DashboardDetails = (props: { stocks: Stock[] }) => {
   return (
     <Section className="mt-3">
       <Box
@@ -13,7 +13,7 @@ export const DashboardDetails = (props: { models: Model[] }) => {
           },
         }}
       >
-        <DragNDropList list={props.models} />
+        <DragNDropList list={props.stocks} />
       </Box>
     </Section>
   );

@@ -5,6 +5,7 @@ lib/
 /app-api/src/main/resources/static/
 *.hprof
 .DS_Store
+/app-ui/src/token.json
 
 ### STS ###
 .apt_generated

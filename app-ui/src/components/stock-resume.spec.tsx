@@ -1,15 +1,15 @@
-import { newModel } from "../model/model";
+import { newStock } from "../model/stock";
 import { StockResume } from "./stock-resume";
 import { render, screen } from "@testing-library/react";
 
 describe("Stock Resume component", () => {
   it("should render", () => {
     const value = "toto";
-    const model = {
-      ...newModel,
-      value: value,
+    const stock = {
+      ...newStock,
+      symbol: value,
     };
-    render(<StockResume model={model} />);
+    render(<StockResume stock={stock} />);
     expect(screen.getByText(value)).toBeInTheDocument();
   });
 });

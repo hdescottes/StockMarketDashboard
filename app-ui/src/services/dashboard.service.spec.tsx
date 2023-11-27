@@ -1,23 +1,48 @@
-import { Model, newModel } from "../model/model";
+import { Stock, newStock } from "../model/stock";
 import { DashboardService } from "./dashboard.service";
 import { HttpService } from "./http.service";
 
 jest.mock("./http.service");
 const httpService = HttpService as jest.MockedClass<typeof HttpService>;
-const model = {} as Model;
+const stock = {} as Stock;
 
 describe("Dashboard service", () => {
-  describe("Call to search models", () => {
-    it("Succeeds, should return list of model", async () => {
+  describe("Call to get stock by id", () => {
+    it("Succeeds, should return a stock", async () => {
+      const id = "toto";
       const dashboardService = new DashboardService();
 
-      httpService.prototype.get.mockResolvedValue({ response: [model, model] });
+      httpService.prototype.get.mockResolvedValue({ response: stock });
+
+      const response = await dashboardService.getById(id);
+      expect(httpService.prototype.get).toHaveBeenCalledWith(
+        `/api/stock/${id}`
+      );
+      expect(response).toEqual({ response: stock });
+    });
+
+    it("Fails, should return empty stock", async () => {
+      const id = "toto";
+      const dashboardService = new DashboardService();
+
+      httpService.prototype.get.mockResolvedValue({ response: newStock });
+
+      const response = await dashboardService.getById(id);
+      expect(httpService.prototype.get).toHaveBeenCalledWith(
+        `/api/stock/${id}`
+      );
+      expect(response).toEqual({ response: newStock });
+    });
+  });
+  describe("Call to search stocks", () => {
+    it("Succeeds, should return list of stock", async () => {
+      const dashboardService = new DashboardService();
+
+      httpService.prototype.get.mockResolvedValue({ response: [stock, stock] });
 
       const response = await dashboardService.search();
-      expect(httpService.prototype.get).toHaveBeenCalledWith(
-        "/api/stock-market"
-      );
-      expect(response).toEqual({ response: [model, model] });
+      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stock");
+      expect(response).toEqual({ response: [stock, stock] });
     });
 
     it("Fails, should return empty array", async () => {
@@ -26,23 +51,21 @@ describe("Dashboard service", () => {
       httpService.prototype.get.mockResolvedValue({ response: [] });
 
       const response = await dashboardService.search();
-      expect(httpService.prototype.get).toHaveBeenCalledWith(
-        "/api/stock-market"
-      );
+      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stock");
       expect(response).toEqual({ response: [] });
     });
   });
 
-  describe("Call to create model", () => {
-    it("Succeeds, should create a model", async () => {
+  describe("Call to create stock", () => {
+    it("Succeeds, should create a stock", async () => {
       const dashboardService = new DashboardService();
 
       httpService.prototype.post.mockResolvedValue({ response: 1 });
 
-      const response = await dashboardService.create(newModel);
+      const response = await dashboardService.create(newStock);
       expect(httpService.prototype.post).toHaveBeenCalledWith(
-        "/api/stock-market",
-        newModel
+        "/api/stock",
+        newStock
       );
       expect(response).toEqual({ response: 1 });
     });
@@ -52,10 +75,10 @@ describe("Dashboard service", () => {
 
       httpService.prototype.post.mockResolvedValue({ response: null });
 
-      const response = await dashboardService.create(newModel);
+      const response = await dashboardService.create(newStock);
       expect(httpService.prototype.post).toHaveBeenCalledWith(
-        "/api/stock-market",
-        newModel
+        "/api/stock",
+        newStock
       );
       expect(response).toEqual({ response: null });
     });

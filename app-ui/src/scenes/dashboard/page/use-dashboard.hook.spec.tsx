@@ -1,7 +1,7 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { useDashboard } from "./use-dashboard.hook";
-import { newModel } from "../../../model/model";
 import { DashboardService } from "../../../services/dashboard.service";
+import { newStock } from "../../../model/stock";
 
 jest.mock("../../../services/dashboard.service");
 const dashboardService = DashboardService as jest.MockedClass<
@@ -11,21 +11,49 @@ const dashboardService = DashboardService as jest.MockedClass<
 describe("useDashboard", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    dashboardService.prototype.create.mockResolvedValue(1);
-    dashboardService.prototype.search.mockResolvedValue([]);
   });
 
-  it("should call create and then search", async () => {
-    const { result } = renderHook(() => useDashboard(newModel));
+  it("should call getById, fetch, then create and search", async () => {
+    dashboardService.prototype.getById.mockResolvedValue(newStock);
+    dashboardService.prototype.fetch.mockResolvedValue(newStock);
+    dashboardService.prototype.create.mockResolvedValue(1);
+    dashboardService.prototype.search.mockResolvedValue([]);
+
+    const { result } = renderHook(() => useDashboard(newStock));
 
     act(() => {
-      result.current.create();
+      result.current.fetch();
     });
 
     await waitFor(() => {
+      expect(dashboardService.prototype.getById).toHaveBeenCalled();
+      expect(dashboardService.prototype.fetch).toHaveBeenCalled();
       expect(dashboardService.prototype.create).toHaveBeenCalled();
       expect(dashboardService.prototype.search).toHaveBeenCalled();
-      expect(result.current.model).not.toBeNull();
+      expect(result.current.stock).not.toBeNull();
+    });
+  });
+
+  it("should call getById, then search", async () => {
+    const dbStock = {
+      ...newStock,
+      id: "toto",
+    };
+    dashboardService.prototype.getById.mockResolvedValue(dbStock);
+    dashboardService.prototype.search.mockResolvedValue([]);
+
+    const { result } = renderHook(() => useDashboard(newStock));
+
+    act(() => {
+      result.current.fetch();
+    });
+
+    await waitFor(() => {
+      expect(dashboardService.prototype.getById).toHaveBeenCalled();
+      expect(dashboardService.prototype.fetch).not.toHaveBeenCalled();
+      expect(dashboardService.prototype.create).not.toHaveBeenCalled();
+      expect(dashboardService.prototype.search).toHaveBeenCalled();
+      expect(result.current.stock).not.toBeNull();
     });
   });
 });
