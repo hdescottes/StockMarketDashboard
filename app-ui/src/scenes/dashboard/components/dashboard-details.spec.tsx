@@ -9,7 +9,7 @@ const dragNDropList = DragNDropList as jest.MockedFunction<
 
 describe("DashboardDetails component", () => {
   it("should render all fields", () => {
-    const dom = render(<DashboardDetails models={[]} />);
+    const dom = render(<DashboardDetails stocks={[]} />);
 
     expect(dom).toBeTruthy();
     expect(dragNDropList).toHaveBeenCalled();

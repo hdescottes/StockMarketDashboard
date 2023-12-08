@@ -1,30 +1,29 @@
 import userEvent from "@testing-library/user-event";
-import { newModel } from "../../../model/model";
 import { DashboardSearch } from "./dashboard-search";
 import { render, screen } from "@testing-library/react";
+import { newStock } from "../../../model/stock";
 
 describe("DashboardSearch component", () => {
   it("should render all fields", () => {
     const dom = render(<DashboardSearch {...props} />);
 
     expect(dom).toBeTruthy();
-    expect(screen.getByLabelText("id")).toBeInTheDocument();
-    expect(screen.getByLabelText("value")).toBeInTheDocument();
-    expect(screen.getByLabelText("create")).toBeInTheDocument();
+    expect(screen.getByLabelText("symbol")).toBeInTheDocument();
+    expect(screen.getByLabelText("fetch")).toBeInTheDocument();
   });
 
   it("should call onChange when input are triggered", async () => {
-    const create = jest.fn();
-    render(<DashboardSearch {...props} create={create} />);
+    const fetch = jest.fn();
+    render(<DashboardSearch {...props} fetch={fetch} />);
 
-    userEvent.click(screen.getByLabelText("create"));
-    expect(create).toHaveBeenCalled();
+    userEvent.click(screen.getByLabelText("fetch"));
+    expect(fetch).toHaveBeenCalled();
   });
 });
 
 const props = {
-  model: { ...newModel },
+  stock: { ...newStock },
   onChange: jest.fn(),
-  create: jest.fn(),
-  models: [newModel],
+  fetch: jest.fn(),
+  stocks: [newStock],
 };

@@ -1,18 +1,18 @@
 import { Box } from "@mui/material";
-import { Model } from "../../../model/model";
 import { ButtonCustom } from "../../../components/button";
 import { Section } from "../../../components/section";
+import { Stock } from "../../../model/stock";
 
 interface DashboardSearchProps {
-  model: Model;
-  onChange: (value: Model) => void;
-  create: () => void;
+  stock: Stock;
+  onChange: (value: Stock) => void;
+  fetch: () => void;
 }
 
 export function DashboardSearch({
-  model,
+  stock,
   onChange,
-  create,
+  fetch,
 }: DashboardSearchProps) {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -24,18 +24,19 @@ export function DashboardSearch({
     }
 
     onChange({
-      ...model,
+      ...stock,
       [event.target.name]: value,
     });
   };
 
   return (
-    <Section>
-      <Box display="flex" justifyContent="flex" height="30px">
-        <input aria-label="id" name="id" onChange={handleChange} />
-        <input aria-label="value" name="value" onChange={handleChange} />
-        <ButtonCustom title="create" onClick={create} />
-      </Box>
-    </Section>
+    <div>
+      <Section>
+        <Box display="flex" justifyContent="flex" height="30px">
+          <input aria-label="symbol" name="symbol" onChange={handleChange} />
+          <ButtonCustom title="fetch" onClick={fetch} />
+        </Box>
+      </Section>
+    </div>
   );
 }
