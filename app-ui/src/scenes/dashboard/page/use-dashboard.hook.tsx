@@ -50,6 +50,7 @@ export const useDashboard = (newStock: Stock) => {
     stock,
     setStock,
     fetch,
+    search,
     stocks,
   };
 };

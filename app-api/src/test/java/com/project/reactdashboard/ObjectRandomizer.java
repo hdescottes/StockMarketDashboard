@@ -3,6 +3,7 @@ package com.project.reactdashboard;
 import com.project.reactdashboard.entities.Stock;
 import com.project.reactdashboard.entities.StockDto;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -44,7 +45,7 @@ public class ObjectRandomizer {
         return new StockDto.StockDtoBuilder()
                 .withId(randomString())
                 .withSymbol(randomString())
-                .withDate(randomString())
+                .withDate(OffsetDateTime.parse("2020-12-20T00:00:00.000Z").toString())
                 .withVolume(randomDouble())
                 .withOpen(randomDouble())
                 .withClose(randomDouble())

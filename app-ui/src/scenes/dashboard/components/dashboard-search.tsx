@@ -7,12 +7,14 @@ interface DashboardSearchProps {
   stock: Stock;
   onChange: (value: Stock) => void;
   fetch: () => void;
+  search: () => void;
 }
 
 export function DashboardSearch({
   stock,
   onChange,
   fetch,
+  search,
 }: DashboardSearchProps) {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -35,6 +37,7 @@ export function DashboardSearch({
         <Box display="flex" justifyContent="flex" height="30px">
           <input aria-label="symbol" name="symbol" onChange={handleChange} />
           <ButtonCustom title="fetch" onClick={fetch} />
+          <ButtonCustom title="search all" onClick={search} />
         </Box>
       </Section>
     </div>

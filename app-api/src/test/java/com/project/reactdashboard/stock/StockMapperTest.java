@@ -10,6 +10,7 @@ import java.util.List;
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
 import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomStockDto;
+import static com.project.reactdashboard.utils.Utils.splitStockDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StockMapperTest {
@@ -27,7 +28,7 @@ public class StockMapperTest {
 
         Stock stock = mapper.toEntity(dto);
 
-        assertEquals(dto.getSymbol() + dto.getDate(), stock.getId());
+        assertEquals(dto.getSymbol() + splitStockDate(dto.getDate()), stock.getId());
         assertEquals(dto.getDate(), stock.getDate());
         assertEquals(dto.getSymbol(), stock.getSymbol());
         assertEquals(dto.getVolume(), stock.getVolume());
