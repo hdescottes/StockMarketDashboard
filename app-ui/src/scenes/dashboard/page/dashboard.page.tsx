@@ -6,14 +6,19 @@ import { DashboardDetails } from "../components/dashboard-details";
 import { newStock } from "../../../model/stock";
 
 export const Dashboard = () => {
-  const { stock, setStock, fetch, stocks } = useDashboard(newStock);
+  const { stock, setStock, fetch, search, stocks } = useDashboard(newStock);
 
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
       </Box>
-      <DashboardSearch stock={stock} onChange={setStock} fetch={fetch} />
+      <DashboardSearch
+        stock={stock}
+        onChange={setStock}
+        fetch={fetch}
+        search={search}
+      />
       <DashboardDetails stocks={stocks} />
     </Box>
   );

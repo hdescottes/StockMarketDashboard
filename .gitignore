@@ -6,6 +6,7 @@ lib/
 *.hprof
 .DS_Store
 /app-ui/src/token.json
+dump.rdb
 
 ### STS ###
 .apt_generated
