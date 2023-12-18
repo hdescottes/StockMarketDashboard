@@ -14,7 +14,9 @@ describe("useDashboard", () => {
   });
 
   it("should call getById, fetch, then create and search", async () => {
-    dashboardService.prototype.getById.mockResolvedValue(newStock);
+    dashboardService.prototype.getLastWorkingDayBySymbol.mockResolvedValue(
+      newStock
+    );
     dashboardService.prototype.fetch.mockResolvedValue(newStock);
     dashboardService.prototype.create.mockResolvedValue(1);
     dashboardService.prototype.search.mockResolvedValue([]);
@@ -26,7 +28,9 @@ describe("useDashboard", () => {
     });
 
     await waitFor(() => {
-      expect(dashboardService.prototype.getById).toHaveBeenCalled();
+      expect(
+        dashboardService.prototype.getLastWorkingDayBySymbol
+      ).toHaveBeenCalled();
       expect(dashboardService.prototype.fetch).toHaveBeenCalled();
       expect(dashboardService.prototype.create).toHaveBeenCalled();
       expect(dashboardService.prototype.search).toHaveBeenCalled();
@@ -39,7 +43,9 @@ describe("useDashboard", () => {
       ...newStock,
       id: "toto",
     };
-    dashboardService.prototype.getById.mockResolvedValue(dbStock);
+    dashboardService.prototype.getLastWorkingDayBySymbol.mockResolvedValue(
+      dbStock
+    );
     dashboardService.prototype.search.mockResolvedValue([]);
 
     const { result } = renderHook(() => useDashboard(newStock));
@@ -49,7 +55,9 @@ describe("useDashboard", () => {
     });
 
     await waitFor(() => {
-      expect(dashboardService.prototype.getById).toHaveBeenCalled();
+      expect(
+        dashboardService.prototype.getLastWorkingDayBySymbol
+      ).toHaveBeenCalled();
       expect(dashboardService.prototype.fetch).not.toHaveBeenCalled();
       expect(dashboardService.prototype.create).not.toHaveBeenCalled();
       expect(dashboardService.prototype.search).toHaveBeenCalled();

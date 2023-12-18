@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20231218-02
+      author: admin
+      changes:
+        - createTable:
+            tableName: stock
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: symbol
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_stock_symbol_values
+                    references:
+                      tableName: symbol_values
+                      columnNames: symbol
+              - column:
+                  name: date
+                  type: TIMESTAMP WITH TIME ZONE
+              - column:
+                  name: open
+                  type: DOUBLE PRECISION
+              - column:
+                  name: close
+                  type: DOUBLE PRECISION
+              - column:
+                  name: high
+                  type: DOUBLE PRECISION
+              - column:
+                  name: low
+                  type: DOUBLE PRECISION
+              - column:
+                  name: volume
+                  type: DOUBLE PRECISION

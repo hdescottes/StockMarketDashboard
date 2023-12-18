@@ -39,6 +39,7 @@ export const StockResume = (props: { stock: Stock }) => {
       justifyContent="center"
     >
       <DetailColumn column={props.stock.symbol} colors={colors.grey[100]} />
+      <DetailColumn column={props.stock.name} colors={colors.grey[100]} />
       <DetailColumn
         column={props.stock.close.toString()}
         colors={colors.grey[100]}

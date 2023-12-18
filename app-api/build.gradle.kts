@@ -1,5 +1,7 @@
 val springBootVersion by extra { "3.1.5" }
-val redisJedisVersion by extra { "5.0.2" }
+val postgresVersion by extra { "42.7.1" }
+val jsr310Version by extra { "2.16.0" }
+val liquibaseVersion by extra { "4.25.0" }
 val apacheLang3Version by extra { "3.13.0" }
 
 buildscript {
@@ -28,15 +30,20 @@ tasks.named<Test>("test") {
 	useJUnitPlatform()
 }
 
-tasks.register("launchRedis") {
-	doLast {
-		val redisExePath = "./redis-server.exe"
-		Runtime.getRuntime().exec(redisExePath)
-	}
+tasks.named("bootRun") {
+	dependsOn("dockerComposeUp")
 }
 
-tasks.named("bootRun") {
-	dependsOn("launchRedis")
+tasks.register<Exec>("dockerComposeUp") {
+	commandLine("docker-compose", "-f", "docker/docker-compose.yml", "up", "-d")
+}
+
+tasks.register<Exec>("dockerComposeDown") {
+	commandLine("docker-compose", "-f", "docker/docker-compose.yml", "down")
+}
+
+tasks.register<Exec>("fullApp") {
+	dependsOn("bootRun")
 }
 
 dependencyManagement {
@@ -52,8 +59,10 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
 	implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
-	implementation("org.springframework.boot:spring-boot-starter-data-redis:$springBootVersion")
-	implementation("redis.clients:jedis:$redisJedisVersion")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jsr310Version}")
+	implementation("org.liquibase:liquibase-core:${liquibaseVersion}")
+	runtimeOnly("org.postgresql:postgresql:${postgresVersion}")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 	testImplementation("org.apache.commons:commons-lang3:$apacheLang3Version")
 }

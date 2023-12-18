@@ -7,12 +7,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -36,25 +36,20 @@ public class StockServiceTest {
 
     @Test
     void should_find_a_stock() {
-        String id = randomString();
+        String symbol = randomString();
+        OffsetDateTime date = OffsetDateTime.now()
+                .withHour(0)
+                .withMinute(0)
+                .withSecond(0)
+                .withNano(0)
+                .withOffsetSameLocal(ZoneOffset.UTC);
         Stock dbStock = randomStock();
-        when(repository.findById(id)).thenReturn(Optional.ofNullable(dbStock));
+        when(repository.findLastWorkingDayBySymbol(symbol, date)).thenReturn(dbStock);
 
-        Stock result = service.findById(id);
+        Stock result = service.findLastWorkingDayBySymbol(symbol);
 
-        verify(repository).findById(id);
+        verify(repository).findLastWorkingDayBySymbol(symbol, date);
         assertEquals(dbStock, result);
-    }
-
-    @Test
-    void should_not_find_a_stock() {
-        String id = randomString();
-        when(repository.findById(id)).thenReturn(Optional.empty());
-
-        Stock result = service.findById(id);
-
-        verify(repository).findById(id);
-        assertNull(result);
     }
 
     @Test

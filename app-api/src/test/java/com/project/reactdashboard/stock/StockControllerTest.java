@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.project.reactdashboard.entities.Stock;
 import com.project.reactdashboard.entities.StockDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,7 +53,7 @@ public class StockControllerTest {
         when(mapper.toEntity(dto)).thenReturn(stock);
 
         ResultActions resultActions = mockMvc.perform(
-                post("/api/stock")
+                post("/api/stocks")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createJsonModel(stock)));
 
@@ -64,11 +65,11 @@ public class StockControllerTest {
         Stock stock = randomStock();
         StockDto dto = randomStockDto();
 
-        when(service.findById(stock.getId())).thenReturn(stock);
+        when(service.findLastWorkingDayBySymbol(stock.getSymbol())).thenReturn(stock);
         when(mapper.toDto(stock)).thenReturn(dto);
 
         ResultActions resultActions = mockMvc.perform(
-                get("/api/stock/{id}", stock.getId())
+                get("/api/stocks/{symbol}/last-working-day", stock.getSymbol())
                         .contentType(MediaType.APPLICATION_JSON));
 
         resultActions.andExpect(status().isOk())
@@ -86,7 +87,7 @@ public class StockControllerTest {
         when(mapper.toListDto(stocks)).thenReturn(dtos);
 
         ResultActions resultActions = mockMvc.perform(
-                get("/api/stock")
+                get("/api/stocks")
                         .contentType(MediaType.APPLICATION_JSON));
 
         resultActions.andExpect(status().isOk())
@@ -96,6 +97,7 @@ public class StockControllerTest {
     private String createJsonModel(Object value) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        mapper.registerModule(new JavaTimeModule());
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(value);
     }

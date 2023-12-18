@@ -23,15 +23,17 @@ export class DashboardService {
       );
   }
 
-  getById(id: string): Promise<Stock> {
-    return this.httpService.get<Stock>(`/api/stock/${id}`).then(
-      (response: Stock) => response,
-      (_error) => newStock
-    );
+  getLastWorkingDayBySymbol(symbol: string): Promise<Stock> {
+    return this.httpService
+      .get<Stock>(`/api/stocks/${symbol}/last-working-day`)
+      .then(
+        (response: Stock) => response,
+        (_error) => newStock
+      );
   }
 
   search(): Promise<Stock[]> {
-    return this.httpService.get<Stock[]>("/api/stock").then(
+    return this.httpService.get<Stock[]>("/api/stocks").then(
       (response: Stock[]) => response,
       (_error) => []
     );
@@ -39,7 +41,7 @@ export class DashboardService {
 
   create(stock: Stock): Promise<number | null> {
     return this.httpService
-      .post<number>("/api/stock", {
+      .post<number>("/api/stocks", {
         ...stock,
       })
       .then(

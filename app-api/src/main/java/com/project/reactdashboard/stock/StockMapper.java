@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.project.reactdashboard.utils.Utils.splitStockDate;
+import static com.project.reactdashboard.utils.Utils.parseToISO;
 
 @Component
 public class StockMapper {
 
     public Stock toEntity(StockDto dto) {
         return new Stock.StockBuilder()
-                .withId(dto.getSymbol() + splitStockDate(dto.getDate()))
+                .withId(dto.getId())
                 .withSymbol(dto.getSymbol())
-                .withDate(dto.getDate())
+                .withDate(parseToISO(dto.getDate()))
                 .withVolume(dto.getVolume())
                 .withOpen(dto.getOpen())
                 .withClose(dto.getClose())
@@ -28,7 +28,8 @@ public class StockMapper {
         return new StockDto.StockDtoBuilder()
                 .withId(entity.getId())
                 .withSymbol(entity.getSymbol())
-                .withDate(entity.getDate())
+                .withName(entity.getSymbolValues().getName())
+                .withDate(entity.getDate().toString())
                 .withVolume(entity.getVolume())
                 .withOpen(entity.getOpen())
                 .withClose(entity.getClose())

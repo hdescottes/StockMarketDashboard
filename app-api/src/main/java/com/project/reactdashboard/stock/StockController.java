@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/stock")
+@RequestMapping("/api/stocks")
 public class StockController {
 
     private final StockMapper mapper;
@@ -35,10 +35,10 @@ public class StockController {
         return ResponseEntity.ok(dtos);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{symbol}/last-working-day")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<StockDto> findById(@PathVariable("id") String id) {
-        Stock stock = service.findById(id);
+    public ResponseEntity<StockDto> findLastWorkingDayBySymbol(@PathVariable("symbol") String symbol) {
+        Stock stock = service.findLastWorkingDayBySymbol(symbol);
         StockDto dto = new StockDto.StockDtoBuilder().build();
         if (stock != null) {
             dto = mapper.toDto(stock);

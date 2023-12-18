@@ -2,6 +2,7 @@ package com.project.reactdashboard;
 
 import com.project.reactdashboard.entities.Stock;
 import com.project.reactdashboard.entities.StockDto;
+import com.project.reactdashboard.entities.SymbolValues;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.IntStream;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomUtils.nextDouble;
+import static org.apache.commons.lang3.RandomUtils.nextLong;
 
 public class ObjectRandomizer {
 
@@ -21,6 +23,10 @@ public class ObjectRandomizer {
         return nextDouble();
     }
 
+    public static Long randomLong() {
+        return nextLong();
+    }
+
     public static <T> List<T> randomList(final Function<Integer, T> mapper) {
         return IntStream.range(0, 5)
                 .boxed()
@@ -30,9 +36,10 @@ public class ObjectRandomizer {
 
     public static Stock randomStock() {
         return new Stock.StockBuilder()
-                .withId(randomString())
+                .withId(randomLong())
                 .withSymbol(randomString())
-                .withDate(randomString())
+                .withSymbolValues(randomSymbolValues())
+                .withDate(OffsetDateTime.now())
                 .withVolume(randomDouble())
                 .withOpen(randomDouble())
                 .withClose(randomDouble())
@@ -43,14 +50,22 @@ public class ObjectRandomizer {
 
     public static StockDto randomStockDto() {
         return new StockDto.StockDtoBuilder()
-                .withId(randomString())
+                .withId(randomLong())
                 .withSymbol(randomString())
-                .withDate(OffsetDateTime.parse("2020-12-20T00:00:00.000Z").toString())
+                .withName(randomString())
+                .withDate("2019-02-01T00:00:00+0000")
                 .withVolume(randomDouble())
                 .withOpen(randomDouble())
                 .withClose(randomDouble())
                 .withHigh(randomDouble())
                 .withLow(randomDouble())
+                .build();
+    }
+
+    public static SymbolValues randomSymbolValues() {
+        return new SymbolValues.SymbolValuesBuilder()
+                .withName(randomString())
+                .withSymbol(randomString())
                 .build();
     }
 }

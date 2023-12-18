@@ -1,17 +1,30 @@
 package com.project.reactdashboard.entities;
 
-import org.springframework.data.redis.core.RedisHash;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 
-@RedisHash("Stock")
+@Entity
 public class Stock implements Serializable {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String date;
+    private OffsetDateTime date;
 
     private String symbol;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "symbol", referencedColumnName = "symbol", insertable = false, updatable = false)
+    private SymbolValues symbolValues;
 
     private double open;
 
@@ -23,19 +36,19 @@ public class Stock implements Serializable {
 
     private double volume;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getDate() {
+    public OffsetDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(OffsetDateTime date) {
         this.date = date;
     }
 
@@ -45,6 +58,14 @@ public class Stock implements Serializable {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public SymbolValues getSymbolValues() {
+        return symbolValues;
+    }
+
+    public void setSymbolValues(SymbolValues symbolValues) {
+        this.symbolValues = symbolValues;
     }
 
     public double getOpen() {
@@ -94,6 +115,7 @@ public class Stock implements Serializable {
         this.id = builder.id;
         this.date = builder.date;
         this.symbol = builder.symbol;
+        this.symbolValues = builder.symbolValues;
         this.open = builder.open;
         this.close = builder.close;
         this.high = builder.high;
@@ -103,11 +125,13 @@ public class Stock implements Serializable {
 
     public static class StockBuilder{
 
-        private String id;
+        private Long id;
 
-        private String date;
+        private OffsetDateTime date;
 
         private String symbol;
+        
+        private SymbolValues symbolValues;
 
         private double open;
 
@@ -122,18 +146,23 @@ public class Stock implements Serializable {
         public StockBuilder(){
         }
 
-        public StockBuilder withId(String id) {
+        public StockBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public StockBuilder withDate(String date) {
+        public StockBuilder withDate(OffsetDateTime date) {
             this.date = date;
             return this;
         }
 
         public StockBuilder withSymbol(String symbol) {
             this.symbol = symbol;
+            return this;
+        }
+
+        public StockBuilder withSymbolValues(SymbolValues symbolValues) {
+            this.symbolValues = symbolValues;
             return this;
         }
 

@@ -3,7 +3,11 @@ package com.project.reactdashboard.stock;
 import com.project.reactdashboard.entities.Stock;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
+
+import static com.project.reactdashboard.utils.Utils.lastWorkingDay;
 
 @Service
 public class StockService {
@@ -19,11 +23,16 @@ public class StockService {
     }
 
     public List<Stock> findAll() {
-        return (List<Stock>) repository.findAll();
+        return repository.findAll();
     }
 
-    public Stock findById(String id) {
-        return repository.findById(id)
-                .orElse(null);
+    public Stock findLastWorkingDayBySymbol(String symbol) {
+        OffsetDateTime lastWorkingDay = lastWorkingDay()
+                .withHour(0)
+                .withMinute(0)
+                .withSecond(0)
+                .withNano(0)
+                .withOffsetSameLocal(ZoneOffset.UTC);
+        return repository.findLastWorkingDayBySymbol(symbol, lastWorkingDay);
     }
 }
