@@ -53,9 +53,9 @@ public class StockServiceTest {
     }
 
     @Test
-    void should_find_all_stock() {
-        service.findAll();
+    void should_find_all_latest_stock() {
+        service.findAllLatest();
 
-        verify(repository).findAll();
+        verify(repository).findAllLatest();
     }
 }
