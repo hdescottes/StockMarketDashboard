@@ -41,7 +41,9 @@ describe("Dashboard service", () => {
       httpService.prototype.get.mockResolvedValue({ response: [stock, stock] });
 
       const response = await dashboardService.search();
-      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stocks");
+      expect(httpService.prototype.get).toHaveBeenCalledWith(
+        "/api/stocks/latest"
+      );
       expect(response).toEqual({ response: [stock, stock] });
     });
 
@@ -51,7 +53,9 @@ describe("Dashboard service", () => {
       httpService.prototype.get.mockResolvedValue({ response: [] });
 
       const response = await dashboardService.search();
-      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stocks");
+      expect(httpService.prototype.get).toHaveBeenCalledWith(
+        "/api/stocks/latest"
+      );
       expect(response).toEqual({ response: [] });
     });
   });

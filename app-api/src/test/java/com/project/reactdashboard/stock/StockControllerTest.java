@@ -77,17 +77,17 @@ public class StockControllerTest {
     }
 
     @Test
-    void should_return_list_of_stock() throws Exception {
+    void should_return_list_of_latest_stock() throws Exception {
         Stock stock = randomStock();
         List<Stock> stocks = randomList(i -> stock);
         StockDto dto = randomStockDto();
         List<StockDto> dtos = randomList(i -> dto);
 
-        when(service.findAll()).thenReturn(stocks);
+        when(service.findAllLatest()).thenReturn(stocks);
         when(mapper.toListDto(stocks)).thenReturn(dtos);
 
         ResultActions resultActions = mockMvc.perform(
-                get("/api/stocks")
+                get("/api/stocks/latest")
                         .contentType(MediaType.APPLICATION_JSON));
 
         resultActions.andExpect(status().isOk())

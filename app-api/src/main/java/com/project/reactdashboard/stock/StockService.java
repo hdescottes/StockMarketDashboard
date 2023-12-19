@@ -22,8 +22,8 @@ public class StockService {
         repository.save(stock);
     }
 
-    public List<Stock> findAll() {
-        return repository.findAll();
+    public List<Stock> findAllLatest() {
+        return repository.findAllLatest();
     }
 
     public Stock findLastWorkingDayBySymbol(String symbol) {

@@ -33,7 +33,7 @@ export class DashboardService {
   }
 
   search(): Promise<Stock[]> {
-    return this.httpService.get<Stock[]>("/api/stocks").then(
+    return this.httpService.get<Stock[]>("/api/stocks/latest").then(
       (response: Stock[]) => response,
       (_error) => []
     );

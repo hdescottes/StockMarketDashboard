@@ -27,10 +27,10 @@ public class StockController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/latest")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<StockDto>> findAll() {
-        List<Stock> stocks = service.findAll();
+    public ResponseEntity<List<StockDto>> findAllLatest() {
+        List<Stock> stocks = service.findAllLatest();
         List<StockDto> dtos = mapper.toListDto(stocks);
         return ResponseEntity.ok(dtos);
     }
