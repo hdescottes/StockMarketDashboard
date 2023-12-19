@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/table_symbol_values.yaml
+  - include:
+      file: db/changelog/table_stock.yaml

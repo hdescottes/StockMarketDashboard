@@ -10,7 +10,6 @@ import java.util.List;
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
 import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomStockDto;
-import static com.project.reactdashboard.utils.Utils.splitStockDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StockMapperTest {
@@ -28,8 +27,7 @@ public class StockMapperTest {
 
         Stock stock = mapper.toEntity(dto);
 
-        assertEquals(dto.getSymbol() + splitStockDate(dto.getDate()), stock.getId());
-        assertEquals(dto.getDate(), stock.getDate());
+        assertEquals("2019-02-01T00:00Z", stock.getDate().toString());
         assertEquals(dto.getSymbol(), stock.getSymbol());
         assertEquals(dto.getVolume(), stock.getVolume());
         assertEquals(dto.getHigh(), stock.getHigh());
@@ -45,8 +43,9 @@ public class StockMapperTest {
         StockDto dto = mapper.toDto(stock);
 
         assertEquals(dto.getId(), stock.getId());
-        assertEquals(dto.getDate(), stock.getDate());
+        assertEquals(dto.getDate(), stock.getDate().toString());
         assertEquals(dto.getSymbol(), stock.getSymbol());
+        assertEquals(dto.getName(), stock.getSymbolValues().getName());
         assertEquals(dto.getVolume(), stock.getVolume());
         assertEquals(dto.getHigh(), stock.getHigh());
         assertEquals(dto.getLow(), stock.getLow());

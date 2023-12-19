@@ -8,7 +8,7 @@ export const useDashboard = (newStock: Stock) => {
   const dashboardService = new DashboardService();
 
   async function fetch() {
-    const updatedStock = await getById();
+    const updatedStock = await getLastWorkingDayBySymbol();
 
     if (updatedStock && (!updatedStock.id || updatedStock.id === "")) {
       const stockResponse = await dashboardService.fetch(stock.symbol);
@@ -19,16 +19,16 @@ export const useDashboard = (newStock: Stock) => {
     }
   }
 
-  async function getById(): Promise<Stock> {
+  async function getLastWorkingDayBySymbol(): Promise<Stock> {
     return new Promise((resolve) => {
-      const id = stock.symbol + new Date().toISOString().split("T")[0];
-
-      dashboardService.getById(id).then((stockResponse) => {
-        if (stockResponse) {
-          setStock(stockResponse);
-          resolve(stockResponse);
-        }
-      });
+      dashboardService
+        .getLastWorkingDayBySymbol(stock.symbol)
+        .then((stockResponse) => {
+          if (stockResponse) {
+            setStock(stockResponse);
+            resolve(stockResponse);
+          }
+        });
     });
   }
 

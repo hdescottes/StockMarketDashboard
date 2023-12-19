@@ -5,7 +5,15 @@ import { Section } from "../../../components/section";
 import { Stock } from "../../../model/stock";
 import { DetailColumn } from "../../../components/detail-column";
 
-const columns = ["Symbol", "Last", "High", "Low", "Volume", "Variation"];
+const columns = [
+  "Symbol",
+  "Name",
+  "Last",
+  "High",
+  "Low",
+  "Volume",
+  "Variation",
+];
 
 export const DashboardDetails = (props: { stocks: Stock[] }) => {
   const theme = useTheme();

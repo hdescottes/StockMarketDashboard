@@ -2,6 +2,7 @@ export interface Stock {
   id: string;
   date: string;
   symbol: string;
+  name: string;
   volume: number;
   open: number;
   close: number;
@@ -13,6 +14,7 @@ export const newStock: Stock = {
   id: "",
   date: "",
   symbol: "",
+  name: "",
   volume: 0,
   open: 0,
   close: 0,

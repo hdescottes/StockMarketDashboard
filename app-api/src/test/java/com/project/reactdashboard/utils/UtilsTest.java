@@ -2,18 +2,33 @@ package com.project.reactdashboard.utils;
 
 import org.junit.jupiter.api.Test;
 
-import static com.project.reactdashboard.utils.Utils.splitStockDate;
+import java.time.DayOfWeek;
+import java.time.OffsetDateTime;
+
+import static com.project.reactdashboard.utils.Utils.lastWorkingDay;
+import static com.project.reactdashboard.utils.Utils.parseToISO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class UtilsTest {
 
     @Test
-    void should_split_string_date() {
-        String expectedDate = "2023-12-08";
-        String date = expectedDate + "T00:00:00+0000";
+    void should_parse_string_date() {
+        int year = 2023;
+        int month = 12;
+        String date = year + "-" + month + "-" + "08T00:00:00+0000";
 
-        String result = splitStockDate(date);
+        OffsetDateTime result = parseToISO(date);
 
-        assertEquals(expectedDate, result);
+        assertEquals(result.getYear(), year);
+        assertEquals(result.getMonth().getValue(), month);
+    }
+
+    @Test
+    public void should_return_last_working_day() {
+        OffsetDateTime lastWorkingDay = lastWorkingDay();
+
+        assertNotEquals(DayOfWeek.SATURDAY, lastWorkingDay.getDayOfWeek());
+        assertNotEquals(DayOfWeek.SUNDAY, lastWorkingDay.getDayOfWeek());
     }
 }

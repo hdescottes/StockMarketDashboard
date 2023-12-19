@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class StockDto implements Serializable {
 
-    private String id;
+    private Long id;
 
     private String date;
 
     private String symbol;
+
+    private String name;
 
     private double open;
 
@@ -20,11 +22,11 @@ public class StockDto implements Serializable {
 
     private double volume;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,6 +44,14 @@ public class StockDto implements Serializable {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getOpen() {
@@ -91,6 +101,7 @@ public class StockDto implements Serializable {
         this.id = builder.id;
         this.date = builder.date;
         this.symbol = builder.symbol;
+        this.name = builder.name;
         this.open = builder.open;
         this.close = builder.close;
         this.high = builder.high;
@@ -100,11 +111,13 @@ public class StockDto implements Serializable {
 
     public static class StockDtoBuilder{
 
-        private String id;
+        private Long id;
 
         private String date;
 
         private String symbol;
+
+        private String name;
 
         private double open;
 
@@ -119,7 +132,7 @@ public class StockDto implements Serializable {
         public StockDtoBuilder(){
         }
 
-        public StockDtoBuilder withId(String id) {
+        public StockDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
@@ -131,6 +144,11 @@ public class StockDto implements Serializable {
 
         public StockDtoBuilder withSymbol(String symbol) {
             this.symbol = symbol;
+            return this;
+        }
+
+        public StockDtoBuilder withName(String name) {
+            this.name = name;
             return this;
         }
 

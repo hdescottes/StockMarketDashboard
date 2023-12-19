@@ -9,27 +9,27 @@ const stock = {} as Stock;
 describe("Dashboard service", () => {
   describe("Call to get stock by id", () => {
     it("Succeeds, should return a stock", async () => {
-      const id = "toto";
+      const symbol = "toto";
       const dashboardService = new DashboardService();
 
       httpService.prototype.get.mockResolvedValue({ response: stock });
 
-      const response = await dashboardService.getById(id);
+      const response = await dashboardService.getLastWorkingDayBySymbol(symbol);
       expect(httpService.prototype.get).toHaveBeenCalledWith(
-        `/api/stock/${id}`
+        `/api/stocks/${symbol}/last-working-day`
       );
       expect(response).toEqual({ response: stock });
     });
 
     it("Fails, should return empty stock", async () => {
-      const id = "toto";
+      const symbol = "toto";
       const dashboardService = new DashboardService();
 
       httpService.prototype.get.mockResolvedValue({ response: newStock });
 
-      const response = await dashboardService.getById(id);
+      const response = await dashboardService.getLastWorkingDayBySymbol(symbol);
       expect(httpService.prototype.get).toHaveBeenCalledWith(
-        `/api/stock/${id}`
+        `/api/stocks/${symbol}/last-working-day`
       );
       expect(response).toEqual({ response: newStock });
     });
@@ -41,7 +41,7 @@ describe("Dashboard service", () => {
       httpService.prototype.get.mockResolvedValue({ response: [stock, stock] });
 
       const response = await dashboardService.search();
-      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stock");
+      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stocks");
       expect(response).toEqual({ response: [stock, stock] });
     });
 
@@ -51,7 +51,7 @@ describe("Dashboard service", () => {
       httpService.prototype.get.mockResolvedValue({ response: [] });
 
       const response = await dashboardService.search();
-      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stock");
+      expect(httpService.prototype.get).toHaveBeenCalledWith("/api/stocks");
       expect(response).toEqual({ response: [] });
     });
   });
@@ -64,7 +64,7 @@ describe("Dashboard service", () => {
 
       const response = await dashboardService.create(newStock);
       expect(httpService.prototype.post).toHaveBeenCalledWith(
-        "/api/stock",
+        "/api/stocks",
         newStock
       );
       expect(response).toEqual({ response: 1 });
@@ -77,7 +77,7 @@ describe("Dashboard service", () => {
 
       const response = await dashboardService.create(newStock);
       expect(httpService.prototype.post).toHaveBeenCalledWith(
-        "/api/stock",
+        "/api/stocks",
         newStock
       );
       expect(response).toEqual({ response: null });
