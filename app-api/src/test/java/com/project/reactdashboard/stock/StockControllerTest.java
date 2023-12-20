@@ -46,16 +46,16 @@ public class StockControllerTest {
     }
 
     @Test
-    void should_create_a_stock() throws Exception {
-        StockDto dto = randomStockDto();
-        Stock stock = randomStock();
+    void should_create_a_list_of_stock() throws Exception {
+        List<StockDto> dtos = randomList(i -> randomStockDto());
+        List<Stock> stocks = randomList(i -> randomStock());
 
-        when(mapper.toEntity(dto)).thenReturn(stock);
+        when(mapper.toList(dtos)).thenReturn(stocks);
 
         ResultActions resultActions = mockMvc.perform(
-                post("/api/stocks")
+                post("/api/stocks/all")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(createJsonModel(stock)));
+                        .content(createJsonModel(stocks)));
 
         resultActions.andExpect(status().isOk());
     }

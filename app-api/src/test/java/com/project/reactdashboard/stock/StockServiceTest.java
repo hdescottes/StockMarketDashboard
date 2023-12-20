@@ -1,6 +1,8 @@
 package com.project.reactdashboard.stock;
 
 import com.project.reactdashboard.entities.Stock;
+import com.project.reactdashboard.stock.repositories.StockPostgresRepository;
+import com.project.reactdashboard.stock.repositories.StockRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,10 +11,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 
+import static com.project.reactdashboard.ObjectRandomizer.randomList;
 import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -22,16 +28,19 @@ public class StockServiceTest {
     @Mock
     private StockRepository repository;
 
+    @Mock
+    private StockPostgresRepository postgresRepository;
+
     @InjectMocks
     private StockService service;
 
     @Test
-    void should_create_stock() {
-        Stock model = randomStock();
+    void should_create_list_of_stock() {
+        List<Stock> stocks = randomList(i -> randomStock());
 
-        service.create(model);
+        service.createAll(stocks);
 
-        verify(repository).save(model);
+        verify(postgresRepository, times(stocks.size())).upsert(any(Stock.class));
     }
 
     @Test

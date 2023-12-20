@@ -46,11 +46,11 @@ public class StockController {
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping
+    @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Integer> create(@RequestBody StockDto stockDto) {
-        Stock stock = mapper.toEntity(stockDto);
-        service.create(stock);
+    public ResponseEntity<Integer> createAll(@RequestBody final List<StockDto> stockDtos) {
+        List<Stock> stocks = mapper.toList(stockDtos);
+        service.createAll(stocks);
         return ResponseEntity.ok(1);
     }
 

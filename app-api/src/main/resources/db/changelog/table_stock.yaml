@@ -38,3 +38,11 @@ databaseChangeLog:
               - column:
                   name: volume
                   type: DOUBLE PRECISION
+  - changeSet:
+      id: 20231220-01
+      author: admin
+      changes:
+        - addUniqueConstraint:
+            tableName: stock
+            columnNames: symbol, date
+            constraintName: unique_symbol_date

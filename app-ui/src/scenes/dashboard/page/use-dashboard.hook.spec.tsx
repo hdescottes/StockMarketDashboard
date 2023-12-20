@@ -17,8 +17,8 @@ describe("useDashboard", () => {
     dashboardService.prototype.getLastWorkingDayBySymbol.mockResolvedValue(
       newStock
     );
-    dashboardService.prototype.fetch.mockResolvedValue(newStock);
-    dashboardService.prototype.create.mockResolvedValue(1);
+    dashboardService.prototype.fetch.mockResolvedValue([]);
+    dashboardService.prototype.createAll.mockResolvedValue(1);
     dashboardService.prototype.search.mockResolvedValue([]);
 
     const { result } = renderHook(() => useDashboard(newStock));
@@ -32,7 +32,7 @@ describe("useDashboard", () => {
         dashboardService.prototype.getLastWorkingDayBySymbol
       ).toHaveBeenCalled();
       expect(dashboardService.prototype.fetch).toHaveBeenCalled();
-      expect(dashboardService.prototype.create).toHaveBeenCalled();
+      expect(dashboardService.prototype.createAll).toHaveBeenCalled();
       expect(dashboardService.prototype.search).toHaveBeenCalled();
       expect(result.current.stock).not.toBeNull();
     });
@@ -59,7 +59,7 @@ describe("useDashboard", () => {
         dashboardService.prototype.getLastWorkingDayBySymbol
       ).toHaveBeenCalled();
       expect(dashboardService.prototype.fetch).not.toHaveBeenCalled();
-      expect(dashboardService.prototype.create).not.toHaveBeenCalled();
+      expect(dashboardService.prototype.createAll).not.toHaveBeenCalled();
       expect(dashboardService.prototype.search).toHaveBeenCalled();
       expect(result.current.stock).not.toBeNull();
     });

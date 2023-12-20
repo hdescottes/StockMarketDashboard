@@ -55,11 +55,21 @@ public class StockMapperTest {
 
     @Test
     void toListDto() {
-        Stock stock = randomStock();
-        List<Stock> stocks = randomList(i -> stock);
+        List<Stock> stocks = randomList(i -> randomStock());
 
         List<StockDto> dtos = mapper.toListDto(stocks);
 
         assertEquals(stocks.size(), dtos.size());
+        assertEquals(stocks.get(0).getId(), dtos.get(0).getId());
+    }
+
+    @Test
+    void toList() {
+        List<StockDto> dtos = randomList(i -> randomStockDto());
+
+        List<Stock> stocks = mapper.toList(dtos);
+
+        assertEquals(dtos.size(), stocks.size());
+        assertEquals(dtos.get(0).getId(), stocks.get(0).getId());
     }
 }
