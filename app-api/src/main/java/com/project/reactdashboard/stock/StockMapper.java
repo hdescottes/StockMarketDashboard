@@ -43,4 +43,10 @@ public class StockMapper {
                 .map(this::toDto)
                 .toList();
     }
+
+    public List<Stock> toList(List<StockDto> stockDtos) {
+        return stockDtos.stream()
+                .map(this::toEntity)
+                .toList();
+    }
 }

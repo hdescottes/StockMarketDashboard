@@ -2,9 +2,23 @@ import { useState } from "react";
 import { DashboardService } from "../../../services/dashboard.service";
 import { Stock } from "../../../model/stock";
 
+function convertToStock(stock: Stock): Stock {
+  return {
+    id: stock.id,
+    date: stock.date,
+    symbol: stock.symbol,
+    name: stock.name,
+    volume: stock.volume,
+    open: stock.open,
+    close: stock.close,
+    high: stock.high,
+    low: stock.low,
+  };
+}
+
 export const useDashboard = (newStock: Stock) => {
   const [stock, setStock] = useState(newStock);
-  const [stocks, setStocks] = useState<Stock[]>([]);
+  const [stockList, setStockList] = useState<Stock[]>([]);
   const dashboardService = new DashboardService();
 
   async function fetch() {
@@ -12,8 +26,8 @@ export const useDashboard = (newStock: Stock) => {
 
     if (updatedStock && (!updatedStock.id || updatedStock.id === "")) {
       const stockResponse = await dashboardService.fetch(stock.symbol);
-      setStock(stockResponse);
-      create(stockResponse);
+      setStock(stockResponse[0]);
+      createAll(stockResponse.map(convertToStock));
     } else {
       search();
     }
@@ -32,8 +46,8 @@ export const useDashboard = (newStock: Stock) => {
     });
   }
 
-  function create(create: Stock) {
-    dashboardService.create(create).then(() => {
+  function createAll(createStocks: Stock[]) {
+    dashboardService.createAll(createStocks).then(() => {
       search();
     });
   }
@@ -41,7 +55,7 @@ export const useDashboard = (newStock: Stock) => {
   function search() {
     dashboardService.search().then((stocksResponse) => {
       if (stocksResponse) {
-        setStocks(stocksResponse);
+        setStockList(stocksResponse);
       }
     });
   }
@@ -51,6 +65,6 @@ export const useDashboard = (newStock: Stock) => {
     setStock,
     fetch,
     search,
-    stocks,
+    stocks: stockList,
   };
 };

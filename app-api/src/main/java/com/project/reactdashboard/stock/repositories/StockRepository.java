@@ -1,4 +1,4 @@
-package com.project.reactdashboard.stock;
+package com.project.reactdashboard.stock.repositories;
 
 import com.project.reactdashboard.entities.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +17,7 @@ public interface StockRepository extends JpaRepository<Stock, String> {
             "WHERE s.date IN (SELECT MAX(s2.date) FROM Stock s2 WHERE s2.symbol = s.symbol)")
     List<Stock> findAllLatest();
 
-    @Query("SELECT s.symbol, s.date, s.open, s.close, s.volume, s.high, s.low" +
+    @Query("SELECT s " +
             "FROM Stock s " +
             "WHERE s.symbol = :symbol AND s.date = :date")
     Stock findLastWorkingDayBySymbol(@Param("symbol") String symbol, @Param("date") OffsetDateTime date);

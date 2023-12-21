@@ -15,16 +15,12 @@ import java.time.OffsetDateTime;
 public class Stock implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private OffsetDateTime date;
 
     private String symbol;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "symbol", referencedColumnName = "symbol", insertable = false, updatable = false)
-    private SymbolValues symbolValues;
 
     private double open;
 
@@ -35,6 +31,10 @@ public class Stock implements Serializable {
     private double close;
 
     private double volume;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "symbol", referencedColumnName = "symbol", insertable = false, updatable = false)
+    private SymbolValues symbolValues;
 
     public Long getId() {
         return id;

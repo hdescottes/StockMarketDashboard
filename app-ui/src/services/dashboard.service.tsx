@@ -7,19 +7,27 @@ export class DashboardService {
   httpService: HttpService = new HttpService();
   tokenValue: string = token.TOKEN;
 
-  fetch(symbol: string): Promise<Stock> {
-    /*const today = new Date();
+  fetch(symbol: string): Promise<Stock[]> {
+    const today = new Date();
     const to =
-      today.getFullYear() + "-" + today.getMonth() + "-" + today.getDay();
+      today.getUTCFullYear().toString() +
+      "-" +
+      ("0" + (today.getUTCMonth() + 1).toString()).slice(-2) +
+      "-" +
+      ("0" + today.getUTCDate().toString()).slice(-2);
     const from =
-      today.getFullYear() + "-" + (today.getMonth() - 4) + "-" + today.getDay();*/
+      today.getUTCFullYear().toString() +
+      "-" +
+      ("0" + (today.getUTCMonth() - 3).toString()).slice(-2) +
+      "-" +
+      ("0" + today.getUTCDate().toString()).slice(-2);
     return this.httpService
       .get<StockResponse>(
-        `/v1/eod?access_key=${this.tokenValue}&symbols=${symbol}`
+        `/v1/eod?access_key=${this.tokenValue}&symbols=${symbol}&date_from=${from}&date_to=${to}`
       )
       .then(
-        (response: StockResponse) => response.data[0],
-        (_error) => newStock
+        (response: StockResponse) => response.data,
+        (_error) => []
       );
   }
 
@@ -39,14 +47,10 @@ export class DashboardService {
     );
   }
 
-  create(stock: Stock): Promise<number | null> {
-    return this.httpService
-      .post<number>("/api/stocks", {
-        ...stock,
-      })
-      .then(
-        (response: number) => response,
-        (_error) => null
-      );
+  createAll(stocks: Stock[]): Promise<number | null> {
+    return this.httpService.post<number>("/api/stocks/all", stocks).then(
+      (response: number) => response,
+      (_error) => null
+    );
   }
 }

@@ -60,29 +60,31 @@ describe("Dashboard service", () => {
     });
   });
 
-  describe("Call to create stock", () => {
-    it("Succeeds, should create a stock", async () => {
+  describe("Call to create stocks", () => {
+    it("Succeeds, should create stocks", async () => {
       const dashboardService = new DashboardService();
+      const stocks = [newStock, newStock];
 
       httpService.prototype.post.mockResolvedValue({ response: 1 });
 
-      const response = await dashboardService.create(newStock);
+      const response = await dashboardService.createAll(stocks);
       expect(httpService.prototype.post).toHaveBeenCalledWith(
-        "/api/stocks",
-        newStock
+        "/api/stocks/all",
+        stocks
       );
       expect(response).toEqual({ response: 1 });
     });
 
     it("Fails, should return null", async () => {
       const dashboardService = new DashboardService();
+      const stocks = [newStock, newStock];
 
       httpService.prototype.post.mockResolvedValue({ response: null });
 
-      const response = await dashboardService.create(newStock);
+      const response = await dashboardService.createAll(stocks);
       expect(httpService.prototype.post).toHaveBeenCalledWith(
-        "/api/stocks",
-        newStock
+        "/api/stocks/all",
+        stocks
       );
       expect(response).toEqual({ response: null });
     });
