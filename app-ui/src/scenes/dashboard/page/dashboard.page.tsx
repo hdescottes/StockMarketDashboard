@@ -2,7 +2,7 @@ import { DashboardSearch } from "../components/dashboard-search";
 import { useDashboard } from "./use-dashboard.hook";
 import Box from "@mui/material/Box";
 import { Header } from "../../../components/header";
-import { DashboardDetails } from "../components/dashboard-details";
+import { DashboardList } from "../components/dashboard-list";
 import { newStock } from "../../../model/stock";
 
 export const Dashboard = () => {
@@ -19,7 +19,7 @@ export const Dashboard = () => {
         fetch={fetch}
         search={search}
       />
-      <DashboardDetails stocks={stocks} />
+      <DashboardList stocks={stocks} />
     </Box>
   );
 };

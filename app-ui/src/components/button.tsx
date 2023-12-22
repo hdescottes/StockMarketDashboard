@@ -4,6 +4,7 @@ import "./button.scss";
 export const ButtonCustom = (props: { title: string; onClick: () => void }) => {
   return (
     <Button
+      id={props.title}
       size="medium"
       aria-label={props.title}
       className="button"

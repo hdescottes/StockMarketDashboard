@@ -32,6 +32,7 @@ export const StockResume = (props: { stock: Stock }) => {
 
   return (
     <Box
+      id={props.stock.symbol}
       gridColumn="span 3"
       bgcolor={colors.primary[900]}
       display="flex"
