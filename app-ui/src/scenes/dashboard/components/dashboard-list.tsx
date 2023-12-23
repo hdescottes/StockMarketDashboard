@@ -15,7 +15,7 @@ const columns = [
   "Variation",
 ];
 
-export const DashboardDetails = (props: { stocks: Stock[] }) => {
+export const DashboardList = (props: { stocks: Stock[] }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 

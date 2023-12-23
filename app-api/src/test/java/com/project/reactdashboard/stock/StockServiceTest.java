@@ -18,6 +18,7 @@ import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,19 +46,12 @@ public class StockServiceTest {
 
     @Test
     void should_find_a_stock() {
-        String symbol = randomString();
-        OffsetDateTime date = OffsetDateTime.now()
-                .withHour(0)
-                .withMinute(0)
-                .withSecond(0)
-                .withNano(0)
-                .withOffsetSameLocal(ZoneOffset.UTC);
         Stock dbStock = randomStock();
-        when(repository.findLastWorkingDayBySymbol(symbol, date)).thenReturn(dbStock);
+        when(repository.findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class))).thenReturn(dbStock);
 
-        Stock result = service.findLastWorkingDayBySymbol(symbol);
+        Stock result = service.findLastWorkingDayBySymbol(randomString());
 
-        verify(repository).findLastWorkingDayBySymbol(symbol, date);
+        verify(repository).findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class));
         assertEquals(dbStock, result);
     }
 

@@ -55,12 +55,26 @@ jobs:
         working-directory: app-ui
 
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
+        uses: actions/checkout@v4
+
+      - name: Docker compose setup
+        uses: adambirds/docker-compose-action@v1.3.0
+        with:
+          compose-file: "./app-api/docker/docker-compose-e2e.yml"
+          down-flags: "--volumes --remove-orphans"
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Start Backend server
+        run: ./gradlew bootRun --args='--spring.profiles.active=e2e' &
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
