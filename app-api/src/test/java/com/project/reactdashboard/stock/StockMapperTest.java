@@ -1,7 +1,7 @@
 package com.project.reactdashboard.stock;
 
 import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.entities.StockDto;
+import com.project.reactdashboard.dto.StockDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

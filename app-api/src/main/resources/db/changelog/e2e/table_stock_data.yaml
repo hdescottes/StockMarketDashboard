@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20231227-01
+      author: admin
+      changes:
+        - sqlFile:
+            dbms: 'postgresql'
+            endDelimiter: \nGO
+            splitStatements: true
+            path: db/changelog/e2e/script/insert_stock_lvmh_data.sql
+            stripComments: true

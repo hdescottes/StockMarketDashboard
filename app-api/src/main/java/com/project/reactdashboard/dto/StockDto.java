@@ -1,4 +1,4 @@
-package com.project.reactdashboard.entities;
+package com.project.reactdashboard.dto;
 
 import java.io.Serializable;
 

@@ -1,15 +1,18 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, Container, useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import { Stock } from "../model/stock";
 import "./stock-resume.scss";
 import { useEffect, useState } from "react";
 import { DetailColumn } from "./detail-column";
+import { useNavigate } from "react-router-dom";
+import { SeeButton } from "./buttons/see-button";
 
 export const StockResume = (props: { stock: Stock }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [variation, setVariation] = useState("");
   const [variationColor, setVariationColor] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     intraDayVariation();
@@ -28,6 +31,10 @@ export const StockResume = (props: { stock: Stock }) => {
       setVariationColor("negative");
     }
     setVariation(value);
+  };
+
+  const redirectClick = () => {
+    navigate(`/stocks/${props.stock.symbol}`);
   };
 
   return (
@@ -58,6 +65,11 @@ export const StockResume = (props: { stock: Stock }) => {
         colors={colors.grey[100]}
       />
       <DetailColumn column={variation} className={variationColor} />
+      <Container
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <SeeButton title="See" onClick={redirectClick} />
+      </Container>
     </Box>
   );
 };

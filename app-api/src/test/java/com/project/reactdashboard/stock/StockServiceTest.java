@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
@@ -19,6 +18,7 @@ import static com.project.reactdashboard.ObjectRandomizer.randomString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -53,6 +53,15 @@ public class StockServiceTest {
 
         verify(repository).findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class));
         assertEquals(dbStock, result);
+    }
+
+    @Test
+    void should_find_all_stock_by_symbol() {
+        String symbol = randomString();
+
+        service.findBySymbol(symbol);
+
+        verify(repository).findBySymbol(eq(symbol), any(OffsetDateTime.class));
     }
 
     @Test

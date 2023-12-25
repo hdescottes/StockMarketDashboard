@@ -27,6 +27,11 @@ public class StockService {
         stocks.forEach(stockRepository::upsert);
     }
 
+    public List<Stock> findBySymbol(String symbol) {
+        OffsetDateTime date = OffsetDateTime.now().minusMonths(1);
+        return repository.findBySymbol(symbol, date);
+    }
+
     public List<Stock> findAllLatest() {
         return repository.findAllLatest();
     }

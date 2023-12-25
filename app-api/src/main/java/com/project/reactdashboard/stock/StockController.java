@@ -1,7 +1,7 @@
 package com.project.reactdashboard.stock;
 
 import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.entities.StockDto;
+import com.project.reactdashboard.dto.StockDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +31,14 @@ public class StockController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<StockDto>> findAllLatest() {
         List<Stock> stocks = service.findAllLatest();
+        List<StockDto> dtos = mapper.toListDto(stocks);
+        return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/{symbol}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<StockDto>> findBySymbol(@PathVariable("symbol") String symbol) {
+        List<Stock> stocks = service.findBySymbol(symbol);
         List<StockDto> dtos = mapper.toListDto(stocks);
         return ResponseEntity.ok(dtos);
     }

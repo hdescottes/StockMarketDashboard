@@ -1,7 +1,7 @@
 package com.project.reactdashboard.stock;
 
 import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.entities.StockDto;
+import com.project.reactdashboard.dto.StockDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

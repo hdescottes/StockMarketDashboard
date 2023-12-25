@@ -7,7 +7,39 @@ const httpService = HttpService as jest.MockedClass<typeof HttpService>;
 const stock = {} as Stock;
 
 describe("Dashboard service", () => {
-  describe("Call to get stock by id", () => {
+  describe("Call to fetch stocks", () => {
+    it("Succeeds, should return list of stock", async () => {
+      const symbol = "toto";
+      const stockResponse: Stock[] = [newStock];
+      const dashboardService = new DashboardService();
+
+      httpService.prototype.get.mockResolvedValue({
+        data: stockResponse,
+      });
+
+      const response = await dashboardService.fetch(symbol);
+      expect(httpService.prototype.get).toHaveBeenCalledWith(
+        expect.stringContaining("/v1/eod?access_key=")
+      );
+      expect(response).toEqual(stockResponse);
+    });
+
+    it("Fails, should return empty array", async () => {
+      const symbol = "toto";
+      const dashboardService = new DashboardService();
+
+      httpService.prototype.get.mockRejectedValue(
+        new Error("Failed to fetch data")
+      );
+
+      const response = await dashboardService.fetch(symbol);
+      expect(httpService.prototype.get).toHaveBeenCalledWith(
+        expect.stringContaining("/v1/eod?access_key=")
+      );
+      expect(response).toEqual([]);
+    });
+  });
+  describe("Call to get latest stock by symbol", () => {
     it("Succeeds, should return a stock", async () => {
       const symbol = "toto";
       const dashboardService = new DashboardService();
@@ -25,13 +57,15 @@ describe("Dashboard service", () => {
       const symbol = "toto";
       const dashboardService = new DashboardService();
 
-      httpService.prototype.get.mockResolvedValue({ response: newStock });
+      httpService.prototype.get.mockRejectedValue(
+        new Error("Failed to fetch data")
+      );
 
       const response = await dashboardService.getLastWorkingDayBySymbol(symbol);
       expect(httpService.prototype.get).toHaveBeenCalledWith(
         `/api/stocks/${symbol}/last-working-day`
       );
-      expect(response).toEqual({ response: newStock });
+      expect(response).toEqual(newStock);
     });
   });
   describe("Call to search stocks", () => {
@@ -50,13 +84,15 @@ describe("Dashboard service", () => {
     it("Fails, should return empty array", async () => {
       const dashboardService = new DashboardService();
 
-      httpService.prototype.get.mockResolvedValue({ response: [] });
+      httpService.prototype.get.mockRejectedValue(
+        new Error("Failed to fetch data")
+      );
 
       const response = await dashboardService.search();
       expect(httpService.prototype.get).toHaveBeenCalledWith(
         "/api/stocks/latest"
       );
-      expect(response).toEqual({ response: [] });
+      expect(response).toEqual([]);
     });
   });
 
@@ -79,14 +115,16 @@ describe("Dashboard service", () => {
       const dashboardService = new DashboardService();
       const stocks = [newStock, newStock];
 
-      httpService.prototype.post.mockResolvedValue({ response: null });
+      httpService.prototype.post.mockRejectedValue(
+        new Error("Failed to fetch data")
+      );
 
       const response = await dashboardService.createAll(stocks);
       expect(httpService.prototype.post).toHaveBeenCalledWith(
         "/api/stocks/all",
         stocks
       );
-      expect(response).toEqual({ response: null });
+      expect(response).toEqual(null);
     });
   });
 });
