@@ -14,6 +14,12 @@ public interface StockRepository extends JpaRepository<Stock, String> {
 
     @Query("SELECT s " +
             "FROM Stock s " +
+            "WHERE s.symbol = :symbol AND s.date > :date " +
+            "ORDER BY date DESC")
+    List<Stock> findBySymbol(@Param("symbol") String symbol, @Param("date") OffsetDateTime date);
+
+    @Query("SELECT s " +
+            "FROM Stock s " +
             "WHERE s.date IN (SELECT MAX(s2.date) FROM Stock s2 WHERE s2.symbol = s.symbol)")
     List<Stock> findAllLatest();
 

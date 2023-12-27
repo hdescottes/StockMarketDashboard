@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.entities.StockDto;
+import com.project.reactdashboard.dto.StockDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -74,6 +74,24 @@ public class StockControllerTest {
 
         resultActions.andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("id").value(dto.getId()));
+    }
+
+    @Test
+    void should_return_list_of_stock_by_symbol() throws Exception {
+        Stock stock = randomStock();
+        List<Stock> stocks = randomList(i -> stock);
+        StockDto dto = randomStockDto();
+        List<StockDto> dtos = randomList(i -> dto);
+
+        when(service.findBySymbol(stock.getSymbol())).thenReturn(stocks);
+        when(mapper.toListDto(stocks)).thenReturn(dtos);
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/stocks/{symbol}", stock.getSymbol())
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("[0].id").value(dtos.get(0).getId()));
     }
 
     @Test

@@ -13,6 +13,7 @@ const columns = [
   "Low",
   "Volume",
   "Variation",
+  "Action",
 ];
 
 export const DashboardList = (props: { stocks: Stock[] }) => {
@@ -46,7 +47,11 @@ const HeaderColumns = (props: { colors: any }) => {
       className="mb-3"
     >
       {columns.map((column) => (
-        <DetailColumn column={column} colors={props.colors.grey[100]} />
+        <DetailColumn
+          key={column}
+          column={column}
+          colors={props.colors.grey[100]}
+        />
       ))}
     </Box>
   );

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { ButtonCustom } from "../../../components/button";
+import { ButtonCustom } from "../../../components/buttons/button";
 import { Section } from "../../../components/section";
 import { Stock } from "../../../model/stock";
 

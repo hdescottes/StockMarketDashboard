@@ -2,6 +2,11 @@ import { newStock } from "../model/stock";
 import { StockResume } from "./stock-resume";
 import { render, screen } from "@testing-library/react";
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => jest.fn(),
+}));
+
 describe("Stock Resume component", () => {
   it("should render with positive variation", () => {
     const value = "toto";

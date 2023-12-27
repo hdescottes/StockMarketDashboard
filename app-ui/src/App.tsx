@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { TopBar } from "./components/global/top-bar";
 import { Dashboard } from "./scenes/dashboard/page/dashboard.page";
 import { SideBar } from "./components/global/side-bar";
+import { StockDetails } from "./scenes/stock-details/page/stock-details.page";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -19,6 +20,7 @@ function App() {
             <TopBar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/stocks/:symbol" element={<StockDetails />} />
             </Routes>
           </main>
         </div>
