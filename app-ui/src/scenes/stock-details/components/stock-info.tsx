@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import "./stock-info.scss";
 import Grid from "@mui/material/Grid";
+import { SkeletonCustom } from "../../../components/skeleton";
 
 export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
   const theme = useTheme();
@@ -46,16 +47,31 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
               fontWeight="600"
               className="pe-2"
             >
-              {props.stock?.name}
+              <SkeletonCustom
+                data={props.stock}
+                value={props.stock?.name}
+                variant="text"
+                width={200}
+              />
             </Typography>
             <Typography data-testid="symbol" variant="h3" fontWeight="600">
-              {"(" + props.stock?.symbol + ")"}
+              <SkeletonCustom
+                data={props.stock}
+                value={props.stock?.symbol}
+                variant="text"
+                width={100}
+              />
             </Typography>
           </Box>
           <Box>
             <Box data-testid="close" display="flex">
               <Typography variant="h3" fontWeight="600" className="pe-1">
-                {props.stock?.close}
+                <SkeletonCustom
+                  data={props.stock}
+                  value={props.stock?.close}
+                  variant="text"
+                  width={100}
+                />
               </Typography>
               <Typography className="pt-1">(c)</Typography>
             </Box>
@@ -65,7 +81,12 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
               variant="h5"
               fontWeight="600"
             >
-              {variation}
+              <SkeletonCustom
+                data={props.stock && props.stockDayBefore}
+                value={variation}
+                variant="text"
+                width={100}
+              />
             </Typography>
           </Box>
         </Grid>
@@ -81,7 +102,12 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 Open
               </Typography>
               <Typography variant="h5" fontWeight="600">
-                {props.stock?.open}
+                <SkeletonCustom
+                  data={props.stock}
+                  value={props.stock?.open}
+                  variant="text"
+                  width={100}
+                />
               </Typography>
             </Box>
             <Box data-testid="prevClose">
@@ -94,7 +120,12 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 Previous close
               </Typography>
               <Typography variant="h5" fontWeight="600">
-                {props.stockDayBefore?.close}
+                <SkeletonCustom
+                  data={props.stockDayBefore}
+                  value={props.stockDayBefore?.close}
+                  variant="text"
+                  width={100}
+                />
               </Typography>
             </Box>
           </Box>
@@ -110,7 +141,12 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 High
               </Typography>
               <Typography variant="h5" fontWeight="600">
-                {props.stock?.high}
+                <SkeletonCustom
+                  data={props.stock}
+                  value={props.stock?.high}
+                  variant="text"
+                  width={100}
+                />
               </Typography>
             </Box>
             <Box data-testid="low">
@@ -123,7 +159,12 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 Low
               </Typography>
               <Typography variant="h5" fontWeight="600">
-                {props.stock?.low}
+                <SkeletonCustom
+                  data={props.stock}
+                  value={props.stock?.low}
+                  variant="text"
+                  width={100}
+                />
               </Typography>
             </Box>
           </Box>
@@ -139,7 +180,12 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
               Volume
             </Typography>
             <Typography variant="h5" fontWeight="600">
-              {props.stock?.volume}
+              <SkeletonCustom
+                data={props.stock}
+                value={props.stock?.volume}
+                variant="text"
+                width={100}
+              />
             </Typography>
           </Box>
         </Grid>
@@ -154,7 +200,12 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
               Date
             </Typography>
             <Typography variant="h5" fontWeight="600">
-              {props.stock?.date}
+              <SkeletonCustom
+                data={props.stock}
+                value={props.stock?.date}
+                variant="text"
+                width={100}
+              />
             </Typography>
           </Box>
         </Grid>
