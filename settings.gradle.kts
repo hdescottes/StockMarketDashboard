@@ -1,2 +1,2 @@
-rootProject.name = "react-dashboard"
+rootProject.name = "StockMarketDashboard"
 include("app-api", "app-ui")
