@@ -24,8 +24,8 @@ export const StockChart = (props: { stocks: Stock[] }) => {
     plotOptions: {
       candlestick: {
         colors: {
-          upward: "#3C90EB",
-          downward: "#DF7D46",
+          upward: "#28c612",
+          downward: "#c63212",
         },
       },
     },
