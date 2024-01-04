@@ -9,6 +9,13 @@ export class DashboardService {
 
   fetch(symbol: string): Promise<Stock[]> {
     const today = new Date();
+    let year = today.getUTCFullYear();
+    let month = today.getUTCMonth() - 3;
+    if (month < 0) {
+      year -= 1;
+      month += 12;
+    }
+
     const to =
       today.getUTCFullYear().toString() +
       "-" +
@@ -16,9 +23,9 @@ export class DashboardService {
       "-" +
       ("0" + today.getUTCDate().toString()).slice(-2);
     const from =
-      today.getUTCFullYear().toString() +
+      year.toString() +
       "-" +
-      ("0" + (today.getUTCMonth() - 3).toString()).slice(-2) +
+      ("0" + month.toString()).slice(-2) +
       "-" +
       ("0" + today.getUTCDate().toString()).slice(-2);
     return this.httpService
