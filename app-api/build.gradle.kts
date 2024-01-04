@@ -1,21 +1,21 @@
-val springBootVersion by extra { "3.1.5" }
+val springBootVersion by extra { "3.2.1" }
 val postgresVersion by extra { "42.7.1" }
-val jsr310Version by extra { "2.16.0" }
-val liquibaseVersion by extra { "4.25.0" }
-val apacheLang3Version by extra { "3.13.0" }
+val jsr310Version by extra { "2.16.1" }
+val liquibaseVersion by extra { "4.25.1" }
+val apacheLang3Version by extra { "3.14.0" }
 
 buildscript {
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:3.1.5")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:3.2.1")
 	}
 }
 
 plugins {
 	java
-	id("org.springframework.boot") version "3.1.5"
+	id("org.springframework.boot") version "3.2.1"
 	id("io.spring.dependency-management") version "1.1.3"
 }
 
