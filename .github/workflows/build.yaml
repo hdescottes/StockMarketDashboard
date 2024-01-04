@@ -64,7 +64,7 @@ jobs:
         uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: "./app-api/docker/docker-compose-e2e.yml"
-          down-flags: "--volumes --remove-orphans"
+          down-flags: "--remove-orphans"
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
