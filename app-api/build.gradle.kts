@@ -30,25 +30,9 @@ tasks.named<Test>("test") {
 	useJUnitPlatform()
 }
 
-tasks.named("bootRun") {
-	dependsOn("dockerComposeUp")
-}
-
-tasks.register<Exec>("dockerComposeUp") {
-	commandLine("docker-compose", "-f", "docker/docker-compose.yml", "up", "-d")
-}
-
-tasks.register<Exec>("dockerComposeDown") {
-	commandLine("docker-compose", "-f", "docker/docker-compose.yml", "down")
-}
-
-tasks.register<Exec>("fullApp") {
-	dependsOn("bootRun")
-}
-
 dependencyManagement {
 	imports {
-		mavenBom("org.springframework.boot:spring-boot-starter:$springBootVersion")
+		mavenBom("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
 	}
 }
 
@@ -57,7 +41,6 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
 	implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jsr310Version}")
