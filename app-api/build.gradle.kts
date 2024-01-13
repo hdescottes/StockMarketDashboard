@@ -43,8 +43,10 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+	implementation("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jsr310Version}")
 	implementation("org.liquibase:liquibase-core:${liquibaseVersion}")
+	developmentOnly("org.springframework.boot:spring-boot-docker-compose:$springBootVersion")
 	runtimeOnly("org.postgresql:postgresql:${postgresVersion}")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 	testImplementation("org.apache.commons:commons-lang3:$apacheLang3Version")
