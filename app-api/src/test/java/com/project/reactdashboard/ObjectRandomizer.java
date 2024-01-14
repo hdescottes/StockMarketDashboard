@@ -1,8 +1,8 @@
 package com.project.reactdashboard;
 
-import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.dto.StockDto;
-import com.project.reactdashboard.entities.SymbolValues;
+import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.app.stock.StockDto;
+import com.project.reactdashboard.domain.stock.model.SymbolValues;
 
 import java.time.OffsetDateTime;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.project.reactdashboard.stock.repositories;
+package com.project.reactdashboard.infrastructure.stock;
 
-import com.project.reactdashboard.entities.Stock;
+import com.project.reactdashboard.domain.stock.model.Stock;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 

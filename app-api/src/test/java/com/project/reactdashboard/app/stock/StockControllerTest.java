@@ -1,12 +1,15 @@
-package com.project.reactdashboard.stock;
+package com.project.reactdashboard.app.stock;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.dto.StockDto;
+import com.project.reactdashboard.app.stock.StockController;
+import com.project.reactdashboard.domain.stock.StockMapper;
+import com.project.reactdashboard.domain.stock.StockService;
+import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.app.stock.StockDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

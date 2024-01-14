@@ -1,4 +1,4 @@
-package com.project.reactdashboard.utils;
+package com.project.reactdashboard.domain.stock.utils;
 
 import java.time.DayOfWeek;
 import java.time.OffsetDateTime;
