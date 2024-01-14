@@ -1,4 +1,4 @@
-package com.project.reactdashboard.domain.stock.model;
+package com.project.reactdashboard.infrastructure.stock.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -111,7 +111,7 @@ public class Stock implements Serializable {
     public Stock() {
     }
 
-    private Stock(StockBuilder builder) {
+    private Stock(StockInfraBuilder builder) {
         this.id = builder.id;
         this.date = builder.date;
         this.symbol = builder.symbol;
@@ -123,7 +123,7 @@ public class Stock implements Serializable {
         this.volume = builder.volume;
     }
 
-    public static class StockBuilder{
+    public static class StockInfraBuilder {
 
         private Long id;
 
@@ -143,50 +143,50 @@ public class Stock implements Serializable {
 
         private double volume;
 
-        public StockBuilder(){
+        public StockInfraBuilder(){
         }
 
-        public StockBuilder withId(Long id) {
+        public StockInfraBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public StockBuilder withDate(OffsetDateTime date) {
+        public StockInfraBuilder withDate(OffsetDateTime date) {
             this.date = date;
             return this;
         }
 
-        public StockBuilder withSymbol(String symbol) {
+        public StockInfraBuilder withSymbol(String symbol) {
             this.symbol = symbol;
             return this;
         }
 
-        public StockBuilder withSymbolValues(SymbolValues symbolValues) {
+        public StockInfraBuilder withSymbolValues(SymbolValues symbolValues) {
             this.symbolValues = symbolValues;
             return this;
         }
 
-        public StockBuilder withOpen(double open) {
+        public StockInfraBuilder withOpen(double open) {
             this.open = open;
             return this;
         }
 
-        public StockBuilder withLow(double low) {
+        public StockInfraBuilder withLow(double low) {
             this.low = low;
             return this;
         }
 
-        public StockBuilder withHigh(double high) {
+        public StockInfraBuilder withHigh(double high) {
             this.high = high;
             return this;
         }
 
-        public StockBuilder withClose(double close) {
+        public StockInfraBuilder withClose(double close) {
             this.close = close;
             return this;
         }
 
-        public StockBuilder withVolume(double volume) {
+        public StockInfraBuilder withVolume(double volume) {
             this.volume = volume;
             return this;
         }

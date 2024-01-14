@@ -1,6 +1,6 @@
 package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.domain.stock.model.StockDomain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
-import static com.project.reactdashboard.ObjectRandomizer.randomStock;
+import static com.project.reactdashboard.ObjectRandomizer.randomStockDomain;
 import static com.project.reactdashboard.ObjectRandomizer.randomString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -31,22 +31,22 @@ public class StockServiceTest {
 
     @Test
     void should_create_list_of_stock() {
-        List<Stock> stocks = randomList(i -> randomStock());
+        List<StockDomain> stockDomains = randomList(i -> randomStockDomain());
 
-        service.createAll(stocks);
+        service.createAll(stockDomains);
 
-        verify(stockSpi).createAll(stocks);
+        verify(stockSpi).createAll(stockDomains);
     }
 
     @Test
     void should_find_a_stock() {
-        Stock dbStock = randomStock();
-        when(stockSpi.findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class))).thenReturn(dbStock);
+        StockDomain dbStockDomain = randomStockDomain();
+        when(stockSpi.findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class))).thenReturn(dbStockDomain);
 
-        Stock result = service.findLastWorkingDayBySymbol(randomString());
+        StockDomain result = service.findLastWorkingDayBySymbol(randomString());
 
         verify(stockSpi).findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class));
-        assertEquals(dbStock, result);
+        assertEquals(dbStockDomain, result);
     }
 
     @Test

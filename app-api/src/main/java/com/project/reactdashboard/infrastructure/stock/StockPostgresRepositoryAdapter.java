@@ -1,6 +1,6 @@
 package com.project.reactdashboard.infrastructure.stock;
 
-import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.infrastructure.stock.model.Stock;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;

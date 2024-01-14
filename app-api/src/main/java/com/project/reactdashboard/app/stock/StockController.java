@@ -1,7 +1,7 @@
 package com.project.reactdashboard.app.stock;
 
-import com.project.reactdashboard.domain.stock.model.Stock;
-import com.project.reactdashboard.domain.stock.StockMapper;
+import com.project.reactdashboard.domain.stock.model.StockDomain;
+import com.project.reactdashboard.domain.stock.mapper.StockDomainMapper;
 import com.project.reactdashboard.domain.stock.StockService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +19,11 @@ import java.util.List;
 @RequestMapping("/api/stocks")
 public class StockController {
 
-    private final StockMapper mapper;
+    private final StockDomainMapper mapper;
 
     private final StockService service;
 
-    public StockController(StockMapper mapper, StockService service) {
+    public StockController(StockDomainMapper mapper, StockService service) {
         this.mapper = mapper;
         this.service = service;
     }
@@ -31,35 +31,32 @@ public class StockController {
     @GetMapping("/latest")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<StockDto>> findAllLatest() {
-        List<Stock> stocks = service.findAllLatest();
-        List<StockDto> dtos = mapper.toListDto(stocks);
+        List<StockDomain> stockDomains = service.findAllLatest();
+        List<StockDto> dtos = mapper.toListDto(stockDomains);
         return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{symbol}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<StockDto>> findBySymbol(@PathVariable("symbol") String symbol) {
-        List<Stock> stocks = service.findBySymbol(symbol);
-        List<StockDto> dtos = mapper.toListDto(stocks);
+        List<StockDomain> stockDomains = service.findBySymbol(symbol);
+        List<StockDto> dtos = mapper.toListDto(stockDomains);
         return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{symbol}/last-working-day")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<StockDto> findLastWorkingDayBySymbol(@PathVariable("symbol") String symbol) {
-        Stock stock = service.findLastWorkingDayBySymbol(symbol);
-        StockDto dto = new StockDto.StockDtoBuilder().build();
-        if (stock != null) {
-            dto = mapper.toDto(stock);
-        }
+        StockDomain stockDomain = service.findLastWorkingDayBySymbol(symbol);
+        StockDto dto = mapper.toDto(stockDomain);
         return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Integer> createAll(@RequestBody final List<StockDto> stockDtos) {
-        List<Stock> stocks = mapper.toList(stockDtos);
-        service.createAll(stocks);
+        List<StockDomain> stockDomains = mapper.toListDomain(stockDtos);
+        service.createAll(stockDomains);
         return ResponseEntity.ok(1);
     }
 

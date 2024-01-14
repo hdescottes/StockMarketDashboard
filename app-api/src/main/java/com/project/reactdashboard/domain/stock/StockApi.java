@@ -1,16 +1,16 @@
 package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.domain.stock.model.StockDomain;
 
 import java.util.List;
 
 public interface StockApi {
 
-    void createAll(List<Stock> stocks);
+    void createAll(List<StockDomain> stockDomains);
 
-    List<Stock> findBySymbol(String symbol);
+    List<StockDomain> findBySymbol(String symbol);
 
-    List<Stock> findAllLatest();
+    List<StockDomain> findAllLatest();
 
-    Stock findLastWorkingDayBySymbol(String symbol);
+    StockDomain findLastWorkingDayBySymbol(String symbol);
 }
