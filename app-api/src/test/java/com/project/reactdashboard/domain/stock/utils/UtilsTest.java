@@ -1,12 +1,12 @@
-package com.project.reactdashboard.utils;
+package com.project.reactdashboard.domain.stock.utils;
 
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.OffsetDateTime;
 
-import static com.project.reactdashboard.utils.Utils.lastWorkingDay;
-import static com.project.reactdashboard.utils.Utils.parseToISO;
+import static com.project.reactdashboard.domain.stock.utils.Utils.lastWorkingDay;
+import static com.project.reactdashboard.domain.stock.utils.Utils.parseToISO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 

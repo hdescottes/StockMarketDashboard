@@ -1,6 +1,7 @@
-package com.project.reactdashboard.stock.repositories;
+package com.project.reactdashboard.infrastructure.stock;
 
-import com.project.reactdashboard.entities.Stock;
+import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.infrastructure.stock.StockPostgresRepositoryAdapter;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.junit.jupiter.api.Test;

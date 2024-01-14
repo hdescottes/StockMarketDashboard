@@ -1,8 +1,6 @@
-package com.project.reactdashboard.stock;
+package com.project.reactdashboard.infrastructure.stock;
 
-import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.stock.repositories.StockPostgresRepository;
-import com.project.reactdashboard.stock.repositories.StockRepository;
+import com.project.reactdashboard.domain.stock.model.Stock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,14 +15,12 @@ import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class StockServiceTest {
+public class StockPersistenceServiceTest {
 
     @Mock
     private StockRepository repository;
@@ -33,7 +29,7 @@ public class StockServiceTest {
     private StockPostgresRepository postgresRepository;
 
     @InjectMocks
-    private StockService service;
+    private StockPersistenceService service;
 
     @Test
     void should_create_list_of_stock() {
@@ -47,21 +43,24 @@ public class StockServiceTest {
     @Test
     void should_find_a_stock() {
         Stock dbStock = randomStock();
-        when(repository.findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class))).thenReturn(dbStock);
+        String symbol = randomString();
+        OffsetDateTime date = OffsetDateTime.now();
+        when(repository.findLastWorkingDayBySymbol(symbol, date)).thenReturn(dbStock);
 
-        Stock result = service.findLastWorkingDayBySymbol(randomString());
+        Stock result = service.findLastWorkingDayBySymbol(symbol, date);
 
-        verify(repository).findLastWorkingDayBySymbol(anyString(), any(OffsetDateTime.class));
+        verify(repository).findLastWorkingDayBySymbol(symbol, date);
         assertEquals(dbStock, result);
     }
 
     @Test
     void should_find_all_stock_by_symbol() {
         String symbol = randomString();
+        OffsetDateTime date = OffsetDateTime.now();
 
-        service.findBySymbol(symbol);
+        service.findBySymbol(symbol, date);
 
-        verify(repository).findBySymbol(eq(symbol), any(OffsetDateTime.class));
+        verify(repository).findBySymbol(symbol, date);
     }
 
     @Test

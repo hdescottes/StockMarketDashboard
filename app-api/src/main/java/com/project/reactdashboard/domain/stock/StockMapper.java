@@ -1,12 +1,12 @@
-package com.project.reactdashboard.stock;
+package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.entities.Stock;
-import com.project.reactdashboard.dto.StockDto;
+import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.app.stock.StockDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.project.reactdashboard.utils.Utils.parseToISO;
+import static com.project.reactdashboard.domain.stock.utils.Utils.parseToISO;
 
 @Component
 public class StockMapper {

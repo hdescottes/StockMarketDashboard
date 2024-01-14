@@ -1,26 +1,16 @@
-package com.project.reactdashboard.entities;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+package com.project.reactdashboard.app.stock;
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
 
-@Entity
-public class Stock implements Serializable {
+public class StockDto implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private OffsetDateTime date;
+    private String date;
 
     private String symbol;
+
+    private String name;
 
     private double open;
 
@@ -32,10 +22,6 @@ public class Stock implements Serializable {
 
     private double volume;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "symbol", referencedColumnName = "symbol", insertable = false, updatable = false)
-    private SymbolValues symbolValues;
-
     public Long getId() {
         return id;
     }
@@ -44,11 +30,11 @@ public class Stock implements Serializable {
         this.id = id;
     }
 
-    public OffsetDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(OffsetDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -60,12 +46,12 @@ public class Stock implements Serializable {
         this.symbol = symbol;
     }
 
-    public SymbolValues getSymbolValues() {
-        return symbolValues;
+    public String getName() {
+        return name;
     }
 
-    public void setSymbolValues(SymbolValues symbolValues) {
-        this.symbolValues = symbolValues;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getOpen() {
@@ -108,14 +94,14 @@ public class Stock implements Serializable {
         this.volume = volume;
     }
 
-    public Stock() {
+    public StockDto() {
     }
 
-    private Stock(StockBuilder builder) {
+    private StockDto(StockDtoBuilder builder) {
         this.id = builder.id;
         this.date = builder.date;
         this.symbol = builder.symbol;
-        this.symbolValues = builder.symbolValues;
+        this.name = builder.name;
         this.open = builder.open;
         this.close = builder.close;
         this.high = builder.high;
@@ -123,15 +109,15 @@ public class Stock implements Serializable {
         this.volume = builder.volume;
     }
 
-    public static class StockBuilder{
+    public static class StockDtoBuilder{
 
         private Long id;
 
-        private OffsetDateTime date;
+        private String date;
 
         private String symbol;
-        
-        private SymbolValues symbolValues;
+
+        private String name;
 
         private double open;
 
@@ -143,56 +129,56 @@ public class Stock implements Serializable {
 
         private double volume;
 
-        public StockBuilder(){
+        public StockDtoBuilder(){
         }
 
-        public StockBuilder withId(Long id) {
+        public StockDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public StockBuilder withDate(OffsetDateTime date) {
+        public StockDtoBuilder withDate(String date) {
             this.date = date;
             return this;
         }
 
-        public StockBuilder withSymbol(String symbol) {
+        public StockDtoBuilder withSymbol(String symbol) {
             this.symbol = symbol;
             return this;
         }
 
-        public StockBuilder withSymbolValues(SymbolValues symbolValues) {
-            this.symbolValues = symbolValues;
+        public StockDtoBuilder withName(String name) {
+            this.name = name;
             return this;
         }
 
-        public StockBuilder withOpen(double open) {
+        public StockDtoBuilder withOpen(double open) {
             this.open = open;
             return this;
         }
 
-        public StockBuilder withLow(double low) {
+        public StockDtoBuilder withLow(double low) {
             this.low = low;
             return this;
         }
 
-        public StockBuilder withHigh(double high) {
+        public StockDtoBuilder withHigh(double high) {
             this.high = high;
             return this;
         }
 
-        public StockBuilder withClose(double close) {
+        public StockDtoBuilder withClose(double close) {
             this.close = close;
             return this;
         }
 
-        public StockBuilder withVolume(double volume) {
+        public StockDtoBuilder withVolume(double volume) {
             this.volume = volume;
             return this;
         }
 
-        public Stock build(){
-            return new Stock(this);
+        public StockDto build(){
+            return new StockDto(this);
         }
 
     }
