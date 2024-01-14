@@ -1,6 +1,6 @@
 package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.domain.stock.model.Stock;
+import com.project.reactdashboard.domain.stock.model.StockDomain;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -18,20 +18,20 @@ public class StockService implements StockApi {
         this.stockSpi = stockSpi;
     }
 
-    public void createAll(List<Stock> stocks) {
-        stockSpi.createAll(stocks);
+    public void createAll(List<StockDomain> stockDomains) {
+        stockSpi.createAll(stockDomains);
     }
 
-    public List<Stock> findBySymbol(String symbol) {
+    public List<StockDomain> findBySymbol(String symbol) {
         OffsetDateTime date = OffsetDateTime.now().minusMonths(1);
         return stockSpi.findBySymbol(symbol, date);
     }
 
-    public List<Stock> findAllLatest() {
+    public List<StockDomain> findAllLatest() {
         return stockSpi.findAllLatest();
     }
 
-    public Stock findLastWorkingDayBySymbol(String symbol) {
+    public StockDomain findLastWorkingDayBySymbol(String symbol) {
         OffsetDateTime lastWorkingDay = lastWorkingDay()
                 .withHour(0)
                 .withMinute(0)
