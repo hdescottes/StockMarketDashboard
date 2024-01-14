@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.project.reactdashboard.domain.stock.StockApi;
 import com.project.reactdashboard.domain.stock.mapper.StockDomainMapper;
 import com.project.reactdashboard.domain.stock.StockService;
 import com.project.reactdashboard.domain.stock.model.StockDomain;
@@ -36,7 +37,7 @@ public class StockControllerTest {
     private StockDomainMapper mapper;
 
     @Mock
-    private StockService service;
+    private StockApi service;
 
     @BeforeEach
     void setup() {

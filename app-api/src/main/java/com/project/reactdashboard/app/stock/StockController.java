@@ -1,8 +1,8 @@
 package com.project.reactdashboard.app.stock;
 
-import com.project.reactdashboard.domain.stock.model.StockDomain;
+import com.project.reactdashboard.domain.stock.StockApi;
 import com.project.reactdashboard.domain.stock.mapper.StockDomainMapper;
-import com.project.reactdashboard.domain.stock.StockService;
+import com.project.reactdashboard.domain.stock.model.StockDomain;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +21,9 @@ public class StockController {
 
     private final StockDomainMapper mapper;
 
-    private final StockService service;
+    private final StockApi service;
 
-    public StockController(StockDomainMapper mapper, StockService service) {
+    public StockController(StockDomainMapper mapper, StockApi service) {
         this.mapper = mapper;
         this.service = service;
     }
