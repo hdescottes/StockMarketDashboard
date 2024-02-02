@@ -1,10 +1,10 @@
 package com.project.reactdashboard;
 
-import com.project.reactdashboard.domain.stock.model.StockDomain;
-import com.project.reactdashboard.app.stock.StockDto;
-import com.project.reactdashboard.domain.stock.model.SymbolValuesDomain;
-import com.project.reactdashboard.infrastructure.stock.model.Stock;
-import com.project.reactdashboard.infrastructure.stock.model.SymbolValues;
+import com.project.reactdashboard.appplication.stock.model.StockApplication;
+import com.project.reactdashboard.infrastructure.stock.controllers.StockDto;
+import com.project.reactdashboard.appplication.stock.model.SymbolValuesApplication;
+import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
+import com.project.reactdashboard.infrastructure.stock.persistence.entities.SymbolValues;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -36,8 +36,8 @@ public class ObjectRandomizer {
                 .toList();
     }
 
-    public static StockDomain randomStockDomain() {
-        return new StockDomain.StockDomainBuilder()
+    public static StockApplication randomStockDomain() {
+        return new StockApplication.StockDomainBuilder()
                 .withId(randomLong())
                 .withSymbol(randomString())
                 .withSymbolValues(randomSymbolValuesDomain())
@@ -78,8 +78,8 @@ public class ObjectRandomizer {
                 .build();
     }
 
-    public static SymbolValuesDomain randomSymbolValuesDomain() {
-        return new SymbolValuesDomain.SymbolValuesDomainBuilder()
+    public static SymbolValuesApplication randomSymbolValuesDomain() {
+        return new SymbolValuesApplication.SymbolValuesDomainBuilder()
                 .withName(randomString())
                 .withSymbol(randomString())
                 .build();
