@@ -7,8 +7,8 @@ When("The user visit dashboard search page", () => {
 });
 
 Then("The user fills the search section with {string}", (stock: string) => {
-  cy.get("input").should("be.visible").type(stock);
-  cy.get("input").should("not.be.null");
+  cy.get('input[name="symbol"]').should("be.visible").type(stock);
+  cy.get('input[name="symbol"]').should("not.be.null");
 });
 
 Then("The user clicks on the fetch button for {string}", (stock: string) => {
@@ -25,11 +25,7 @@ Then("The user clicks on the fetch button for {string}", (stock: string) => {
 });
 
 Then("The user sees the last stock {string} in the list", (stock: string) => {
-  cy.get('[id="' + stock + '"]')
-    .should("be.visible")
-    .within(() => {
-      cy.get("h5").contains(stock);
-    });
+  cy.contains("div.ag-cell", stock).should("be.visible");
 });
 
 Then(
@@ -37,11 +33,7 @@ Then(
   (stock1: string, stock2: string) => {
     const stocks = [stock1, stock2];
     stocks.forEach((stock) => {
-      cy.get('[id="' + stock + '"]')
-        .should("be.visible")
-        .within(() => {
-          cy.get("h5").contains(stock);
-        });
+      cy.contains("div.ag-cell", stock).should("be.visible");
     });
   }
 );

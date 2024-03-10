@@ -11,17 +11,15 @@ Then("The user clicks on the search all button", (stock: string) => {
 });
 
 Then("The user sees the last stock {string} in the list", (stock: string) => {
-  cy.get('[id="' + stock + '"]')
-    .should("be.visible")
-    .within(() => {
-      cy.get("h5").contains(stock);
-    });
+  cy.contains("div.ag-cell", stock).should("be.visible");
 });
 
 Then("The user clicks on the see button for {string}", (stock: string) => {
   cy.intercept("/api/stocks/" + stock).as("get-stock");
-  cy.get('[id="' + stock + '"]')
+  cy.contains("div.ag-cell", stock)
     .should("be.visible")
+    .parent("div.ag-row")
+    .find(`[col-id="action"]`)
     .within(() => {
       cy.get("#See").click();
     });
