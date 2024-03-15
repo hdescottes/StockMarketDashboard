@@ -92,6 +92,12 @@ const config: Config = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "\\.(css|scss)$": "<rootDir>/styleMock.ts",
+    "@ag-grid-community/react":
+      "<rootDir>/node_modules/@ag-grid-community/react/bundles/ag-grid-react.min.js",
+    "@ag-grid-community/core":
+      "<rootDir>/node_modules/@ag-grid-community/core/dist/cjs/es5/main.js",
+    "@ag-grid-community/client-side-row-model":
+      "<rootDir>/node_modules/@ag-grid-community/client-side-row-model/dist/cjs/es5/main.js",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

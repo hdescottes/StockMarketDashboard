@@ -20,6 +20,11 @@ body,
   border-radius: 8px;
 }
 
+.ag-row .ag-cell {
+  display: flex;
+  align-items: center;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

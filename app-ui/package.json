@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ag-grid-community/client-side-row-model": "^31.1.1",
+    "@ag-grid-community/react": "^31.1.1",
+    "@ag-grid-community/styles": "^31.1.1",
     "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "@emotion/react": "^11.11.1",
@@ -14,6 +17,8 @@
     "@types/node": "^16.18.61",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "ag-grid-community": "^31.1.1",
+    "ag-grid-react": "^31.1.1",
     "apexcharts": "^3.45.1",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
