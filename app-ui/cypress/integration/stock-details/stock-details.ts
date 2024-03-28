@@ -37,13 +37,13 @@ Then("The user can see the stock information", () => {
   cy.get('[data-testid="close"]')
     .should("be.visible")
     .within(() => {
-      cy.get("h3").should("not.be.null");
+      cy.get("h3").should("not.be.null").contains(606.8);
     });
 
   cy.get('[data-testid="volume"]')
     .should("be.visible")
     .within(() => {
-      cy.get("h5").should("not.be.null");
+      cy.get("h5").should("not.be.null").contains(49000);
     });
 
   cy.get('[class="apexcharts-candlestick-series apexcharts-plot-series"]')
