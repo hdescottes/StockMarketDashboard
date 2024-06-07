@@ -1,8 +1,7 @@
 package com.project.reactdashboard.infrastructure.stock.persistence.mapper;
 
-import com.project.reactdashboard.appplication.stock.model.SymbolValuesApplication;
+import com.project.reactdashboard.application.stock.model.SymbolValuesApplication;
 import com.project.reactdashboard.infrastructure.stock.persistence.entities.SymbolValues;
-import com.project.reactdashboard.infrastructure.stock.persistence.mapper.SymbolValuesMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

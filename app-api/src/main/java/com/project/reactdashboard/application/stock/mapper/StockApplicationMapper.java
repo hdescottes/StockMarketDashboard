@@ -1,6 +1,6 @@
-package com.project.reactdashboard.appplication.stock.mapper;
+package com.project.reactdashboard.application.stock.mapper;
 
-import com.project.reactdashboard.appplication.stock.model.StockApplication;
+import com.project.reactdashboard.application.stock.model.StockApplication;
 import com.project.reactdashboard.infrastructure.stock.controllers.StockDto;
 import org.springframework.stereotype.Component;
 

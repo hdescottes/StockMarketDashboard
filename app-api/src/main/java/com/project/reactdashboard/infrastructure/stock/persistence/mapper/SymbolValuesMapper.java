@@ -1,6 +1,6 @@
 package com.project.reactdashboard.infrastructure.stock.persistence.mapper;
 
-import com.project.reactdashboard.appplication.stock.model.SymbolValuesApplication;
+import com.project.reactdashboard.application.stock.model.SymbolValuesApplication;
 import com.project.reactdashboard.infrastructure.stock.persistence.entities.SymbolValues;
 import org.springframework.stereotype.Component;
 

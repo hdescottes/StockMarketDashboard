@@ -1,8 +1,8 @@
 package com.project.reactdashboard.infrastructure.stock.controllers;
 
-import com.project.reactdashboard.appplication.stock.StockApi;
-import com.project.reactdashboard.appplication.stock.mapper.StockApplicationMapper;
-import com.project.reactdashboard.appplication.stock.model.StockApplication;
+import com.project.reactdashboard.application.stock.StockApi;
+import com.project.reactdashboard.application.stock.mapper.StockApplicationMapper;
+import com.project.reactdashboard.application.stock.model.StockApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

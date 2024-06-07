@@ -1,7 +1,7 @@
 package com.project.reactdashboard.infrastructure.stock.persistence;
 
-import com.project.reactdashboard.appplication.stock.StockSpi;
-import com.project.reactdashboard.appplication.stock.model.StockApplication;
+import com.project.reactdashboard.application.stock.StockSpi;
+import com.project.reactdashboard.application.stock.model.StockApplication;
 import com.project.reactdashboard.infrastructure.stock.persistence.mapper.StockMapper;
 import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
 import org.springframework.stereotype.Service;
