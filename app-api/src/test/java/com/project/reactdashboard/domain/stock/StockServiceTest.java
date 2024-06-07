@@ -1,8 +1,7 @@
-package com.project.reactdashboard.appplication.stock;
+package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.appplication.stock.StockService;
-import com.project.reactdashboard.appplication.stock.StockSpi;
-import com.project.reactdashboard.appplication.stock.model.StockApplication;
+import com.project.reactdashboard.application.stock.StockSpi;
+import com.project.reactdashboard.application.stock.model.StockApplication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

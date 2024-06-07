@@ -1,8 +1,8 @@
 package com.project.reactdashboard;
 
-import com.project.reactdashboard.appplication.stock.model.StockApplication;
+import com.project.reactdashboard.application.stock.model.StockApplication;
 import com.project.reactdashboard.infrastructure.stock.controllers.StockDto;
-import com.project.reactdashboard.appplication.stock.model.SymbolValuesApplication;
+import com.project.reactdashboard.application.stock.model.SymbolValuesApplication;
 import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
 import com.project.reactdashboard.infrastructure.stock.persistence.entities.SymbolValues;
 

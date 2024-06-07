@@ -1,7 +1,9 @@
-package com.project.reactdashboard.appplication.stock;
+package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.appplication.stock.model.StockApplication;
-import org.springframework.stereotype.Service;
+import com.project.reactdashboard.application.stock.StockApi;
+import com.project.reactdashboard.application.stock.StockSpi;
+import com.project.reactdashboard.application.stock.model.StockApplication;
+import com.project.reactdashboard.configuration.UseCase;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -9,7 +11,7 @@ import java.util.List;
 
 import static com.project.reactdashboard.domain.stock.Date.lastWorkingDay;
 
-@Service
+@UseCase
 public class StockService implements StockApi {
 
     private final StockSpi stockSpi;

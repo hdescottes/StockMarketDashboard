@@ -1,6 +1,6 @@
-package com.project.reactdashboard.appplication.stock;
+package com.project.reactdashboard.application.stock;
 
-import com.project.reactdashboard.appplication.stock.model.StockApplication;
+import com.project.reactdashboard.application.stock.model.StockApplication;
 
 import java.time.OffsetDateTime;
 import java.util.List;

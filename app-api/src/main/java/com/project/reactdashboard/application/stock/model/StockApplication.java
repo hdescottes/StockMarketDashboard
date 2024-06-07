@@ -1,4 +1,4 @@
-package com.project.reactdashboard.appplication.stock.model;
+package com.project.reactdashboard.application.stock.model;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;

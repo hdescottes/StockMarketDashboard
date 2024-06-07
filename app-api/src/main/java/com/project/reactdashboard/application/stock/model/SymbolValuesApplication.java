@@ -1,4 +1,4 @@
-package com.project.reactdashboard.appplication.stock.model;
+package com.project.reactdashboard.application.stock.model;
 
 public class SymbolValuesApplication {
 
