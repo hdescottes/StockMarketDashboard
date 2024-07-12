@@ -17,7 +17,7 @@
     "@types/node": "^16.18.61",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "ag-grid-community": "^31.1.1",
+    "ag-grid-community": "^32.0.1",
     "ag-grid-react": "^31.1.1",
     "apexcharts": "^3.45.1",
     "axios": "^1.6.2",
