@@ -11,7 +11,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:3.2.1")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:3.3.3")
 	}
 }
 
