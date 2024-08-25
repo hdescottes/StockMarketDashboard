@@ -1,10 +1,10 @@
-val springBootVersion by extra { "3.2.1" }
-val postgresVersion by extra { "42.7.1" }
-val jsr310Version by extra { "2.16.1" }
-val liquibaseVersion by extra { "4.25.1" }
-val apacheLang3Version by extra { "3.14.0" }
-val zonkyEmbeddedDbVersion by extra { "2.5.0" }
-val zonkyPostgresVersion by extra { "2.0.6" }
+val springBootVersion by extra { "3.3.3" }
+val postgresVersion by extra { "42.7.4" }
+val jsr310Version by extra { "2.17.2" }
+val liquibaseVersion by extra { "4.29.1" }
+val apacheLang3Version by extra { "3.16.0" }
+val zonkyEmbeddedDbVersion by extra { "2.5.1" }
+val zonkyPostgresVersion by extra { "2.0.7" }
 
 buildscript {
 	repositories {
