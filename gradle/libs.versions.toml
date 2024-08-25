@@ -10,7 +10,7 @@ starter-test = { group = "org.springframework.boot", name = "spring-boot-starter
 jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version = "2.17.2" }
 liquibase = { group = "org.liquibase", name = "liquibase-core", version = "4.29.1" }
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
+lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.16.0" }
 zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.5.1" }
 zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.0.7" }
 
