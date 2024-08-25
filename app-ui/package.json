@@ -10,7 +10,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.16",
+    "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.8",
