@@ -6,7 +6,7 @@
     "@ag-grid-community/client-side-row-model": "^31.1.1",
     "@ag-grid-community/react": "^31.1.1",
     "@ag-grid-community/styles": "^31.1.1",
-    "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
+    "@badeball/cypress-cucumber-preprocessor": "^20.1.2",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.11.0",
