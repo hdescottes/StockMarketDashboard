@@ -5,6 +5,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             version("spring-boot", "3.2.1")
+
             library("starter-web", "org.springframework.boot", "spring-boot-starter-web").versionRef("spring-boot")
             library("starter-data-jpa", "org.springframework.boot", "spring-boot-starter-data-jpa").versionRef("spring-boot")
             library("starter-actuator", "org.springframework.boot", "spring-boot-starter-actuator").versionRef("spring-boot")
@@ -16,7 +17,9 @@ dependencyResolutionManagement {
             library("lang3", "org.apache.commons", "commons-lang3").version("3.14.0")
             library("zonkyEmbeddedDb", "io.zonky.test", "embedded-database-spring-test").version("2.5.1")
             library("zonkyPostgres", "io.zonky.test", "embedded-postgres").version("2.0.7")
+
             bundle("spring-boot", listOf("starter-web", "starter-data-jpa", "starter-actuator"))
+
             plugin("spring-boot", "org.springframework.boot").versionRef("spring-boot")
             plugin("dependency-management", "io.spring.dependency-management").version("1.1.3")
         }
