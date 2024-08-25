@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    labels:
+      - "dependencies"
+      - "devops"
+
+  - package-ecosystem: gradle
+    directory: "/app-api"
+    schedule:
+      interval: daily
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 20
+
+  - package-ecosystem: npm
+    directory: "/app-ui"
+    schedule:
+      interval: daily
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 20
+
