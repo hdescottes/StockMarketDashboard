@@ -19,14 +19,6 @@ updates:
   - package-ecosystem: gradle
     directory: "/gradle"
     schedule:
-      interval: weekly
-    labels:
-      - "dependencies"
-    open-pull-requests-limit: 20
-
-  - package-ecosystem: gradle
-    directory: "/"
-    schedule:
       interval: daily
     labels:
       - "dependencies"
@@ -35,7 +27,7 @@ updates:
   - package-ecosystem: gradle
     directory: "/app-api"
     schedule:
-      interval: weekly
+      interval: daily
     labels:
       - "dependencies"
     open-pull-requests-limit: 20
