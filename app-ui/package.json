@@ -14,7 +14,7 @@
     "@mui/material": "^5.16.7",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.8",
-    "@types/node": "^16.18.61",
+    "@types/node": "^22.5.0",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.2.15",
     "ag-grid-community": "^32.0.1",
