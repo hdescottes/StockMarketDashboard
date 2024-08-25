@@ -1,0 +1,22 @@
+[versions]
+spring-boot = "3.2.1"
+
+[libraries]
+starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
+starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "spring-boot" }
+docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose", version.ref = "spring-boot" }
+starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "spring-boot" }
+jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version = "2.17.2" }
+liquibase = { group = "org.liquibase", name = "liquibase-core", version = "4.29.1" }
+postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
+lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
+zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.5.1" }
+zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.0.7" }
+
+[bundles]
+spring-boot = ["starter-web", "starter-data-jpa", "starter-actuator"]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+dependency-management = { id = "io.spring.dependency-management", version = "1.1.3" }
