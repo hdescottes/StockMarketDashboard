@@ -18,7 +18,7 @@ buildscript {
 plugins {
 	java
 	id("org.springframework.boot") version "3.3.3"
-	id("io.spring.dependency-management") version "1.1.3"
+	id("io.spring.dependency-management") version "1.1.6"
 }
 
 group = "com.project"
