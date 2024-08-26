@@ -15,14 +15,6 @@ updates:
       - "dependencies"
     open-pull-requests-limit: 20
 
-  - package-ecosystem: gradle
-    directory: "/app-api"
-    schedule:
-      interval: weekly
-    labels:
-      - "dependencies"
-    open-pull-requests-limit: 20
-
   - package-ecosystem: npm
     directory: "/app-ui"
     schedule:
