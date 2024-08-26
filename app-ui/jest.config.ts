@@ -93,11 +93,11 @@ const config: Config = {
   moduleNameMapper: {
     "\\.(css|scss)$": "<rootDir>/styleMock.ts",
     "@ag-grid-community/react":
-      "<rootDir>/node_modules/@ag-grid-community/react/bundles/ag-grid-react.min.js",
+      "<rootDir>/node_modules/@ag-grid-community/react/dist/umd/@ag-grid-community/react.min.js",
     "@ag-grid-community/core":
-      "<rootDir>/node_modules/@ag-grid-community/core/dist/cjs/es5/main.js",
+      "<rootDir>/node_modules/@ag-grid-community/core/dist/package/main.cjs.js",
     "@ag-grid-community/client-side-row-model":
-      "<rootDir>/node_modules/@ag-grid-community/client-side-row-model/dist/cjs/es5/main.js",
+      "<rootDir>/node_modules/@ag-grid-community/client-side-row-model/dist/package/main.cjs.js",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
