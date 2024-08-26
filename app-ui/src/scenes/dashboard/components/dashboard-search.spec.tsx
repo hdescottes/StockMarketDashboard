@@ -23,8 +23,8 @@ describe("DashboardSearch component", () => {
     );
 
     const input = screen.getByLabelText("symbol");
-    userEvent.type(input, newSymbol);
-    userEvent.click(screen.getByLabelText("fetch"));
+    await userEvent.type(input, newSymbol);
+    await userEvent.click(screen.getByLabelText("fetch"));
 
     expect(onChangeMock).toHaveBeenCalledWith({
       ...props.stock,
@@ -37,7 +37,7 @@ describe("DashboardSearch component", () => {
     const search = jest.fn();
     render(<DashboardSearch {...props} search={search} />);
 
-    userEvent.click(screen.getByLabelText("search all"));
+    await userEvent.click(screen.getByLabelText("search all"));
     expect(search).toHaveBeenCalled();
   });
 });
