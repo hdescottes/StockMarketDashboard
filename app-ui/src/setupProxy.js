@@ -4,14 +4,14 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "http://localhost:8080",
+      target: "http://localhost:8080/api",
       changeOrigin: true,
     })
   );
   app.use(
     "/v1",
     createProxyMiddleware({
-      target: "http://api.marketstack.com",
+      target: "http://api.marketstack.com/v1",
       changeOrigin: true,
     })
   );
