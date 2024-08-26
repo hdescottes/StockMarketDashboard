@@ -7,6 +7,7 @@ starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-sta
 starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "spring-boot" }
 docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose", version.ref = "spring-boot" }
 starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "spring-boot" }
+gradle-plugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
 jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version = "2.17.2" }
 liquibase = { group = "org.liquibase", name = "liquibase-core", version = "4.29.1" }
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
@@ -16,6 +17,7 @@ zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version =
 
 [bundles]
 spring-boot = ["starter-web", "starter-data-jpa", "starter-actuator"]
+zonky = ["zonkyPostgres", "zonkyEmbeddedDb"]
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

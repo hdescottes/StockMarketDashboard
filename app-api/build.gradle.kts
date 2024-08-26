@@ -3,7 +3,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:3.3.3")
+		classpath(libs.gradle.plugin)
 	}
 }
 
@@ -24,12 +24,6 @@ tasks.named<Test>("test") {
 	useJUnitPlatform()
 }
 
-dependencyManagement {
-	imports {
-		mavenBom("org.springframework.boot:spring-boot-starter-web:3.3.3")
-	}
-}
-
 repositories {
 	mavenCentral()
 }
@@ -42,6 +36,5 @@ dependencies {
 	runtimeOnly(libs.postgresql)
 	testImplementation(libs.starter.test)
 	testImplementation(libs.lang3)
-	testImplementation(libs.zonkyEmbeddedDb)
-	testImplementation(libs.zonkyPostgres)
+	testImplementation(libs.bundles.zonky)
 }
