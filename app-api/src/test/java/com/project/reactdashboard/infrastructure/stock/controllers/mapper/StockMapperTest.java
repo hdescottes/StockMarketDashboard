@@ -1,6 +1,6 @@
-package com.project.reactdashboard.application.stock.mapper;
+package com.project.reactdashboard.infrastructure.stock.controllers.mapper;
 
-import com.project.reactdashboard.application.stock.model.StockApplication;
+import com.project.reactdashboard.domain.stock.entities.Stock;
 import com.project.reactdashboard.infrastructure.stock.controllers.StockDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,24 +8,24 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
-import static com.project.reactdashboard.ObjectRandomizer.randomStockDomain;
+import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomStockDto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StockApplicationMapperTest {
+public class StockMapperTest {
 
-    private StockApplicationMapper mapper;
+    private StockMapper mapper;
 
     @BeforeEach
     void setup() {
-        mapper = new StockApplicationMapper();
+        mapper = new StockMapper();
     }
 
     @Test
     void toEntity() {
         StockDto dto = randomStockDto();
 
-        StockApplication stockApplication = mapper.toApplication(dto);
+        Stock stockApplication = mapper.toEntity(dto);
 
         assertEquals("2019-02-01T00:00Z", stockApplication.getDate().toString());
         assertEquals(dto.getSymbol(), stockApplication.getSymbol());
@@ -38,7 +38,7 @@ public class StockApplicationMapperTest {
 
     @Test
     void toDto() {
-        StockApplication stockApplication = randomStockDomain();
+        Stock stockApplication = randomStock();
 
         StockDto dto = mapper.toDto(stockApplication);
 
@@ -55,7 +55,7 @@ public class StockApplicationMapperTest {
 
     @Test
     void toListDto() {
-        List<StockApplication> stockApplications = randomList(i -> randomStockDomain());
+        List<Stock> stockApplications = randomList(i -> randomStock());
 
         List<StockDto> dtos = mapper.toListDto(stockApplications);
 
@@ -67,7 +67,7 @@ public class StockApplicationMapperTest {
     void toList() {
         List<StockDto> dtos = randomList(i -> randomStockDto());
 
-        List<StockApplication> stockApplications = mapper.toListApplication(dtos);
+        List<Stock> stockApplications = mapper.toListDomain(dtos);
 
         assertEquals(dtos.size(), stockApplications.size());
         assertEquals(dtos.get(0).getId(), stockApplications.get(0).getId());

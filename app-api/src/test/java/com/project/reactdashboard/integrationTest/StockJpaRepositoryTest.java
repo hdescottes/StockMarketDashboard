@@ -1,6 +1,7 @@
-package com.project.reactdashboard.infrastructure.stock.persistence;
+package com.project.reactdashboard.integrationTest;
 
-import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
+import com.project.reactdashboard.domain.stock.spi.StockJpaRepository;
+import com.project.reactdashboard.domain.stock.entities.Stock;
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DataJpaTest
 @Sql({"/init-zonky.sql"})
 @AutoConfigureEmbeddedDatabase(provider = ZONKY)
-public class StockRepositoryTest {
+public class StockJpaRepositoryTest {
 
     @Autowired
-    private StockRepository repository;
+    private StockJpaRepository repository;
 
     @Test
     void should_find_stock_by_symbol() {

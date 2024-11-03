@@ -1,6 +1,6 @@
 package com.project.reactdashboard.infrastructure.stock.persistence;
 
-import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
+import com.project.reactdashboard.domain.stock.entities.Stock;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.junit.jupiter.api.Test;

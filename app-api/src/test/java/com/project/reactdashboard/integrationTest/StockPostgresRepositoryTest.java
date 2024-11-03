@@ -1,6 +1,8 @@
-package com.project.reactdashboard.infrastructure.stock.persistence;
+package com.project.reactdashboard.integrationTest;
 
-import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
+import com.project.reactdashboard.domain.stock.spi.StockJpaRepository;
+import com.project.reactdashboard.domain.stock.spi.StockPostgresRepository;
+import com.project.reactdashboard.domain.stock.entities.Stock;
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StockPostgresRepositoryTest {
 
     @Autowired
-    private StockRepository stockRepository;
+    private StockJpaRepository jpaRepository;
 
     @Autowired
     private StockPostgresRepository repository;
@@ -32,7 +34,7 @@ public class StockPostgresRepositoryTest {
         stock.setSymbol("ML.XPAR");
 
         repository.upsert(stock);
-        List<Stock> dbStocks = stockRepository.findAll();
+        List<Stock> dbStocks = jpaRepository.findAll();
 
         assertEquals(1, dbStocks.size());
         assertEquals(stock.getSymbol(), dbStocks.get(0).getSymbol());
