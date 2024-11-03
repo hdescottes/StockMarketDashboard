@@ -1,7 +1,14 @@
-package com.project.reactdashboard.application.stock.model;
+package com.project.reactdashboard.domain.stock.entities;
 
-public class SymbolValuesApplication {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "symbol_values")
+public class SymbolValues {
+
+    @Id
     private String symbol;
 
     private String name;
@@ -22,35 +29,35 @@ public class SymbolValuesApplication {
         this.name = name;
     }
 
-    public SymbolValuesApplication() {
+    public SymbolValues() {
     }
 
-    private SymbolValuesApplication(SymbolValuesDomainBuilder builder) {
+    private SymbolValues(SymbolValuesBuilder builder) {
         this.symbol = builder.symbol;
         this.name = builder.name;
     }
 
-    public static class SymbolValuesDomainBuilder {
+    public static class SymbolValuesBuilder {
 
         private String symbol;
 
         private String name;
 
-        public SymbolValuesDomainBuilder(){
+        public SymbolValuesBuilder(){
         }
 
-        public SymbolValuesDomainBuilder withSymbol(String symbol) {
+        public SymbolValuesBuilder withSymbol(String symbol) {
             this.symbol = symbol;
             return this;
         }
 
-        public SymbolValuesDomainBuilder withName(String name) {
+        public SymbolValuesBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public SymbolValuesApplication build(){
-            return new SymbolValuesApplication(this);
+        public SymbolValues build(){
+            return new SymbolValues(this);
         }
 
     }

@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.project.reactdashboard.application.stock.StockApi;
-import com.project.reactdashboard.application.stock.mapper.StockApplicationMapper;
-import com.project.reactdashboard.application.stock.model.StockApplication;
+import com.project.reactdashboard.domain.stock.api.StockApi;
+import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.List;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
-import static com.project.reactdashboard.ObjectRandomizer.randomStockDomain;
+import static com.project.reactdashboard.ObjectRandomizer.randomStock;
 import static com.project.reactdashboard.ObjectRandomizer.randomStockDto;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -33,7 +33,7 @@ public class StockControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private StockApplicationMapper mapper;
+    private StockMapper mapper;
 
     @Mock
     private StockApi service;
@@ -49,21 +49,21 @@ public class StockControllerTest {
     @Test
     void should_create_a_list_of_stock() throws Exception {
         List<StockDto> dtos = randomList(i -> randomStockDto());
-        List<StockApplication> stockApplications = randomList(i -> randomStockDomain());
+        List<Stock> stocks = randomList(i -> randomStock());
 
-        when(mapper.toListApplication(dtos)).thenReturn(stockApplications);
+        when(mapper.toListDomain(dtos)).thenReturn(stocks);
 
         ResultActions resultActions = mockMvc.perform(
                 post("/api/stocks/all")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(createJsonModel(stockApplications)));
+                        .content(createJsonModel(stocks)));
 
         resultActions.andExpect(status().isOk());
     }
 
     @Test
     void should_return_a_stock() throws Exception {
-        StockApplication stockApplication = randomStockDomain();
+        Stock stockApplication = randomStock();
         StockDto dto = randomStockDto();
 
         when(service.findLastWorkingDayBySymbol(stockApplication.getSymbol())).thenReturn(stockApplication);
@@ -79,8 +79,8 @@ public class StockControllerTest {
 
     @Test
     void should_return_list_of_stock_by_symbol() throws Exception {
-        StockApplication stockApplication = randomStockDomain();
-        List<StockApplication> stockApplications = randomList(i -> stockApplication);
+        Stock stockApplication = randomStock();
+        List<Stock> stockApplications = randomList(i -> stockApplication);
         StockDto dto = randomStockDto();
         List<StockDto> dtos = randomList(i -> dto);
 
@@ -97,8 +97,8 @@ public class StockControllerTest {
 
     @Test
     void should_return_list_of_latest_stock() throws Exception {
-        StockApplication stockApplication = randomStockDomain();
-        List<StockApplication> stockApplications = randomList(i -> stockApplication);
+        Stock stockApplication = randomStock();
+        List<Stock> stockApplications = randomList(i -> stockApplication);
         StockDto dto = randomStockDto();
         List<StockDto> dtos = randomList(i -> dto);
 

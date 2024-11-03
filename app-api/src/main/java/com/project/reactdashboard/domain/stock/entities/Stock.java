@@ -1,10 +1,21 @@
-package com.project.reactdashboard.application.stock.model;
+package com.project.reactdashboard.domain.stock.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
-public class StockApplication implements Serializable {
+@Entity
+public class Stock implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private OffsetDateTime date;
@@ -21,7 +32,9 @@ public class StockApplication implements Serializable {
 
     private double volume;
 
-    private SymbolValuesApplication symbolValuesApplication;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "symbol", referencedColumnName = "symbol", insertable = false, updatable = false)
+    private SymbolValues symbolValues;
 
     public Long getId() {
         return id;
@@ -47,12 +60,12 @@ public class StockApplication implements Serializable {
         this.symbol = symbol;
     }
 
-    public SymbolValuesApplication getSymbolValues() {
-        return symbolValuesApplication;
+    public SymbolValues getSymbolValues() {
+        return symbolValues;
     }
 
-    public void setSymbolValues(SymbolValuesApplication symbolValuesApplication) {
-        this.symbolValuesApplication = symbolValuesApplication;
+    public void setSymbolValues(SymbolValues symbolValues) {
+        this.symbolValues = symbolValues;
     }
 
     public double getOpen() {
@@ -95,14 +108,14 @@ public class StockApplication implements Serializable {
         this.volume = volume;
     }
 
-    public StockApplication() {
+    public Stock() {
     }
 
-    private StockApplication(StockDomainBuilder builder) {
+    private Stock(StockBuilder builder) {
         this.id = builder.id;
         this.date = builder.date;
         this.symbol = builder.symbol;
-        this.symbolValuesApplication = builder.symbolValuesApplication;
+        this.symbolValues = builder.symbolValues;
         this.open = builder.open;
         this.close = builder.close;
         this.high = builder.high;
@@ -110,7 +123,7 @@ public class StockApplication implements Serializable {
         this.volume = builder.volume;
     }
 
-    public static class StockDomainBuilder {
+    public static class StockBuilder {
 
         private Long id;
 
@@ -118,7 +131,7 @@ public class StockApplication implements Serializable {
 
         private String symbol;
         
-        private SymbolValuesApplication symbolValuesApplication;
+        private SymbolValues symbolValues;
 
         private double open;
 
@@ -130,56 +143,56 @@ public class StockApplication implements Serializable {
 
         private double volume;
 
-        public StockDomainBuilder(){
+        public StockBuilder(){
         }
 
-        public StockDomainBuilder withId(Long id) {
+        public StockBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public StockDomainBuilder withDate(OffsetDateTime date) {
+        public StockBuilder withDate(OffsetDateTime date) {
             this.date = date;
             return this;
         }
 
-        public StockDomainBuilder withSymbol(String symbol) {
+        public StockBuilder withSymbol(String symbol) {
             this.symbol = symbol;
             return this;
         }
 
-        public StockDomainBuilder withSymbolValues(SymbolValuesApplication symbolValuesApplication) {
-            this.symbolValuesApplication = symbolValuesApplication;
+        public StockBuilder withSymbolValues(SymbolValues symbolValues) {
+            this.symbolValues = symbolValues;
             return this;
         }
 
-        public StockDomainBuilder withOpen(double open) {
+        public StockBuilder withOpen(double open) {
             this.open = open;
             return this;
         }
 
-        public StockDomainBuilder withLow(double low) {
+        public StockBuilder withLow(double low) {
             this.low = low;
             return this;
         }
 
-        public StockDomainBuilder withHigh(double high) {
+        public StockBuilder withHigh(double high) {
             this.high = high;
             return this;
         }
 
-        public StockDomainBuilder withClose(double close) {
+        public StockBuilder withClose(double close) {
             this.close = close;
             return this;
         }
 
-        public StockDomainBuilder withVolume(double volume) {
+        public StockBuilder withVolume(double volume) {
             this.volume = volume;
             return this;
         }
 
-        public StockApplication build(){
-            return new StockApplication(this);
+        public Stock build(){
+            return new Stock(this);
         }
 
     }

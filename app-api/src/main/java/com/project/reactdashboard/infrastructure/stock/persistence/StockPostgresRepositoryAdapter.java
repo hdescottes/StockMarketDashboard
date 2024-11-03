@@ -1,6 +1,7 @@
 package com.project.reactdashboard.infrastructure.stock.persistence;
 
-import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
+import com.project.reactdashboard.domain.stock.spi.StockPostgresRepository;
+import com.project.reactdashboard.domain.stock.entities.Stock;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;

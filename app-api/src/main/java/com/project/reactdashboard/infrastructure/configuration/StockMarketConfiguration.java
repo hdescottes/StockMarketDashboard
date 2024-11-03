@@ -1,5 +1,6 @@
-package com.project.reactdashboard.configuration;
+package com.project.reactdashboard.infrastructure.configuration;
 
+import com.project.reactdashboard.domain.UseCase;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;

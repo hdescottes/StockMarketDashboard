@@ -1,4 +1,4 @@
-package com.project.reactdashboard.configuration;
+package com.project.reactdashboard.domain;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

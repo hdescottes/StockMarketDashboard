@@ -1,8 +1,8 @@
 package com.project.reactdashboard.infrastructure.stock.controllers;
 
-import com.project.reactdashboard.application.stock.StockApi;
-import com.project.reactdashboard.application.stock.mapper.StockApplicationMapper;
-import com.project.reactdashboard.application.stock.model.StockApplication;
+import com.project.reactdashboard.domain.stock.api.StockApi;
+import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +19,11 @@ import java.util.List;
 @RequestMapping("/api/stocks")
 public class StockController {
 
-    private final StockApplicationMapper mapper;
+    private final StockMapper mapper;
 
     private final StockApi service;
 
-    public StockController(StockApplicationMapper mapper, StockApi service) {
+    public StockController(StockMapper mapper, StockApi service) {
         this.mapper = mapper;
         this.service = service;
     }
@@ -31,31 +31,31 @@ public class StockController {
     @GetMapping("/latest")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<StockDto>> findAllLatest() {
-        List<StockApplication> stockApplications = service.findAllLatest();
-        List<StockDto> dtos = mapper.toListDto(stockApplications);
+        List<Stock> stocks = service.findAllLatest();
+        List<StockDto> dtos = mapper.toListDto(stocks);
         return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{symbol}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<StockDto>> findBySymbol(@PathVariable("symbol") String symbol) {
-        List<StockApplication> stockApplications = service.findBySymbol(symbol);
-        List<StockDto> dtos = mapper.toListDto(stockApplications);
+        List<Stock> stocks = service.findBySymbol(symbol);
+        List<StockDto> dtos = mapper.toListDto(stocks);
         return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{symbol}/last-working-day")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<StockDto> findLastWorkingDayBySymbol(@PathVariable("symbol") String symbol) {
-        StockApplication stockApplication = service.findLastWorkingDayBySymbol(symbol);
-        StockDto dto = mapper.toDto(stockApplication);
+        Stock stock = service.findLastWorkingDayBySymbol(symbol);
+        StockDto dto = mapper.toDto(stock);
         return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Integer> createAll(@RequestBody final List<StockDto> stockDtos) {
-        List<StockApplication> stockApplications = mapper.toListApplication(stockDtos);
+        List<Stock> stockApplications = mapper.toListDomain(stockDtos);
         service.createAll(stockApplications);
         return ResponseEntity.ok(1);
     }

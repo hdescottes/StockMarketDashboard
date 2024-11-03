@@ -1,10 +1,8 @@
 package com.project.reactdashboard;
 
-import com.project.reactdashboard.application.stock.model.StockApplication;
 import com.project.reactdashboard.infrastructure.stock.controllers.StockDto;
-import com.project.reactdashboard.application.stock.model.SymbolValuesApplication;
-import com.project.reactdashboard.infrastructure.stock.persistence.entities.Stock;
-import com.project.reactdashboard.infrastructure.stock.persistence.entities.SymbolValues;
+import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.domain.stock.entities.SymbolValues;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -36,22 +34,8 @@ public class ObjectRandomizer {
                 .toList();
     }
 
-    public static StockApplication randomStockDomain() {
-        return new StockApplication.StockDomainBuilder()
-                .withId(randomLong())
-                .withSymbol(randomString())
-                .withSymbolValues(randomSymbolValuesDomain())
-                .withDate(OffsetDateTime.now())
-                .withVolume(randomDouble())
-                .withOpen(randomDouble())
-                .withClose(randomDouble())
-                .withHigh(randomDouble())
-                .withLow(randomDouble())
-                .build();
-    }
-
     public static Stock randomStock() {
-        return new Stock.StockInfraBuilder()
+        return new Stock.StockBuilder()
                 .withId(randomLong())
                 .withSymbol(randomString())
                 .withSymbolValues(randomSymbolValues())
@@ -75,13 +59,6 @@ public class ObjectRandomizer {
                 .withClose(randomDouble())
                 .withHigh(randomDouble())
                 .withLow(randomDouble())
-                .build();
-    }
-
-    public static SymbolValuesApplication randomSymbolValuesDomain() {
-        return new SymbolValuesApplication.SymbolValuesDomainBuilder()
-                .withName(randomString())
-                .withSymbol(randomString())
                 .build();
     }
 

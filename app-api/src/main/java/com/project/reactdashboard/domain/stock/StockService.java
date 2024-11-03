@@ -1,9 +1,10 @@
 package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.application.stock.StockApi;
-import com.project.reactdashboard.application.stock.StockSpi;
-import com.project.reactdashboard.application.stock.model.StockApplication;
-import com.project.reactdashboard.configuration.UseCase;
+import com.project.reactdashboard.domain.UseCase;
+import com.project.reactdashboard.domain.stock.api.StockApi;
+import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.domain.stock.spi.StockPostgresRepository;
+import com.project.reactdashboard.domain.stock.spi.StockJpaRepository;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -14,32 +15,40 @@ import static com.project.reactdashboard.domain.stock.Date.lastWorkingDay;
 @UseCase
 public class StockService implements StockApi {
 
-    private final StockSpi stockSpi;
+    private final StockPostgresRepository stockRepository;
 
-    public StockService(StockSpi stockSpi) {
-        this.stockSpi = stockSpi;
+    private final StockJpaRepository repository;
+
+    public StockService(StockJpaRepository repository, StockPostgresRepository stockRepository) {
+        this.repository = repository;
+        this.stockRepository = stockRepository;
     }
 
-    public void createAll(List<StockApplication> stockApplications) {
-        stockSpi.createAll(stockApplications);
+    public void createAll(List<Stock> stocks) {
+        stocks.forEach(stockRepository::upsert);
     }
 
-    public List<StockApplication> findBySymbol(String symbol) {
+    public List<Stock> findBySymbol(String symbol) {
         OffsetDateTime date = OffsetDateTime.now().minusMonths(1);
-        return stockSpi.findBySymbol(symbol, date);
+        return repository.findBySymbol(symbol, date);
     }
 
-    public List<StockApplication> findAllLatest() {
-        return stockSpi.findAllLatest();
+    public List<Stock> findAllLatest() {
+        return repository.findAllLatest();
     }
 
-    public StockApplication findLastWorkingDayBySymbol(String symbol) {
+    public Stock findLastWorkingDayBySymbol(String symbol) {
         OffsetDateTime lastWorkingDay = lastWorkingDay()
                 .withHour(0)
                 .withMinute(0)
                 .withSecond(0)
                 .withNano(0)
                 .withOffsetSameLocal(ZoneOffset.UTC);
-        return stockSpi.findLastWorkingDayBySymbol(symbol, lastWorkingDay);
+        Stock stock = repository.findLastWorkingDayBySymbol(symbol, lastWorkingDay);
+        Stock stockCheck = new Stock.StockBuilder().build();
+        if (stock != null) {
+            stockCheck = stock;
+        }
+        return stockCheck;
     }
 }
