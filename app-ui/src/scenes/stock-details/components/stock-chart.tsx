@@ -5,10 +5,29 @@ import { Stock } from "../../../model/stock";
 export const StockChart = (props: { stocks: Stock[] }) => {
   const [candlestickSeries, setCandlestickSeries] = useState<
     { data: { x: string; y: number[] }[] }[]
-  >([]);
+  >([
+    {
+      data: [
+        {
+          x: "",
+          y: [0],
+        },
+      ],
+    },
+  ]);
   const [barSeries, setBarSeries] = useState<
     { name: "volume"; data: { x: string; y: number }[] }[]
-  >([]);
+  >([
+    {
+      name: "volume",
+      data: [
+        {
+          x: "",
+          y: 0,
+        },
+      ],
+    },
+  ]);
   const [candleOptions, setCandleOptions] = useState<any>({
     chart: {
       type: "candlestick",
@@ -68,12 +87,12 @@ export const StockChart = (props: { stocks: Stock[] }) => {
   useEffect(() => {
     const reversedStocks = [...props.stocks].reverse();
     const transformedCandlestickData = reversedStocks.map((stock) => ({
-      x: stock.date,
+      x: toDateLocaleString(stock.date),
       y: [stock.open, stock.high, stock.low, stock.close],
     }));
 
     const transformedBarData = reversedStocks.map((stock) => ({
-      x: stock.date,
+      x: toDateLocaleString(stock.date),
       y: stock.volume,
     }));
 
@@ -84,14 +103,18 @@ export const StockChart = (props: { stocks: Stock[] }) => {
       ...prevOptions,
       xaxis: {
         type: "category",
-        categories: reversedStocks.map((stock) => stock.date),
+        categories: reversedStocks.map((stock) =>
+          toDateLocaleString(stock.date)
+        ),
       },
     }));
     setBarOptions((prevOptions: any) => ({
       ...prevOptions,
       xaxis: {
         type: "category",
-        categories: reversedStocks.map((stock) => stock.date),
+        categories: reversedStocks.map((stock) =>
+          toDateLocaleString(stock.date)
+        ),
       },
     }));
   }, [props.stocks]);
@@ -116,4 +139,8 @@ export const StockChart = (props: { stocks: Stock[] }) => {
       </div>
     </div>
   );
+};
+
+const toDateLocaleString = (date: string) => {
+  return new Date(date).toLocaleString();
 };
