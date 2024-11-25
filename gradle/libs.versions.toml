@@ -14,7 +14,7 @@ liquibase = { group = "org.liquibase", name = "liquibase-core", version = "4.30.
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.4" }
 lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
 zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.5.1" }
-zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.0.7" }
+zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.1.0" }
 
 [bundles]
 spring-boot = ["starter-web", "starter-data-jpa", "starter-actuator"]
