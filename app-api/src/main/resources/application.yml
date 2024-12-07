@@ -1,23 +1,25 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/react-dashboard
+    url: jdbc:postgresql://app-postgres:5432/react-dashboard
+    host:
     username: admin
     password: password
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-  docker:
-    compose:
-      file: docker/docker-compose.yml
-      stop:
-        command: down
 
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
-  endpoint:
-    shutdown:
+        include: "health,refresh"
+  health:
+    readiness-state:
       enabled: true
+    liveliness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true

@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  app-db:
+    image: postgres:latest
+    container_name: app-postgres
+    environment:
+      POSTGRES_DB: react-dashboard
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    networks:
+      - spring-postgres
+    volumes:
+      - app-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d react-dashboard -h app-postgres -p 5432" ]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
+
+  app-api:
+    container_name: app-api
+    build: ../app-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://app-postgres:5432/react-dashboard
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    networks:
+      - react-spring
+      - spring-postgres
+    depends_on:
+      app-db:
+        condition: service_healthy
+
+  app-ui:
+    container_name: app-ui
+    build: ../app-ui
+    ports:
+      - "3000:3000"
+    env_file:
+      - ../app-ui/.env.docker
+    networks:
+      - react-spring
+
+volumes:
+  app-db-data:
+
+networks:
+  react-spring: {}
+  spring-postgres: {}

@@ -1,9 +1,9 @@
 spring:
   config:
     activate:
-      on-profile: e2e
+      on-profile: local
   datasource:
-    url: jdbc:postgresql://localhost:5433/react-dashboard-e2e
+    url: jdbc:postgresql://localhost:5432/react-dashboard
     username: admin
     password: password
   jpa:
@@ -12,11 +12,9 @@ spring:
       ddl-auto: update
   docker:
     compose:
-      file: ../docker/docker-compose-e2e.yml
+      file: ./docker/docker-compose-local.yml
       stop:
         command: down
-  liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master-e2e.yaml
 
 management:
   endpoints:
@@ -26,4 +24,3 @@ management:
   endpoint:
     shutdown:
       enabled: true
-
