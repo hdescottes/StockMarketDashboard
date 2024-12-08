@@ -16,10 +16,10 @@ services:
       - app-db-data:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U admin -d react-dashboard -h app-postgres -p 5432" ]
-      interval: 10s
+      interval: 2s
+      timeout: 3s
       retries: 5
-      start_period: 10s
-      timeout: 10s
+      start_period: 2s
 
   app-api:
     container_name: app-api
@@ -37,6 +37,12 @@ services:
     depends_on:
       app-db:
         condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent app-api:8080/actuator/health/readiness | grep UP || exit 1"
+      interval: 2s
+      timeout: 3s
+      retries: 5
+      start_period: 2s
 
   app-ui:
     container_name: app-ui
@@ -47,6 +53,9 @@ services:
       - ../app-ui/.env.docker
     networks:
       - react-spring
+    depends_on:
+      app-api:
+        condition: service_healthy
 
 volumes:
   app-db-data:

@@ -1,0 +1,11 @@
+### Build ###
+build/
+
+### VisualStudioCode ###
+.vscode
+
+# Node
+*/node_modules
+
+# Miscellaneous
+*/coverage

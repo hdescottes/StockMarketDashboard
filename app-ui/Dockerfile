@@ -1,17 +1,12 @@
-# Dockerfile pour le REACT JS (FRONTEND)
-
-# Les insctructions sont les mêmes que pour le Dockerfile de l'API REST, sauf pour le port d'écoute qui change.
-
-FROM node:lts-alpine
-
-WORKDIR /app-ui
-
-COPY ./package.json /app-ui
-
+FROM node:23-alpine as builder
+WORKDIR /app
+COPY package.json .
 RUN yarn install
-
 COPY . .
+RUN yarn build
 
+FROM nginx:1.27.3-alpine as runner
+COPY --from=builder /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 3000
-
-CMD [ "yarn", "start" ]
+CMD ["nginx", "-g", "daemon off;"]
