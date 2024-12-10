@@ -23,7 +23,9 @@ services:
 
   app-api:
     container_name: app-api
-    build: ../app-api
+    build:
+      context: ..
+      dockerfile: app-api/Dockerfile
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://app-postgres:5432/react-dashboard
       SPRING_DATASOURCE_USERNAME: admin
