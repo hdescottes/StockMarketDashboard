@@ -1,6 +1,7 @@
 FROM node:23-alpine AS builder
 WORKDIR /app
 COPY package.json .
+RUN yarn set version canary
 RUN yarn install
 COPY . .
 RUN yarn build
