@@ -74,7 +74,7 @@ jobs:
       - name: Start Backend server
         run: ./gradlew bootRun --args='--spring.profiles.active=e2e' &
       - name: Cypress run
-        uses: cypress-io/github-action@v6.7.13
+        uses: cypress-io/github-action@v6.7.12
         with:
           working-directory: app-ui
           build: npm run build
