@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ag-grid-community/client-side-row-model": "^32.3.3",
-    "@ag-grid-community/react": "^32.3.3",
+    "@ag-grid-community/client-side-row-model": "^32.3.4",
+    "@ag-grid-community/react": "^32.3.4",
     "@ag-grid-community/core": "^32.3.3",
     "@ag-grid-community/styles": "^33.0.2",
     "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
