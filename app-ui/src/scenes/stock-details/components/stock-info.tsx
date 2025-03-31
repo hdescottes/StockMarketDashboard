@@ -39,7 +39,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
   return (
     <Section>
       <Grid container direction="row" spacing={5} className="p-2">
-        <Grid item xs="auto">
+        <Grid sx={{ flexGrow: "auto" }}>
           <Box display="flex" className="pb-4">
             <Typography
               data-testid="name"
@@ -90,7 +90,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={3}>
+        <Grid sx={{ flexGrow: 3 }}>
           <Box display="flex" className="ps-5 pb-3">
             <Box data-testid="open" className="pe-3">
               <Typography
@@ -169,7 +169,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={3}>
+        <Grid sx={{ flexGrow: 3 }}>
           <Box data-testid="volume" className="ps-5">
             <Typography
               variant="h5"
@@ -189,7 +189,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={3}>
+        <Grid sx={{ flexGrow: 3 }}>
           <Box data-testid="date" className="ps-5">
             <Typography
               variant="h5"
