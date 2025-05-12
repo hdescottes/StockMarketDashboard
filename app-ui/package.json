@@ -11,7 +11,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.0.2",
+    "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.0.1",
     "@mui/types": "^7.2.20",
     "@testing-library/user-event": "^14.6.1",
