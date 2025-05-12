@@ -34,7 +34,7 @@
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^7.6.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
