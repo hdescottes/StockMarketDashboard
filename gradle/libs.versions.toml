@@ -1,5 +1,5 @@
 [versions]
-spring-boot = "3.4.5"
+spring-boot = "3.5.0"
 
 [libraries]
 starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
