@@ -23,7 +23,7 @@
     "ag-grid-react": "^33.3.2",
     "apexcharts": "^4.7.0",
     "axios": "^1.10.0",
-    "bootstrap": "^5.3.6",
+    "bootstrap": "^5.3.7",
     "cypress": "^14.4.1",
     "esbuild": "^0.25.5",
     "framer-motion": "^12.19.0",
