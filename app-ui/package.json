@@ -25,7 +25,7 @@
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
     "cypress": "^14.5.1",
-    "esbuild": "^0.25.6",
+    "esbuild": "^0.25.7",
     "framer-motion": "^12.23.5",
     "http-proxy-middleware": "^3.0.5",
     "react": "^19.1.0",
