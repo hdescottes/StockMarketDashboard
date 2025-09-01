@@ -62,9 +62,9 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
-    "babel-jest": "^30.0.5",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "babel-jest": "^30.1.2",
+    "jest": "^30.1.2",
+    "jest-environment-jsdom": "^30.1.2",
     "sass": "^1.90.0",
     "ts-node": "^10.9.1"
   }
