@@ -17,13 +17,13 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
-    "@types/react": "^19.1.11",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "ag-grid-community": "^34.1.2",
     "ag-grid-react": "^34.1.2",
     "apexcharts": "^5.3.4",
     "axios": "^1.11.0",
-    "bootstrap": "^5.3.7",
+    "bootstrap": "^5.3.8",
     "cypress": "^15.0.0",
     "esbuild": "^0.25.9",
     "framer-motion": "^12.23.12",
@@ -65,7 +65,7 @@
     "babel-jest": "^30.1.2",
     "jest": "^30.1.2",
     "jest-environment-jsdom": "^30.1.2",
-    "sass": "^1.90.0",
+    "sass": "^1.91.0",
     "ts-node": "^10.9.1"
   }
 }
