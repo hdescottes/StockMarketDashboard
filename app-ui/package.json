@@ -24,7 +24,7 @@
     "apexcharts": "^5.3.5",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.8",
-    "cypress": "^15.0.0",
+    "cypress": "^15.1.0",
     "esbuild": "^0.25.9",
     "framer-motion": "^12.23.12",
     "http-proxy-middleware": "^3.0.5",
