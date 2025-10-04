@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useIntl } from "react-intl";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { tokens } from "../../theme";
+import { useLocale } from "../../locales/locale-context";
 import "./side-bar.scss";
 
 const Item = ({
@@ -50,6 +52,8 @@ const Item = ({
 };
 
 export const SideBar = () => {
+  const translate = useIntl();
+  const localeContext = useLocale();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -102,13 +106,28 @@ export const SideBar = () => {
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   VP Admin
                 </Typography>
+                {/* Language Selector */}
+                <Box mt={2}>
+                  <label htmlFor="lang-select" style={{ color: colors.grey[100], fontSize: 14 }}>
+                    {translate.formatMessage({ id: "sidebar.language" })}
+                  </label>
+                  <select
+                    id="lang-select"
+                    value={localeContext.locale}
+                    onChange={e => localeContext.setLocale(e.target.value)}
+                    style={{ marginLeft: 8, padding: 2, borderRadius: 4 }}
+                  >
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                  </select>
+                </Box>
               </Box>
             </Box>
           )}
 
           <Box>
             <Item
-              title="Dashboard"
+              title={translate.formatMessage({ id: "sidebar.dashboard" })}
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
@@ -120,24 +139,24 @@ export const SideBar = () => {
               variant="h6"
               color={colors.grey[300]}
             >
-              Data
+              {translate.formatMessage({ id: "sidebar.data" })}
             </Typography>
             <Item
-              title="Manage Team"
+              title={translate.formatMessage({ id: "sidebar.manageTeam" })}
               to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title={translate.formatMessage({ id: "sidebar.contacts" })}
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title={translate.formatMessage({ id: "sidebar.invoices" })}
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
@@ -149,24 +168,24 @@ export const SideBar = () => {
               variant="h6"
               color={colors.grey[300]}
             >
-              Pages
+              {translate.formatMessage({ id: "sidebar.pages" })}
             </Typography>
             <Item
-              title="Profile Form"
+              title={translate.formatMessage({ id: "sidebar.profile" })}
               to="/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Calendar"
+              title={translate.formatMessage({ id: "sidebar.calendar" })}
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
+              title={translate.formatMessage({ id: "sidebar.faq" })}
               to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
@@ -178,31 +197,31 @@ export const SideBar = () => {
               variant="h6"
               color={colors.grey[300]}
             >
-              Charts
+              {translate.formatMessage({ id: "sidebar.charts" })}
             </Typography>
             <Item
-              title="Bar Chart"
+              title={translate.formatMessage({ id: "sidebar.bar" })}
               to="/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Pie Chart"
+              title={translate.formatMessage({ id: "sidebar.pie" })}
               to="/pie"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Line Chart"
+              title={translate.formatMessage({ id: "sidebar.line" })}
               to="/line"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Geography Chart"
+              title={translate.formatMessage({ id: "sidebar.geography" })}
               to="/geography"
               icon={<MapOutlinedIcon />}
               selected={selected}

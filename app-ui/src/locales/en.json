@@ -1,0 +1,42 @@
+{
+  "sidebar.dashboard": "Dashboard",
+  "sidebar.manageTeam": "Manage Team",
+  "sidebar.contacts": "Contacts Information",
+  "sidebar.invoices": "Invoices Balances",
+  "sidebar.profile": "Profile Form",
+  "sidebar.calendar": "Calendar",
+  "sidebar.faq": "FAQ Page",
+  "sidebar.bar": "Bar Chart",
+  "sidebar.pie": "Pie Chart",
+  "sidebar.line": "Line Chart",
+  "sidebar.geography": "Geography Chart",
+  "sidebar.data": "Data",
+  "sidebar.pages": "Pages",
+  "sidebar.charts": "Charts",
+  "sidebar.language": "Language",
+
+  "dashboard.title": "DASHBOARD",
+  "dashboard.subtitle": "Welcome to your dashboard",
+
+  "stock.details.title": "STOCK DETAILS",
+  "stock.details.subtitle": "Details of the current stock",
+
+  "button.fetch": "Fetch",
+  "button.search.all": "Search All",
+
+  "stock.grid.symbol": "Symbol",
+  "stock.grid.name": "Name",
+  "stock.grid.close": "Close",
+  "stock.grid.high": "High",
+  "stock.grid.low": "Low",
+  "stock.grid.volume": "Volume",
+  "stock.grid.variation": "Variation",
+  "stock.grid.action": "Action",
+
+  "stock.details.open": "Open",
+  "stock.details.previous.close": "Previous close",
+  "stock.details.high": "High",
+  "stock.details.low": "Low",
+  "stock.details.volume": "Volume",
+  "stock.details.date": "Date"
+}
