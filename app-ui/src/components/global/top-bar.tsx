@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { ColorModeContext } from "../../theme";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import { LanguageSelector } from "../buttons/language-selector";
 
 export const TopBar = () => {
   const theme = useTheme();
@@ -11,8 +12,8 @@ export const TopBar = () => {
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       <Box display="flex" />
-
-      <Box display="flex">
+      <Box display="flex" alignItems="center">
+        <LanguageSelector />
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlinedIcon />

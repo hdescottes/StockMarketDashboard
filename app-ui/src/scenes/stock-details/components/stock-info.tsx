@@ -8,8 +8,10 @@ import { useEffect, useState } from "react";
 import "./stock-info.scss";
 import Grid from "@mui/material/Grid";
 import { SkeletonCustom } from "../../../components/skeleton";
+import useIntl from "react-intl/src/components/useIntl";
 
 export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
+  const translate = useIntl();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [variation, setVariation] = useState("");
@@ -99,7 +101,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 className="pb-1"
                 color={colors.grey[600]}
               >
-                Open
+                {translate.formatMessage({ id: "stock.details.open" })}
               </Typography>
               <Typography variant="h5" fontWeight="600">
                 <SkeletonCustom
@@ -117,7 +119,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 className="pb-1"
                 color={colors.grey[600]}
               >
-                Previous close
+                {translate.formatMessage({ id: "stock.details.previous.close" })}
               </Typography>
               <Typography variant="h5" fontWeight="600">
                 <SkeletonCustom
@@ -138,7 +140,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 className="pb-1"
                 color={colors.grey[600]}
               >
-                High
+                {translate.formatMessage({ id: "stock.details.high" })}
               </Typography>
               <Typography variant="h5" fontWeight="600">
                 <SkeletonCustom
@@ -156,7 +158,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
                 className="pb-1"
                 color={colors.grey[600]}
               >
-                Low
+                {translate.formatMessage({ id: "stock.details.low" })}
               </Typography>
               <Typography variant="h5" fontWeight="600">
                 <SkeletonCustom
@@ -177,7 +179,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
               className="pb-1"
               color={colors.grey[600]}
             >
-              Volume
+              {translate.formatMessage({ id: "stock.details.volume" })}
             </Typography>
             <Typography variant="h5" fontWeight="600">
               <SkeletonCustom
@@ -197,7 +199,7 @@ export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
               className="pb-1"
               color={colors.grey[600]}
             >
-              Date
+              {translate.formatMessage({ id: "stock.details.date" })}
             </Typography>
             <Typography variant="h5" fontWeight="600">
               <SkeletonCustom
