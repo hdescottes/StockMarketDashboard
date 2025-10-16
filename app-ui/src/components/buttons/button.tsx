@@ -1,10 +1,10 @@
 import { Button } from "@mui/material";
 import "./button.scss";
 
-export const ButtonCustom = (props: { title: string; onClick: () => void }) => {
+export const ButtonCustom = (props: { id: string; title: string; onClick: () => void }) => {
   return (
     <Button
-      id={props.title.replace(/\s/g, "")}
+      id={props.id}
       size="medium"
       aria-label={props.title}
       className="button"

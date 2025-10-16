@@ -1,0 +1,42 @@
+{
+  "sidebar.dashboard": "Tableau de bord",
+  "sidebar.manageTeam": "Gérer l'équipe",
+  "sidebar.contacts": "Contacts",
+  "sidebar.invoices": "Factures",
+  "sidebar.profile": "Profil",
+  "sidebar.calendar": "Calendrier",
+  "sidebar.faq": "FAQ",
+  "sidebar.bar": "Histogramme",
+  "sidebar.pie": "Camembert",
+  "sidebar.line": "Courbe",
+  "sidebar.geography": "Carte",
+  "sidebar.data": "Données",
+  "sidebar.pages": "Pages",
+  "sidebar.charts": "Graphiques",
+  "sidebar.language": "Langue",
+
+  "dashboard.title": "TABLEAU DE BORD",
+  "dashboard.subtitle": "Bienvenue sur votre tableau de bord",
+
+  "stock.details.title": "DETAILS DU STOCK",
+  "stock.details.subtitle": "Informations détaillées sur le stock",
+
+  "button.fetch": "Rechercher",
+  "button.search.all": "Rechercher tout",
+
+  "stock.grid.symbol": "Symbole",
+  "stock.grid.name": "Nom",
+  "stock.grid.close": "Clôture",
+  "stock.grid.high": "Haut",
+  "stock.grid.low": "Bas",
+  "stock.grid.volume": "Volume",
+  "stock.grid.variation": "Variation",
+  "stock.grid.action": "Action",
+
+  "stock.details.open": "Ouverture",
+  "stock.details.previous.close": "Clôture précédente",
+  "stock.details.high": "Haut",
+  "stock.details.low": "Bas",
+  "stock.details.volume": "Volume",
+  "stock.details.date": "Date"
+}

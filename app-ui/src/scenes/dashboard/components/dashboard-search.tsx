@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { ButtonCustom } from "../../../components/buttons/button";
 import { Section } from "../../../components/section";
 import { Stock } from "../../../model/stock";
+import { useIntl } from "react-intl";
 
 interface DashboardSearchProps {
   stock: Stock;
@@ -16,6 +17,7 @@ export function DashboardSearch({
   fetch,
   search,
 }: DashboardSearchProps) {
+  const translate = useIntl();
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -36,8 +38,8 @@ export function DashboardSearch({
       <Section>
         <Box display="flex" justifyContent="flex" height="30px">
           <input aria-label="symbol" name="symbol" onChange={handleChange} />
-          <ButtonCustom title="fetch" onClick={fetch} />
-          <ButtonCustom title="search all" onClick={search} />
+          <ButtonCustom id='fetch' title={translate.formatMessage({ id: "button.fetch" })} onClick={fetch} />
+          <ButtonCustom id='searchall' title={translate.formatMessage({ id: "button.search.all" })} onClick={search} />
         </Box>
       </Section>
     </div>

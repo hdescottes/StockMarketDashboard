@@ -2,15 +2,18 @@ import userEvent from "@testing-library/user-event";
 import { DashboardSearch } from "./dashboard-search";
 import { render, screen } from "@testing-library/react";
 import { newStock } from "../../../model/stock";
+import { IntlWrapper } from "../../../test-utils/intlWrapper";
 
 describe("DashboardSearch component", () => {
   it("should render all fields", () => {
-    const dom = render(<DashboardSearch {...props} />);
+    render(
+      <DashboardSearch {...props} />,
+      { wrapper: IntlWrapper }
+    );
 
-    expect(dom).toBeTruthy();
     expect(screen.getByLabelText("symbol")).toBeInTheDocument();
-    expect(screen.getByLabelText("fetch")).toBeInTheDocument();
-    expect(screen.getByLabelText("search all")).toBeInTheDocument();
+    expect(screen.getByLabelText("Fetch")).toBeInTheDocument();
+    expect(screen.getByLabelText("Search All")).toBeInTheDocument();
   });
 
   it("should call onChange when input is triggered", async () => {
@@ -19,12 +22,13 @@ describe("DashboardSearch component", () => {
     const onChangeMock = jest.fn();
 
     render(
-      <DashboardSearch {...props} fetch={fetch} onChange={onChangeMock} />
+      <DashboardSearch {...props} fetch={fetch} onChange={onChangeMock} />,
+      { wrapper: IntlWrapper }
     );
 
     const input = screen.getByLabelText("symbol");
     await userEvent.type(input, newSymbol);
-    await userEvent.click(screen.getByLabelText("fetch"));
+    await userEvent.click(screen.getByLabelText("Fetch"));
 
     expect(onChangeMock).toHaveBeenCalledWith({
       ...props.stock,
@@ -35,9 +39,12 @@ describe("DashboardSearch component", () => {
 
   it("should call search when button is clicked", async () => {
     const search = jest.fn();
-    render(<DashboardSearch {...props} search={search} />);
+    render(
+      <DashboardSearch {...props} search={search} />,
+      { wrapper: IntlWrapper }
+    );
 
-    await userEvent.click(screen.getByLabelText("search all"));
+    await userEvent.click(screen.getByLabelText("Search All"));
     expect(search).toHaveBeenCalled();
   });
 });
