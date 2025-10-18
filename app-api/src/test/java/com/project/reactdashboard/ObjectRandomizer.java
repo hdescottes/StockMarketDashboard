@@ -1,30 +1,34 @@
 package com.project.reactdashboard;
 
-import com.project.reactdashboard.infrastructure.stock.controllers.StockDto;
 import com.project.reactdashboard.domain.stock.entities.Stock;
 import com.project.reactdashboard.domain.stock.entities.SymbolValues;
+import com.project.reactdashboard.infrastructure.stock.controllers.StockDto;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.apache.commons.lang3.RandomUtils.nextDouble;
-import static org.apache.commons.lang3.RandomUtils.nextLong;
-
 public class ObjectRandomizer {
 
+    private static final Random random = new Random();
+    private static final String ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
     public static String randomString() {
-        return randomAlphabetic(10);
+        StringBuilder sb = new StringBuilder(10);
+        for (int i = 0; i < 10; i++) {
+            sb.append(ALPHA.charAt(random.nextInt(ALPHA.length())));
+        }
+        return sb.toString();
     }
 
     public static double randomDouble() {
-        return nextDouble();
+        return random.nextDouble();
     }
 
     public static Long randomLong() {
-        return nextLong();
+        return random.nextLong();
     }
 
     public static <T> List<T> randomList(final Function<Integer, T> mapper) {
