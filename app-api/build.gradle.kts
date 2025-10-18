@@ -35,7 +35,6 @@ dependencies {
 	developmentOnly(libs.docker.compose)
 	runtimeOnly(libs.postgresql)
 	testImplementation(libs.starter.test)
-	testImplementation(libs.lang3)
 	testImplementation(libs.bundles.zonky)
 	testImplementation(libs.archunit)
 }
