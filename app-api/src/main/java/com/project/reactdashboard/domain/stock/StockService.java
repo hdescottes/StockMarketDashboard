@@ -3,8 +3,8 @@ package com.project.reactdashboard.domain.stock;
 import com.project.reactdashboard.domain.UseCase;
 import com.project.reactdashboard.domain.stock.api.StockApi;
 import com.project.reactdashboard.domain.stock.entities.Stock;
-import com.project.reactdashboard.domain.stock.spi.StockPostgresRepository;
 import com.project.reactdashboard.domain.stock.spi.StockJpaRepository;
+import com.project.reactdashboard.domain.stock.spi.StockPostgresRepository;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
