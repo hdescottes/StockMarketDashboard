@@ -16,16 +16,16 @@
     "@mui/types": "^7.2.20",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.7.2",
+    "@types/node": "^24.8.1",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
+    "@types/react-dom": "^19.2.2",
     "ag-grid-community": "^34.2.0",
     "ag-grid-react": "^34.2.0",
     "apexcharts": "^5.3.5",
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
     "cypress": "^15.5.0",
-    "esbuild": "^0.25.10",
+    "esbuild": "^0.25.11",
     "flag-icons": "^7.5.0",
     "framer-motion": "^12.23.24",
     "http-proxy-middleware": "^3.0.5",
@@ -69,6 +69,6 @@
     "jest-environment-jsdom": "^30.2.0",
     "sass": "^1.93.2",
     "ts-node": "^10.9.1",
-    "vite": "^7.1.10"
+    "vite": "^7.1.11"
   }
 }
