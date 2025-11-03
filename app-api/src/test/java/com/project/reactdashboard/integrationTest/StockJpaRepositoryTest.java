@@ -1,12 +1,14 @@
 package com.project.reactdashboard.integrationTest;
 
-import com.project.reactdashboard.domain.stock.spi.StockJpaRepository;
-import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.domain.stock.model.StockModel;
+import com.project.reactdashboard.domain.stock.spi.StockRepository;
+import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockMapper;
+import com.project.reactdashboard.infrastructure.stock.persistence.StockJpaRepository;
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -15,23 +17,30 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.ZONKY;
+import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.RefreshMode.BEFORE_EACH_TEST_METHOD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SpringBootTest
 @RunWith(SpringRunner.class)
-@DataJpaTest
 @Sql({"/init-zonky.sql"})
-@AutoConfigureEmbeddedDatabase(provider = ZONKY)
+@AutoConfigureEmbeddedDatabase(provider = ZONKY, refresh = BEFORE_EACH_TEST_METHOD)
 public class StockJpaRepositoryTest {
 
     @Autowired
-    private StockJpaRepository repository;
+    private StockMapper stockMapper;
+
+    @Autowired
+    private StockJpaRepository stockJpaRepository;
+
+    @Autowired
+    private StockRepository repository;
 
     @Test
     void should_find_stock_by_symbol() {
         OffsetDateTime date = OffsetDateTime.parse("2023-01-01T00:00:00" + "+00:00");
 
-        List<Stock> stocks = repository.findBySymbol("MC.XPAR", date);
+        List<StockModel> stocks = repository.findBySymbol("MC.XPAR", date);
 
         assertEquals(3, stocks.size());
         assertTrue(stocks.stream().anyMatch(element -> "MC.XPAR".equals(element.getSymbol())));
@@ -39,7 +48,7 @@ public class StockJpaRepositoryTest {
 
     @Test
     void should_find_latest_stocks() {
-        List<Stock> stocks = repository.findAllLatest();
+        List<StockModel> stocks = repository.findAllLatest();
 
         assertEquals(2, stocks.size());
         assertEquals("POM.XPAR", stocks.get(0).getSymbol());
@@ -53,7 +62,7 @@ public class StockJpaRepositoryTest {
         OffsetDateTime date = OffsetDateTime.parse("2023-12-28T00:00:00" + "+00:00")
                 .withOffsetSameLocal(ZoneOffset.UTC);
 
-        Stock stock = repository.findLastWorkingDayBySymbol("MC.XPAR", date);
+        StockModel stock = repository.findLastWorkingDayBySymbol("MC.XPAR", date);
 
         assertTrue(stock.getDate().toString().contains("2023-12-28"));
     }

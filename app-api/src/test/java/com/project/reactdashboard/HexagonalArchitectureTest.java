@@ -17,8 +17,7 @@ public class HexagonalArchitectureTest {
                 public boolean test(JavaClass input) {
                     boolean inDomain = input.getPackageName().startsWith("com.project.reactdashboard.domain");
                     boolean notTest = !input.getSimpleName().endsWith("Test");
-                    boolean isJpaInterface = input.isInterface() && input.getSimpleName().toLowerCase().contains("jpa");
-                    return inDomain && notTest && !isJpaInterface;
+                    return inDomain && notTest;
                 }
             };
 
@@ -26,5 +25,5 @@ public class HexagonalArchitectureTest {
     static final ArchRule domainShouldNotDependOnExternalClasses = noClasses()
             .that(domainClasses)
             .should().dependOnClassesThat()
-            .resideOutsideOfPackages("com.project.reactdashboard.domain..", "java..", "jakarta..");
+            .resideOutsideOfPackages("com.project.reactdashboard.domain..", "java..");
 }

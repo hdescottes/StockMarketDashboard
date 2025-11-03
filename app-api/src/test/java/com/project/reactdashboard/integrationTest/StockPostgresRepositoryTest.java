@@ -1,8 +1,9 @@
 package com.project.reactdashboard.integrationTest;
 
-import com.project.reactdashboard.domain.stock.spi.StockJpaRepository;
-import com.project.reactdashboard.domain.stock.spi.StockPostgresRepository;
-import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.domain.stock.model.StockModel;
+import com.project.reactdashboard.domain.stock.spi.StockRepository;
+import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockMapper;
+import com.project.reactdashboard.infrastructure.stock.persistence.StockJpaRepository;
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static com.project.reactdashboard.ObjectRandomizer.randomStock;
+import static com.project.reactdashboard.ObjectRandomizer.randomStockModel;
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.ZONKY;
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.RefreshMode.BEFORE_EACH_TEST_METHOD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,21 +24,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StockPostgresRepositoryTest {
 
     @Autowired
-    private StockJpaRepository jpaRepository;
+    private StockMapper stockMapper;
 
     @Autowired
-    private StockPostgresRepository repository;
+    private StockJpaRepository stockJpaRepository;
+
+    @Autowired
+    private StockRepository repository;
 
     @Test
     void should_upsert_stock() {
-        Stock stock = randomStock();
+        StockModel stock = randomStockModel();
         stock.setSymbol("ML.XPAR");
 
         repository.upsert(stock);
-        List<Stock> dbStocks = jpaRepository.findAll();
+        List<StockModel> dbStocks = repository.findAll();
 
         assertEquals(1, dbStocks.size());
-        assertEquals(stock.getSymbol(), dbStocks.get(0).getSymbol());
-        assertEquals(stock.getHigh(), dbStocks.get(0).getHigh());
+        assertEquals(stock.getSymbol(), dbStocks.getFirst().getSymbol());
+        assertEquals(stock.getHigh(), dbStocks.getFirst().getHigh());
     }
 }

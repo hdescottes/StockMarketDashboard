@@ -1,7 +1,7 @@
 package com.project.reactdashboard.infrastructure.stock.controllers;
 
 import com.project.reactdashboard.domain.stock.api.StockApi;
-import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.domain.stock.model.StockModel;
 import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class StockController {
     @GetMapping("/latest")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<StockDto>> findAllLatest() {
-        List<Stock> stocks = service.findAllLatest();
+        List<StockModel> stocks = service.findAllLatest();
         List<StockDto> dtos = mapper.toListDto(stocks);
         return ResponseEntity.ok(dtos);
     }
@@ -39,7 +39,7 @@ public class StockController {
     @GetMapping("/{symbol}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<StockDto>> findBySymbol(@PathVariable("symbol") String symbol) {
-        List<Stock> stocks = service.findBySymbol(symbol);
+        List<StockModel> stocks = service.findBySymbol(symbol);
         List<StockDto> dtos = mapper.toListDto(stocks);
         return ResponseEntity.ok(dtos);
     }
@@ -47,7 +47,7 @@ public class StockController {
     @GetMapping("/{symbol}/last-working-day")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<StockDto> findLastWorkingDayBySymbol(@PathVariable("symbol") String symbol) {
-        Stock stock = service.findLastWorkingDayBySymbol(symbol);
+        StockModel stock = service.findLastWorkingDayBySymbol(symbol);
         StockDto dto = mapper.toDto(stock);
         return ResponseEntity.ok(dto);
     }
@@ -55,7 +55,7 @@ public class StockController {
     @PostMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Integer> createAll(@RequestBody final List<StockDto> stockDtos) {
-        List<Stock> stockApplications = mapper.toListDomain(stockDtos);
+        List<StockModel> stockApplications = mapper.toListDomain(stockDtos);
         service.createAll(stockApplications);
         return ResponseEntity.ok(1);
     }

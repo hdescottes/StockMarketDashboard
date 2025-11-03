@@ -1,15 +1,13 @@
-package com.project.reactdashboard.domain.stock.spi;
+package com.project.reactdashboard.infrastructure.stock.persistence;
 
-import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.infrastructure.stock.entities.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
-@Repository
 public interface StockJpaRepository extends JpaRepository<Stock, String> {
 
     @Query("SELECT s " +

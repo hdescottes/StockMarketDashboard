@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.project.reactdashboard.domain.stock.api.StockApi;
-import com.project.reactdashboard.domain.stock.entities.Stock;
+import com.project.reactdashboard.domain.stock.model.StockModel;
 import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.List;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
-import static com.project.reactdashboard.ObjectRandomizer.randomStock;
+import static com.project.reactdashboard.ObjectRandomizer.randomStockModel;
 import static com.project.reactdashboard.ObjectRandomizer.randomStockDto;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -49,7 +49,7 @@ public class StockControllerTest {
     @Test
     void should_create_a_list_of_stock() throws Exception {
         List<StockDto> dtos = randomList(i -> randomStockDto());
-        List<Stock> stocks = randomList(i -> randomStock());
+        List<StockModel> stocks = randomList(i -> randomStockModel());
 
         when(mapper.toListDomain(dtos)).thenReturn(stocks);
 
@@ -63,7 +63,7 @@ public class StockControllerTest {
 
     @Test
     void should_return_a_stock() throws Exception {
-        Stock stockApplication = randomStock();
+        StockModel stockApplication = randomStockModel();
         StockDto dto = randomStockDto();
 
         when(service.findLastWorkingDayBySymbol(stockApplication.getSymbol())).thenReturn(stockApplication);
@@ -79,8 +79,8 @@ public class StockControllerTest {
 
     @Test
     void should_return_list_of_stock_by_symbol() throws Exception {
-        Stock stockApplication = randomStock();
-        List<Stock> stockApplications = randomList(i -> stockApplication);
+        StockModel stockApplication = randomStockModel();
+        List<StockModel> stockApplications = randomList(i -> stockApplication);
         StockDto dto = randomStockDto();
         List<StockDto> dtos = randomList(i -> dto);
 
@@ -97,8 +97,8 @@ public class StockControllerTest {
 
     @Test
     void should_return_list_of_latest_stock() throws Exception {
-        Stock stockApplication = randomStock();
-        List<Stock> stockApplications = randomList(i -> stockApplication);
+        StockModel stockApplication = randomStockModel();
+        List<StockModel> stockApplications = randomList(i -> stockApplication);
         StockDto dto = randomStockDto();
         List<StockDto> dtos = randomList(i -> dto);
 
