@@ -34,7 +34,7 @@
     "react-dom": "^19.2.0",
     "react-intl": "^7.1.14",
     "react-pro-sidebar": "^1.1.0-alpha.1",
-    "react-router-dom": "^7.9.4",
+    "react-router-dom": "^7.9.5",
     "typescript": "^5.9.3"
   },
   "scripts": {
