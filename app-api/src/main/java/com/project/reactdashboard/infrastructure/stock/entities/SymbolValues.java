@@ -1,4 +1,4 @@
-package com.project.reactdashboard.domain.stock.entities;
+package com.project.reactdashboard.infrastructure.stock.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

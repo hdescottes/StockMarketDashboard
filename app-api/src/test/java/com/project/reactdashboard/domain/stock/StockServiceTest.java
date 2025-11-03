@@ -1,8 +1,7 @@
 package com.project.reactdashboard.domain.stock;
 
-import com.project.reactdashboard.domain.stock.entities.Stock;
-import com.project.reactdashboard.domain.stock.spi.StockJpaRepository;
-import com.project.reactdashboard.domain.stock.spi.StockPostgresRepository;
+import com.project.reactdashboard.domain.stock.model.StockModel;
+import com.project.reactdashboard.domain.stock.spi.StockRepository;
 import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +14,7 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomList;
-import static com.project.reactdashboard.ObjectRandomizer.randomStock;
+import static com.project.reactdashboard.ObjectRandomizer.randomStockModel;
 import static com.project.reactdashboard.ObjectRandomizer.randomString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -30,26 +29,23 @@ public class StockServiceTest {
     private StockMapper mapper;
 
     @Mock
-    private StockJpaRepository jpaRepository;
-
-    @Mock
-    private StockPostgresRepository postgresRepository;
+    private StockRepository repository;
 
     @InjectMocks
     private StockService service;
 
     @Test
     void should_create_list_of_stock() {
-        List<Stock> stocks = randomList(i -> randomStock());
+        List<StockModel> stocks = randomList(i -> randomStockModel());
 
         service.createAll(stocks);
 
-        verify(postgresRepository, times(stocks.size())).upsert(any(Stock.class));
+        verify(repository, times(stocks.size())).upsert(any(StockModel.class));
     }
 
     @Test
     void should_find_a_stock() {
-        Stock dbStock = randomStock();
+        StockModel dbStock = randomStockModel();
         String symbol = randomString();
         OffsetDateTime date = Date.lastWorkingDay()
                 .withHour(0)
@@ -57,11 +53,11 @@ public class StockServiceTest {
                 .withSecond(0)
                 .withNano(0)
                 .withOffsetSameLocal(ZoneOffset.UTC);
-        when(jpaRepository.findLastWorkingDayBySymbol(symbol, date)).thenReturn(dbStock);
+        when(repository.findLastWorkingDayBySymbol(symbol, date)).thenReturn(dbStock);
 
         service.findLastWorkingDayBySymbol(symbol);
 
-        verify(jpaRepository).findLastWorkingDayBySymbol(symbol, date);
+        verify(repository).findLastWorkingDayBySymbol(symbol, date);
     }
 
     @Test
@@ -70,13 +66,13 @@ public class StockServiceTest {
 
         service.findBySymbol(symbol);
 
-        verify(jpaRepository).findBySymbol(eq(symbol), any(OffsetDateTime.class));
+        verify(repository).findBySymbol(eq(symbol), any(OffsetDateTime.class));
     }
 
     @Test
     void should_find_all_latest_stock() {
         service.findAllLatest();
 
-        verify(jpaRepository).findAllLatest();
+        verify(repository).findAllLatest();
     }
 }

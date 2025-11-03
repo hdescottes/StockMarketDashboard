@@ -9,7 +9,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@test.fr
       PGADMIN_DEFAULT_PASSWORD: mypgadminpassword
     volumes:
-      - pgadmin-data:/var/lib/postgresql/data
+      - pgadmin-data:/var/lib/postgresql
 
 volumes:
   pgadmin-data:
