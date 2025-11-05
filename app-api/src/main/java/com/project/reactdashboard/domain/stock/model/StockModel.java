@@ -94,9 +94,6 @@ public class StockModel {
         this.volume = volume;
     }
 
-    public StockModel() {
-    }
-
     private StockModel(StockModelBuilder builder) {
         this.id = builder.id;
         this.date = builder.date;
@@ -128,9 +125,6 @@ public class StockModel {
         private double close;
 
         private double volume;
-
-        public StockModelBuilder(){
-        }
 
         public StockModelBuilder withId(Long id) {
             this.id = id;

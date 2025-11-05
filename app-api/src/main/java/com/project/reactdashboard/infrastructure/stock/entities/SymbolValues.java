@@ -43,9 +43,6 @@ public class SymbolValues {
 
         private String name;
 
-        public SymbolValuesBuilder(){
-        }
-
         public SymbolValuesBuilder withSymbol(String symbol) {
             this.symbol = symbol;
             return this;

@@ -129,9 +129,6 @@ public class StockDto implements Serializable {
 
         private double volume;
 
-        public StockDtoBuilder(){
-        }
-
         public StockDtoBuilder withId(Long id) {
             this.id = id;
             return this;
