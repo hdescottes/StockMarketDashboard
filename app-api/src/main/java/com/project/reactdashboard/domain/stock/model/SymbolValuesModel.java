@@ -22,9 +22,6 @@ public class SymbolValuesModel {
         this.name = name;
     }
 
-    public SymbolValuesModel() {
-    }
-
     private SymbolValuesModel(SymbolValuesModelBuilder builder) {
         this.symbol = builder.symbol;
         this.name = builder.name;
@@ -35,9 +32,6 @@ public class SymbolValuesModel {
         private String symbol;
 
         private String name;
-
-        public SymbolValuesModelBuilder(){
-        }
 
         public SymbolValuesModelBuilder withSymbol(String symbol) {
             this.symbol = symbol;

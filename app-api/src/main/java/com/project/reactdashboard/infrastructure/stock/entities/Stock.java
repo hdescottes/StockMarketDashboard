@@ -143,9 +143,6 @@ public class Stock implements Serializable {
 
         private double volume;
 
-        public StockBuilder(){
-        }
-
         public StockBuilder withId(Long id) {
             this.id = id;
             return this;

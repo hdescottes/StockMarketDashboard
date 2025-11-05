@@ -103,7 +103,7 @@ public class StockRepositoryAdapterTest {
     @Test
     void findAllLatest_should_return_mapped_stockModels() {
         // Given
-        List<Stock> entities = List.of(new Stock());
+        List<Stock> entities = List.of(randomStock());
         when(stockJpaRepository.findAllLatest()).thenReturn(entities);
         when(mapper.toModel(any(Stock.class))).thenReturn(randomStockModel());
 
