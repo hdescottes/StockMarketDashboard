@@ -14,14 +14,14 @@ public class StockMapper {
 
     public StockModel toModel(StockDto dto) {
         return new StockModel.StockModelBuilder()
-                .withId(dto.getId())
-                .withSymbol(dto.getSymbol())
-                .withDate(parseToISO(dto.getDate()))
-                .withVolume(dto.getVolume())
-                .withOpen(dto.getOpen())
-                .withClose(dto.getClose())
-                .withHigh(dto.getHigh())
-                .withLow(dto.getLow())
+                .withId(dto.id())
+                .withSymbol(dto.symbol())
+                .withDate(parseToISO(dto.date()))
+                .withVolume(dto.volume())
+                .withOpen(dto.open())
+                .withClose(dto.close())
+                .withHigh(dto.high())
+                .withLow(dto.low())
                 .build();
     }
 
@@ -40,15 +40,15 @@ public class StockMapper {
 
     public StockDto toDto(StockModel stock) {
         return new StockDto.StockDtoBuilder()
-                .withId(stock.getId())
-                .withSymbol(stock.getSymbol())
-                .withName(stock.getSymbolValues() != null ? stock.getSymbolValues().getName() : null)
-                .withDate(stock.getDate() != null ? stock.getDate().toString() : null)
-                .withVolume(stock.getVolume())
-                .withOpen(stock.getOpen())
-                .withClose(stock.getClose())
-                .withHigh(stock.getHigh())
-                .withLow(stock.getLow())
+                .withId(stock.id())
+                .withSymbol(stock.symbol())
+                .withName(stock.symbolValues() != null ? stock.symbolValues().name() : null)
+                .withDate(stock.date() != null ? stock.date().toString() : null)
+                .withVolume(stock.volume())
+                .withOpen(stock.open())
+                .withClose(stock.close())
+                .withHigh(stock.high())
+                .withLow(stock.low())
                 .build();
     }
 

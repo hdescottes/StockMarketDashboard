@@ -2,108 +2,12 @@ package com.project.reactdashboard.domain.stock.model;
 
 import java.time.OffsetDateTime;
 
-public class StockModel {
+public record StockModel(Long id, OffsetDateTime date, String symbol, double open, double high, double low,
+                         double close, double volume, SymbolValuesModel symbolValues) {
 
-    private Long id;
-
-    private OffsetDateTime date;
-
-    private String symbol;
-
-    private double open;
-
-    private double high;
-
-    private double low;
-
-    private double close;
-
-    private double volume;
-
-    private SymbolValuesModel symbolValues;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public OffsetDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(OffsetDateTime date) {
-        this.date = date;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public SymbolValuesModel getSymbolValues() {
-        return symbolValues;
-    }
-
-    public void setSymbolValues(SymbolValuesModel symbolValues) {
-        this.symbolValues = symbolValues;
-    }
-
-    public double getOpen() {
-        return open;
-    }
-
-    public void setOpen(double open) {
-        this.open = open;
-    }
-
-    public double getHigh() {
-        return high;
-    }
-
-    public void setHigh(double high) {
-        this.high = high;
-    }
-
-    public double getLow() {
-        return low;
-    }
-
-    public void setLow(double low) {
-        this.low = low;
-    }
-
-    public double getClose() {
-        return close;
-    }
-
-    public void setClose(double close) {
-        this.close = close;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
-
-    private StockModel(StockModelBuilder builder) {
-        this.id = builder.id;
-        this.date = builder.date;
-        this.symbol = builder.symbol;
-        this.symbolValues = builder.symbolValues;
-        this.open = builder.open;
-        this.close = builder.close;
-        this.high = builder.high;
-        this.low = builder.low;
-        this.volume = builder.volume;
+    public StockModel(StockModelBuilder builder){
+        this(builder.id, builder.date, builder.symbol, builder.open, builder.high, builder.low,
+                builder.close, builder.volume, builder.symbolValues);
     }
 
     public static class StockModelBuilder {

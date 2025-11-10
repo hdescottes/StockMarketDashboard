@@ -29,13 +29,13 @@ public class StockMapperTest {
 
         StockModel stockApplication = mapper.toModel(dto);
 
-        assertEquals("2019-02-01T00:00Z", stockApplication.getDate().toString());
-        assertEquals(dto.getSymbol(), stockApplication.getSymbol());
-        assertEquals(dto.getVolume(), stockApplication.getVolume());
-        assertEquals(dto.getHigh(), stockApplication.getHigh());
-        assertEquals(dto.getLow(), stockApplication.getLow());
-        assertEquals(dto.getOpen(), stockApplication.getOpen());
-        assertEquals(dto.getClose(), stockApplication.getClose());
+        assertEquals("2019-02-01T00:00Z", stockApplication.date().toString());
+        assertEquals(dto.symbol(), stockApplication.symbol());
+        assertEquals(dto.volume(), stockApplication.volume());
+        assertEquals(dto.high(), stockApplication.high());
+        assertEquals(dto.low(), stockApplication.low());
+        assertEquals(dto.open(), stockApplication.open());
+        assertEquals(dto.close(), stockApplication.close());
     }
 
     @Test
@@ -44,13 +44,13 @@ public class StockMapperTest {
 
         StockModel stockModel = mapper.toModel(stock);
 
-        assertEquals(stock.getDate(), stockModel.getDate());
-        assertEquals(stock.getSymbol(), stockModel.getSymbol());
-        assertEquals(stock.getVolume(), stockModel.getVolume());
-        assertEquals(stock.getHigh(), stockModel.getHigh());
-        assertEquals(stock.getLow(), stockModel.getLow());
-        assertEquals(stock.getOpen(), stockModel.getOpen());
-        assertEquals(stock.getClose(), stockModel.getClose());
+        assertEquals(stock.getDate(), stockModel.date());
+        assertEquals(stock.getSymbol(), stockModel.symbol());
+        assertEquals(stock.getVolume(), stockModel.volume());
+        assertEquals(stock.getHigh(), stockModel.high());
+        assertEquals(stock.getLow(), stockModel.low());
+        assertEquals(stock.getOpen(), stockModel.open());
+        assertEquals(stock.getClose(), stockModel.close());
     }
 
     @Test
@@ -59,15 +59,15 @@ public class StockMapperTest {
 
         StockDto dto = mapper.toDto(stockModel);
 
-        assertEquals(dto.getId(), stockModel.getId());
-        assertEquals(dto.getDate(), stockModel.getDate().toString());
-        assertEquals(dto.getSymbol(), stockModel.getSymbol());
-        assertEquals(dto.getName(), stockModel.getSymbolValues().getName());
-        assertEquals(dto.getVolume(), stockModel.getVolume());
-        assertEquals(dto.getHigh(), stockModel.getHigh());
-        assertEquals(dto.getLow(), stockModel.getLow());
-        assertEquals(dto.getOpen(), stockModel.getOpen());
-        assertEquals(dto.getClose(), stockModel.getClose());
+        assertEquals(dto.id(), stockModel.id());
+        assertEquals(dto.date(), stockModel.date().toString());
+        assertEquals(dto.symbol(), stockModel.symbol());
+        assertEquals(dto.name(), stockModel.symbolValues().name());
+        assertEquals(dto.volume(), stockModel.volume());
+        assertEquals(dto.high(), stockModel.high());
+        assertEquals(dto.low(), stockModel.low());
+        assertEquals(dto.open(), stockModel.open());
+        assertEquals(dto.close(), stockModel.close());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class StockMapperTest {
         List<StockDto> dtos = mapper.toListDto(stockModels);
 
         assertEquals(stockModels.size(), dtos.size());
-        assertEquals(stockModels.getFirst().getId(), dtos.getFirst().getId());
+        assertEquals(stockModels.getFirst().id(), dtos.getFirst().id());
     }
 
     @Test
@@ -87,6 +87,6 @@ public class StockMapperTest {
         List<StockModel> stockModels = mapper.toListDomain(dtos);
 
         assertEquals(dtos.size(), stockModels.size());
-        assertEquals(dtos.getFirst().getId(), stockModels.getFirst().getId());
+        assertEquals(dtos.getFirst().id(), stockModels.getFirst().id());
     }
 }
