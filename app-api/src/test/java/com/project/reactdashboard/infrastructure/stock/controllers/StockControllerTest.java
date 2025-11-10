@@ -66,15 +66,15 @@ public class StockControllerTest {
         StockModel stockApplication = randomStockModel();
         StockDto dto = randomStockDto();
 
-        when(service.findLastWorkingDayBySymbol(stockApplication.getSymbol())).thenReturn(stockApplication);
+        when(service.findLastWorkingDayBySymbol(stockApplication.symbol())).thenReturn(stockApplication);
         when(mapper.toDto(stockApplication)).thenReturn(dto);
 
         ResultActions resultActions = mockMvc.perform(
-                get("/api/stocks/{symbol}/last-working-day", stockApplication.getSymbol())
+                get("/api/stocks/{symbol}/last-working-day", stockApplication.symbol())
                         .contentType(MediaType.APPLICATION_JSON));
 
         resultActions.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("id").value(dto.getId()));
+                .andExpect(MockMvcResultMatchers.jsonPath("id").value(dto.id()));
     }
 
     @Test
@@ -84,15 +84,15 @@ public class StockControllerTest {
         StockDto dto = randomStockDto();
         List<StockDto> dtos = randomList(i -> dto);
 
-        when(service.findBySymbol(stockApplication.getSymbol())).thenReturn(stockApplications);
+        when(service.findBySymbol(stockApplication.symbol())).thenReturn(stockApplications);
         when(mapper.toListDto(stockApplications)).thenReturn(dtos);
 
         ResultActions resultActions = mockMvc.perform(
-                get("/api/stocks/{symbol}", stockApplication.getSymbol())
+                get("/api/stocks/{symbol}", stockApplication.symbol())
                         .contentType(MediaType.APPLICATION_JSON));
 
         resultActions.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("[0].id").value(dtos.get(0).getId()));
+                .andExpect(MockMvcResultMatchers.jsonPath("[0].id").value(dtos.get(0).id()));
     }
 
     @Test
@@ -110,7 +110,7 @@ public class StockControllerTest {
                         .contentType(MediaType.APPLICATION_JSON));
 
         resultActions.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("[0].id").value(dtos.get(0).getId()));
+                .andExpect(MockMvcResultMatchers.jsonPath("[0].id").value(dtos.get(0).id()));
     }
 
     private String createJsonModel(Object value) throws JsonProcessingException {

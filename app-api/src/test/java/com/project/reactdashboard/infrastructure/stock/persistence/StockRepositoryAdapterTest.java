@@ -55,13 +55,13 @@ public class StockRepositoryAdapterTest {
 
         // Then
         verify(entityManager).createNativeQuery(anyString());
-        verify(query).setParameter(1, stock.getDate());
-        verify(query).setParameter(2, stock.getSymbol());
-        verify(query).setParameter(3, stock.getOpen());
-        verify(query).setParameter(4, stock.getHigh());
-        verify(query).setParameter(5, stock.getLow());
-        verify(query).setParameter(6, stock.getClose());
-        verify(query).setParameter(7, stock.getVolume());
+        verify(query).setParameter(1, stock.date());
+        verify(query).setParameter(2, stock.symbol());
+        verify(query).setParameter(3, stock.open());
+        verify(query).setParameter(4, stock.high());
+        verify(query).setParameter(5, stock.low());
+        verify(query).setParameter(6, stock.close());
+        verify(query).setParameter(7, stock.volume());
         verify(query).executeUpdate();
     }
 

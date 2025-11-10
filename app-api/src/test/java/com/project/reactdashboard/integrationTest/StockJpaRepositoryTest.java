@@ -43,7 +43,7 @@ public class StockJpaRepositoryTest {
         List<StockModel> stocks = repository.findBySymbol("MC.XPAR", date);
 
         assertEquals(3, stocks.size());
-        assertTrue(stocks.stream().anyMatch(element -> "MC.XPAR".equals(element.getSymbol())));
+        assertTrue(stocks.stream().anyMatch(element -> "MC.XPAR".equals(element.symbol())));
     }
 
     @Test
@@ -51,10 +51,10 @@ public class StockJpaRepositoryTest {
         List<StockModel> stocks = repository.findAllLatest();
 
         assertEquals(2, stocks.size());
-        assertEquals("POM.XPAR", stocks.get(0).getSymbol());
-        assertTrue(stocks.get(0).getDate().toString().contains("2023-12-30"));
-        assertEquals("MC.XPAR", stocks.get(1).getSymbol());
-        assertTrue(stocks.get(1).getDate().toString().contains("2023-12-29"));
+        assertEquals("POM.XPAR", stocks.get(0).symbol());
+        assertTrue(stocks.get(0).date().toString().contains("2023-12-30"));
+        assertEquals("MC.XPAR", stocks.get(1).symbol());
+        assertTrue(stocks.get(1).date().toString().contains("2023-12-29"));
     }
 
     @Test
@@ -64,6 +64,6 @@ public class StockJpaRepositoryTest {
 
         StockModel stock = repository.findLastWorkingDayBySymbol("MC.XPAR", date);
 
-        assertTrue(stock.getDate().toString().contains("2023-12-28"));
+        assertTrue(stock.date().toString().contains("2023-12-28"));
     }
 }

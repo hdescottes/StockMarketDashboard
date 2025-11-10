@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static com.project.reactdashboard.ObjectRandomizer.randomStockModel;
+import static com.project.reactdashboard.ObjectRandomizer.randomStockModelWithSymbol;
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.ZONKY;
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.RefreshMode.BEFORE_EACH_TEST_METHOD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,14 +34,13 @@ public class StockPostgresRepositoryTest {
 
     @Test
     void should_upsert_stock() {
-        StockModel stock = randomStockModel();
-        stock.setSymbol("ML.XPAR");
+        StockModel stock = randomStockModelWithSymbol("ML.XPAR");
 
         repository.upsert(stock);
         List<StockModel> dbStocks = repository.findAll();
 
         assertEquals(1, dbStocks.size());
-        assertEquals(stock.getSymbol(), dbStocks.getFirst().getSymbol());
-        assertEquals(stock.getHigh(), dbStocks.getFirst().getHigh());
+        assertEquals(stock.symbol(), dbStocks.getFirst().symbol());
+        assertEquals(stock.high(), dbStocks.getFirst().high());
     }
 }

@@ -54,6 +54,20 @@ public class ObjectRandomizer {
                 .build();
     }
 
+    public static StockModel randomStockModelWithSymbol(String symbol) {
+        return new StockModel.StockModelBuilder()
+                .withId(randomLong())
+                .withSymbol(symbol)
+                .withSymbolValues(randomSymbolValuesModel())
+                .withDate(OffsetDateTime.now())
+                .withVolume(randomDouble())
+                .withOpen(randomDouble())
+                .withClose(randomDouble())
+                .withHigh(randomDouble())
+                .withLow(randomDouble())
+                .build();
+    }
+
     public static Stock randomStock() {
         return new Stock.StockBuilder()
                 .withId(randomLong())

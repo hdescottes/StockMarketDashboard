@@ -1,30 +1,9 @@
 package com.project.reactdashboard.domain.stock.model;
 
-public class SymbolValuesModel {
+public record SymbolValuesModel(String symbol, String name) {
 
-    private String symbol;
-
-    private String name;
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    private SymbolValuesModel(SymbolValuesModelBuilder builder) {
-        this.symbol = builder.symbol;
-        this.name = builder.name;
+    public SymbolValuesModel(SymbolValuesModelBuilder builder){
+        this(builder.symbol, builder.name);
     }
 
     public static class SymbolValuesModelBuilder {
