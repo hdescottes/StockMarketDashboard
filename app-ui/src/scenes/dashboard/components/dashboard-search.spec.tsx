@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { DashboardSearch } from "./dashboard-search";
 import { render, screen } from "@testing-library/react";
-import { newStock } from "../../../model/stock";
+import { createStock } from "../../../model/stock";
 import { IntlWrapper } from "../../../test-utils/intlWrapper";
 
 describe("DashboardSearch component", () => {
@@ -50,9 +50,9 @@ describe("DashboardSearch component", () => {
 });
 
 const props = {
-  stock: { ...newStock },
+  stock: createStock(),
   onChange: jest.fn(),
   fetch: jest.fn(),
   search: jest.fn(),
-  stocks: [newStock],
+  stocks: [createStock()],
 };

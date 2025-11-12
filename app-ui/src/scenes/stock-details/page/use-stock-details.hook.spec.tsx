@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import { newStock } from "../../../model/stock";
+import { createStock } from "../../../model/stock";
 import { StockDetailsService } from "../../../services/stock-details.service";
 import { useStockDetails } from "./use-stock-details.hook";
 
@@ -14,7 +14,7 @@ describe("useStockDetails", () => {
   });
 
   it("should call getBySymbol", async () => {
-    stockDetailsService.prototype.getBySymbol.mockResolvedValue([newStock]);
+    stockDetailsService.prototype.getBySymbol.mockResolvedValue([createStock()]);
 
     const { result } = renderHook(() => useStockDetails(""));
 

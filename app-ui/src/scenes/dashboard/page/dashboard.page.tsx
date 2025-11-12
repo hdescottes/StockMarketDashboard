@@ -3,12 +3,12 @@ import { useDashboard } from "./use-dashboard.hook";
 import Box from "@mui/material/Box";
 import { Header } from "../../../components/header";
 import { DashboardList } from "../components/dashboard-list";
-import { newStock } from "../../../model/stock";
+import { createStock } from "../../../model/stock";
 import { useIntl } from "react-intl";
 
 export const Dashboard = () => {
   const translate = useIntl();
-  const { stock, setStock, fetch, search, stocks } = useDashboard(newStock);
+  const { stock, setStock, fetch, search, stocks } = useDashboard(createStock());
 
   return (
     <Box m="20px">

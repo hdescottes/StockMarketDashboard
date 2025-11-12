@@ -1,11 +1,10 @@
-import { Section } from "./section";
 import { render, screen } from "@testing-library/react";
 import { SkeletonCustom } from "./skeleton";
-import { Stock, newStock } from "../model/stock";
+import { createStock } from "../model/stock";
 
 describe("Skeleton component", () => {
   it("should render without skeleton", () => {
-    const stock = newStock;
+    const stock = createStock();
     const dom = render(
       <SkeletonCustom
         data={stock}
