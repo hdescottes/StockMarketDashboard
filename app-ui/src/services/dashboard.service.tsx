@@ -1,4 +1,4 @@
-import { Stock, newStock } from "../model/stock";
+import { Stock, createStock } from "../model/stock";
 import { StockResponse } from "../model/stockResponse";
 import { HttpService } from "./http.service";
 import token from "../token.json";
@@ -43,7 +43,7 @@ export class DashboardService {
       .get<Stock>(`/api/stocks/${symbol}/last-working-day`)
       .then(
         (response: Stock) => response,
-        (_error) => newStock
+        (_error) => createStock()
       );
   }
 

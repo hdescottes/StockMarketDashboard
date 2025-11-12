@@ -10,7 +10,7 @@ export interface Stock {
   low: number;
 }
 
-export const newStock: Stock = {
+export const createStock = (overrides: Partial<Stock> = {}): Stock => ({
   id: "",
   date: "",
   symbol: "",
@@ -20,4 +20,5 @@ export const newStock: Stock = {
   close: 0,
   high: 0,
   low: 0,
-};
+  ...overrides,
+});

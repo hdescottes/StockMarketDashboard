@@ -1,4 +1,4 @@
-import { Stock, newStock } from "../model/stock";
+import { Stock, createStock } from "../model/stock";
 import { DashboardService } from "./dashboard.service";
 import { HttpService } from "./http.service";
 
@@ -10,7 +10,7 @@ describe("Dashboard service", () => {
   describe("Call to fetch stocks", () => {
     it("Succeeds, should return list of stock", async () => {
       const symbol = "toto";
-      const stockResponse: Stock[] = [newStock];
+      const stockResponse: Stock[] = [createStock()];
       const dashboardService = new DashboardService();
 
       httpService.prototype.get.mockResolvedValue({
@@ -65,7 +65,7 @@ describe("Dashboard service", () => {
       expect(httpService.prototype.get).toHaveBeenCalledWith(
         `/api/stocks/${symbol}/last-working-day`
       );
-      expect(response).toEqual(newStock);
+      expect(response).toEqual(createStock());
     });
   });
   describe("Call to search stocks", () => {
@@ -99,7 +99,7 @@ describe("Dashboard service", () => {
   describe("Call to create stocks", () => {
     it("Succeeds, should create stocks", async () => {
       const dashboardService = new DashboardService();
-      const stocks = [newStock, newStock];
+      const stocks = [createStock(), createStock()];
 
       httpService.prototype.post.mockResolvedValue({ response: 1 });
 
@@ -113,7 +113,7 @@ describe("Dashboard service", () => {
 
     it("Fails, should return null", async () => {
       const dashboardService = new DashboardService();
-      const stocks = [newStock, newStock];
+      const stocks = [createStock(), createStock()];
 
       httpService.prototype.post.mockRejectedValue(
         new Error("Failed to fetch data")

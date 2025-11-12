@@ -1,7 +1,7 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { useDashboard } from "./use-dashboard.hook";
 import { DashboardService } from "../../../services/dashboard.service";
-import { newStock } from "../../../model/stock";
+import { createStock } from "../../../model/stock";
 
 jest.mock("../../../services/dashboard.service");
 const dashboardService = DashboardService as jest.MockedClass<
@@ -15,13 +15,13 @@ describe("useDashboard", () => {
 
   it("should call getById, fetch, then create and search", async () => {
     dashboardService.prototype.getLastWorkingDayBySymbol.mockResolvedValue(
-      newStock
+      createStock()
     );
     dashboardService.prototype.fetch.mockResolvedValue([]);
     dashboardService.prototype.createAll.mockResolvedValue(1);
     dashboardService.prototype.search.mockResolvedValue([]);
 
-    const { result } = renderHook(() => useDashboard(newStock));
+    const { result } = renderHook(() => useDashboard(createStock()));
 
     act(() => {
       result.current.fetch();
@@ -39,16 +39,13 @@ describe("useDashboard", () => {
   });
 
   it("should call getById, then search", async () => {
-    const dbStock = {
-      ...newStock,
-      id: "toto",
-    };
+    const dbStock = createStock({ id: "toto" });
     dashboardService.prototype.getLastWorkingDayBySymbol.mockResolvedValue(
       dbStock
     );
     dashboardService.prototype.search.mockResolvedValue([]);
 
-    const { result } = renderHook(() => useDashboard(newStock));
+    const { result } = renderHook(() => useDashboard(createStock()));
 
     act(() => {
       result.current.fetch();

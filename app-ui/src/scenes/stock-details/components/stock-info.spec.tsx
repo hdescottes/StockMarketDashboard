@@ -1,12 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import { newStock } from "../../../model/stock";
+import { createStock } from "../../../model/stock";
 import { StockInfo } from "./stock-info";
 import { IntlWrapper } from "../../../test-utils/intlWrapper";
 
 describe("StockInfo component", () => {
   it("should render all fields", () => {
-    const stock = {
-      ...newStock,
+    const stock = createStock({
       symbol: "symbol",
       name: "name",
       open: 105,
@@ -15,9 +14,8 @@ describe("StockInfo component", () => {
       low: 100,
       volume: 100000,
       date: "date",
-    };
-    const stock2 = {
-      ...newStock,
+    });
+    const stock2 = createStock({
       symbol: "symbol",
       open: 90,
       close: 100,
@@ -26,7 +24,7 @@ describe("StockInfo component", () => {
       volume: 105000,
       date: "prevDate",
       name: "prevName",
-    };
+    });
 
     render(
       <StockInfo stock={stock} stockDayBefore={stock2} />,
