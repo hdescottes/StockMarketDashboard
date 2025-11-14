@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-api
+  namespace: stock-market-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-api
+  template:
+    metadata:
+      labels:
+        app: app-api
+    spec:
+      containers:
+        - name: app-api
+          image: docker-app-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres:5432/react-dashboard
+            - name: SPRING_DATASOURCE_USERNAME
+              value: admin
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-api
+  namespace: stock-market-dashboard
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+  selector:
+    app: app-api
