@@ -14,6 +14,20 @@ SpringBoot server with hibernate as ORM and Postgresql as database (with docker)
 React application<br>
 Cypress end-to-end tests
 
+## Configuration
+
+#### Docker
+Command line to generate images and start containers :
+```
+docker-compose -f docker/docker-compose.yml up
+```
+
+#### Kubernetes
+To deploy the application on a kubernetes cluster, use the following command :
+```
+kubectl apply -k k8s/
+```
+
 -------
 ## Demo
 <p style="text-align:center">
