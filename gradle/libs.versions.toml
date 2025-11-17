@@ -13,7 +13,7 @@ jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-js
 liquibase = { group = "org.liquibase", name = "liquibase-core", version = "5.0.1" }
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.8" }
 zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.6.0" }
-zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.1.1" }
+zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.2.0" }
 
 [bundles]
 spring-boot = ["starter-web", "starter-data-jpa", "starter-actuator"]
