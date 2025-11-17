@@ -14,13 +14,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static com.project.reactdashboard.ObjectRandomizer.randomStockModelWithSymbol;
-import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.ZONKY;
+import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.EMBEDDED;
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.RefreshMode.BEFORE_EACH_TEST_METHOD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@AutoConfigureEmbeddedDatabase(provider = ZONKY, refresh = BEFORE_EACH_TEST_METHOD)
+@AutoConfigureEmbeddedDatabase(provider = EMBEDDED, refresh = BEFORE_EACH_TEST_METHOD)
 public class StockPostgresRepositoryTest {
 
     @Autowired
