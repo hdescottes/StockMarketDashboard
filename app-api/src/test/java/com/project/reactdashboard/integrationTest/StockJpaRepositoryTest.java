@@ -16,7 +16,7 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
-import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.ZONKY;
+import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.EMBEDDED;
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.RefreshMode.BEFORE_EACH_TEST_METHOD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Sql({"/init-zonky.sql"})
-@AutoConfigureEmbeddedDatabase(provider = ZONKY, refresh = BEFORE_EACH_TEST_METHOD)
+@AutoConfigureEmbeddedDatabase(provider = EMBEDDED, refresh = BEFORE_EACH_TEST_METHOD)
 public class StockJpaRepositoryTest {
 
     @Autowired
