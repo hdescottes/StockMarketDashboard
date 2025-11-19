@@ -12,7 +12,7 @@ archunit = { group = "com.tngtech.archunit", name = "archunit-junit5", version =
 jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version = "2.20.1" }
 liquibase = { group = "org.liquibase", name = "liquibase-core", version = "5.0.1" }
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.8" }
-zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.7.0" }
+zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.7.1" }
 zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.2.0" }
 
 [bundles]
