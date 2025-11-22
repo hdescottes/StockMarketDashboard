@@ -31,7 +31,7 @@ repositories {
 dependencies {
 	implementation(libs.bundles.spring.boot)
 	implementation(libs.jsr310)
-	implementation(libs.liquibase)
+	implementation(libs.liquibase.core)
 	developmentOnly(libs.docker.compose)
 	runtimeOnly(libs.postgresql)
 	testImplementation(libs.starter.test)

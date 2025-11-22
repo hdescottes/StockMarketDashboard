@@ -6,25 +6,23 @@ import com.project.reactdashboard.infrastructure.stock.controllers.mapper.StockM
 import com.project.reactdashboard.infrastructure.stock.persistence.StockJpaRepository;
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider.EMBEDDED;
+import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseType.POSTGRES;
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.RefreshMode.BEFORE_EACH_TEST_METHOD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 @Sql({"/init-zonky.sql"})
-@AutoConfigureEmbeddedDatabase(provider = EMBEDDED, refresh = BEFORE_EACH_TEST_METHOD)
+@AutoConfigureEmbeddedDatabase(provider = EMBEDDED, refresh = BEFORE_EACH_TEST_METHOD, type = POSTGRES)
 public class StockJpaRepositoryTest {
 
     @Autowired
