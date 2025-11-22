@@ -2,7 +2,7 @@
 spring-boot = "4.0.0"
 
 [libraries]
-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
+starter-webmvc = { group = "org.springframework.boot", name = "spring-boot-starter-webmvc", version.ref = "spring-boot" }
 starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "spring-boot" }
 starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "spring-boot" }
 docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose", version.ref = "spring-boot" }
@@ -17,7 +17,7 @@ zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-te
 zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.2.0" }
 
 [bundles]
-spring-boot = ["starter-web", "starter-data-jpa", "starter-actuator", "liquibase"]
+spring-boot = ["starter-webmvc", "starter-data-jpa", "starter-actuator", "liquibase"]
 zonky = ["zonkyPostgres", "zonkyEmbeddedDb"]
 
 [plugins]
