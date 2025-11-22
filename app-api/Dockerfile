@@ -1,4 +1,4 @@
-FROM gradle:8.10-alpine AS builder
+FROM gradle:9.0-alpine AS builder
 WORKDIR /app-api
 COPY gradle gradle
 COPY app-api .

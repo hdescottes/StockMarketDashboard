@@ -1,5 +1,5 @@
 [versions]
-spring-boot = "3.5.7"
+spring-boot = "4.0.0"
 
 [libraries]
 starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
@@ -8,15 +8,16 @@ starter-actuator = { group = "org.springframework.boot", name = "spring-boot-sta
 docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose", version.ref = "spring-boot" }
 starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "spring-boot" }
 gradle-plugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
+liquibase = { group = "org.springframework.boot", name = "spring-boot-liquibase", version.ref = "spring-boot" }
 archunit = { group = "com.tngtech.archunit", name = "archunit-junit5", version = "1.4.1" }
 jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version = "2.20.1" }
-liquibase = { group = "org.liquibase", name = "liquibase-core", version = "5.0.1" }
+liquibase-core = { group = "org.liquibase", name = "liquibase-core", version = "5.0.1" }
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.8" }
 zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.7.1" }
 zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.2.0" }
 
 [bundles]
-spring-boot = ["starter-web", "starter-data-jpa", "starter-actuator"]
+spring-boot = ["starter-web", "starter-data-jpa", "starter-actuator", "liquibase"]
 zonky = ["zonkyPostgres", "zonkyEmbeddedDb"]
 
 [plugins]
