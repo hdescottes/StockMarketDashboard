@@ -29,12 +29,12 @@
     "flag-icons": "^7.5.0",
     "framer-motion": "^12.23.24",
     "http-proxy-middleware": "^3.0.5",
-    "react": "^19.2.0",
-    "react-apexcharts": "^1.8.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-apexcharts": "^1.9.0",
+    "react-dom": "^19.2.1",
     "react-intl": "^7.1.14",
     "react-pro-sidebar": "^1.1.0-alpha.1",
-    "react-router-dom": "^7.9.6",
+    "react-router-dom": "^7.10.1",
     "typescript": "^5.9.3"
   },
   "scripts": {
