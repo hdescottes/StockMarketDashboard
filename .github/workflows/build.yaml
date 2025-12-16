@@ -83,7 +83,7 @@ jobs:
           start: npm run dev
           wait-on: http://localhost:3000 
       - name: Upload screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: cypress-screenshots
