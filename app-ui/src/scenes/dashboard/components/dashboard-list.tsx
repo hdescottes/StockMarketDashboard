@@ -11,7 +11,7 @@ import "@ag-grid-community/styles/ag-theme-quartz.css";
 import "./dashboard-list.scss";
 import { SeeButton } from "../../../components/buttons/see-button";
 import { useNavigate } from "react-router-dom";
-import useIntl from "react-intl/src/components/useIntl";
+import { useIntl } from "react-intl";
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 

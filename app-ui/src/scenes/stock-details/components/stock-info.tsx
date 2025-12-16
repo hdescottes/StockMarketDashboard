@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import "./stock-info.scss";
 import Grid from "@mui/material/Grid";
 import { SkeletonCustom } from "../../../components/skeleton";
-import useIntl from "react-intl/src/components/useIntl";
+import { useIntl } from "react-intl";
 
 export const StockInfo = (props: { stock: Stock; stockDayBefore: Stock }) => {
   const translate = useIntl();
