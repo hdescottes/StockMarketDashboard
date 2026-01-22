@@ -76,7 +76,7 @@ jobs:
       - name: Wait for Backend
         run: npx wait-on http://localhost:8080/actuator/health
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           working-directory: app-ui
           build: npm run build
