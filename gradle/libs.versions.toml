@@ -1,5 +1,5 @@
 [versions]
-spring-boot = "4.0.1"
+spring-boot = "4.0.2"
 
 [libraries]
 starter-webmvc = { group = "org.springframework.boot", name = "spring-boot-starter-webmvc", version.ref = "spring-boot" }
