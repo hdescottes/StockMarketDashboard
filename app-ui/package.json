@@ -21,7 +21,7 @@
     "@types/react-dom": "^19.2.3",
     "ag-grid-community": "^35.0.1",
     "ag-grid-react": "^35.0.1",
-    "apexcharts": "^5.3.6",
+    "apexcharts": "^5.5.0",
     "axios": "^1.13.5",
     "bootstrap": "^5.3.8",
     "cypress": "^15.10.0",
