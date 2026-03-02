@@ -14,7 +14,7 @@ jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-js
 liquibase-core = { group = "org.liquibase", name = "liquibase-core", version = "5.0.1" }
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.10" }
 zonkyEmbeddedDb = { group = "io.zonky.test", name = "embedded-database-spring-test", version = "2.7.1" }
-zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.2.0" }
+zonkyPostgres = { group = "io.zonky.test", name = "embedded-postgres", version = "2.2.2" }
 
 [bundles]
 spring-boot = ["starter-webmvc", "starter-data-jpa", "starter-actuator", "liquibase"]
