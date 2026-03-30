@@ -69,6 +69,6 @@
     "jest-environment-jsdom": "^30.3.0",
     "sass": "^1.98.0",
     "ts-node": "^10.9.1",
-    "vite": "^8.0.2"
+    "vite": "^8.0.3"
   }
 }
