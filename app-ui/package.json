@@ -35,7 +35,7 @@
     "react-intl": "^10.1.1",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "react-router-dom": "^7.14.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "scripts": {
     "build": "vite build",
