@@ -16,8 +16,8 @@
     "@mui/types": "^9.0.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.9.0",
-    "@types/react": "^19.2.14",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "ag-grid-community": "^35.3.0",
     "ag-grid-react": "^35.3.0",
@@ -27,7 +27,7 @@
     "cypress": "^15.15.0",
     "esbuild": "^0.28.0",
     "flag-icons": "^7.5.0",
-    "framer-motion": "^12.39.0",
+    "framer-motion": "^12.40.0",
     "http-proxy-middleware": "^4.0.0",
     "react": "^19.2.6",
     "react-apexcharts": "^2.1.0",
@@ -67,8 +67,8 @@
     "babel-jest": "^30.4.1",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
-    "sass": "^1.99.0",
+    "sass": "^1.100.0",
     "ts-node": "^10.9.1",
-    "vite": "^8.0.13"
+    "vite": "^8.0.14"
   }
 }
