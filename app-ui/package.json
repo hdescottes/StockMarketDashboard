@@ -67,7 +67,7 @@
     "babel-jest": "^30.4.1",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
-    "sass": "^1.99.0",
+    "sass": "^1.100.0",
     "ts-node": "^10.9.1",
     "vite": "^8.0.13"
   }
