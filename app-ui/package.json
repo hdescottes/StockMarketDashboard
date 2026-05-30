@@ -32,8 +32,8 @@
     "react": "^19.2.6",
     "react-apexcharts": "^2.1.0",
     "react-dom": "^19.2.6",
-    "react-intl": "^10.1.7",
-    "react-pro-sidebar": "^1.1.0-alpha.1",
+    "react-intl": "^10.1.9",
+    "react-pro-sidebar": "^2.0.0-alpha.0",
     "react-router-dom": "^7.15.1",
     "typescript": "^6.0.3"
   },
