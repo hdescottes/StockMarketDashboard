@@ -22,7 +22,7 @@
     "ag-grid-community": "^36.0.0",
     "ag-grid-react": "^36.0.0",
     "axios": "^1.18.1",
-    "apexcharts": "^5.15.2",
+    "apexcharts": "^5.16.0",
     "bootstrap": "^5.3.8",
     "cypress": "^15.18.0",
     "esbuild": "^0.28.1",
