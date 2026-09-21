@@ -27,7 +27,7 @@
     "cypress": "^16.0.0",
     "esbuild": "^0.28.2",
     "flag-icons": "^7.5.0",
-    "framer-motion": "^13.2.0",
+    "framer-motion": "^13.4.0",
     "http-proxy-middleware": "^4.2.0",
     "react": "^19.3.0",
     "react-apexcharts": "^2.1.1",
